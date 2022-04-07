@@ -1,0 +1,36 @@
+.page-header {
+    margin: 0 auto;
+    max-width: 40vw;
+    background-color: #bbb;
+}
+
+.page-title {
+    margin: 0 auto;
+    padding: 1em 0;
+    width: fit-content;
+}
+
+.page-title h1 {
+    font-size: 32px;
+}
+
+.page-description {
+    margin: 0 auto;
+    padding: 1em 0;
+    width: fit-content;
+}
+
+.page-description p {
+    font-size: 20px;
+}
+
+.page-content {
+    height: 100%;
+    padding: 3em;
+}
+
+/* Customize the label (the line-container) */
+.line-container {
+    display: block;
+    position: relative;
+  }
