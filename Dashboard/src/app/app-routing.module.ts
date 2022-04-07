@@ -5,7 +5,7 @@ import { Page1Component } from './page1/page1.component';
 
 const routes: Routes = [
   { path: '', component: Page1Component },
-  { path: '/page2', component: Page2Component }
+  { path: 'page2', component: Page2Component },
 ];
 
 @NgModule({
