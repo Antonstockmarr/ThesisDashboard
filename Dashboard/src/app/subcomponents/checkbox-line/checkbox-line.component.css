@@ -1,6 +1,7 @@
 .checkbox-line {
     display: block;
     position: relative;
+    width: calc(100% - 30px);
   }
 
 .checkbox-column {
