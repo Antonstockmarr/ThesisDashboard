@@ -1,0 +1,18 @@
+.content-card {
+    width: 100%;
+    height: fit-content;
+    box-sizing: border-box;
+    background-color: #eeeeee;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.title h2 {
+    color: blue;
+    text-decoration: underline;
+    font-size: 24px;
+}
