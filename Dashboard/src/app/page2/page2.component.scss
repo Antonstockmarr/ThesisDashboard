@@ -27,10 +27,13 @@
 .page-content {
     height: 100%;
     padding: 3em;
+    display: grid;
+    row-gap: 30px;    
 }
 
-/* Customize the label (the line-container) */
 .line-container {
-    display: block;
+    display: grid;
     position: relative;
+    grid-template-columns: 1fr 1fr;
   }
+
