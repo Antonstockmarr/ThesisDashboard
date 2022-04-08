@@ -1,0 +1,33 @@
+/* Difficulty Rating Bar */
+.difficulty-bar {
+    box-sizing: border-box;
+    text-align: center;
+    letter-spacing: -4px;
+    height: 100%;
+    padding: 20px 10px;
+   }
+
+.difficulty-bar .bars {
+    margin: 0 auto;
+    height: 100%;
+    width: 40%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 5px;
+}
+
+.difficulty-bar .bars .bar {
+	display: inline-block;
+    border: 1px solid #111;
+    border-radius: 5px;
+	width: 100%;
+	height: 100%;
+	background-color: #EEEEEE;
+    letter-spacing: normal;
+}
+
+.difficulty-bar .bars .bar.easy { background-color: #2dc937; }
+//.difficulty-bar .bars .bar.selected2 { background-color: #C8D500; }
+.difficulty-bar .bars .bar.medium { background-color: #e7b416; }
+//.difficulty-bar .bars .bar.selected4 { background-color: #CE5F00; }
+.difficulty-bar .bars .bar.hard { background-color: #cc3232; }

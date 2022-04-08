@@ -14,6 +14,7 @@ import { Page2Component } from './page2/page2.component';
 import { Page1Component } from './page1/page1.component';
 import { CheckboxLineComponent } from './subcomponents/checkbox-line/checkbox-line.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DifficultyBarComponent } from './subcomponents/difficulty-bar/difficulty-bar.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     Page1Component,
     Page2Component,
-    CheckboxLineComponent
+    CheckboxLineComponent,
+    DifficultyBarComponent
   ],
   imports: [
     BrowserModule,

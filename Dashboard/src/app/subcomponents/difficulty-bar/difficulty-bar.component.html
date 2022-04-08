@@ -1,0 +1,7 @@
+<div class="difficulty-bar">
+  <span class="bars">
+    <span class="bar" [ngClass]="{'easy' : (difficulty=='hard') || (difficulty=='medium') || (difficulty=='easy')}"></span>
+    <span class="bar" [ngClass]="{'medium' : (difficulty=='medium') || (difficulty=='hard')}"></span>
+    <span class="bar" [ngClass]="{'hard' : (difficulty=='hard')}"></span>
+  </span>
+</div>
