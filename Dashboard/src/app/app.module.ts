@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Page2Component } from './page2/page2.component';
 import { Page1Component } from './page1/page1.component';
-import { CheckboxLineComponent } from './checkbox-line/checkbox-line.component';
+import { CheckboxLineComponent } from './subcomponents/checkbox-line/checkbox-line.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
