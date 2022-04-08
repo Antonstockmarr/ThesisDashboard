@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatStepperModule} from '@angular/material/stepper';
+
 
 
 
@@ -16,6 +18,7 @@ import { CheckboxLineComponent } from './subcomponents/checkbox-line/checkbox-li
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DifficultyBarComponent } from './subcomponents/difficulty-bar/difficulty-bar.component';
 import { ContentcardComponent } from './subcomponents/contentcard/contentcard.component';
+import { FooterComponent } from './subcomponents/footer/footer.component';
 
 
 @NgModule({
@@ -25,7 +28,8 @@ import { ContentcardComponent } from './subcomponents/contentcard/contentcard.co
     Page2Component,
     CheckboxLineComponent,
     DifficultyBarComponent,
-    ContentcardComponent
+    ContentcardComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,8 @@ import { ContentcardComponent } from './subcomponents/contentcard/contentcard.co
     FormsModule,
     MatCheckboxModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

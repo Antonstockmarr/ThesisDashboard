@@ -1,0 +1,17 @@
+.footer { 
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background-color: blue;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 25px 25%;
+    column-gap: 25px;
+}
+
+.footer button {
+    font-size: 24px;
+}

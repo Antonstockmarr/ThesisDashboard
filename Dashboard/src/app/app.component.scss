@@ -1,4 +1,26 @@
 .wrapper {
   height: 100%;
-  margin: 0px auto;
+  margin: 0px auto; 
+}
+
+.wrapper::after {
+  content: '';
+  display: block;
+  height: 100px; /* Set same as footer's height */
+}
+
+::ng-deep .mat-horizontal-stepper-header-container {
+  padding-bottom: 20px;
+}
+
+::ng-deep .mat-step-header[aria-selected="true"]  {
+  background-color: #00A9CE;;
+  border-radius: 32px;
+  width: 30%;
+  min-width: fit-content;
+  font-weight: 10px;
+
+  & div.mat-step-label.mat-step-label-active.mat-step-label-selected {
+      color: #FFF;
   }
+}
