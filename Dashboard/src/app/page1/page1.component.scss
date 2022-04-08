@@ -1,9 +1,9 @@
 
+
 .center {
-    // margin:auto;
-    width: 300px;
-    padding: 200px;
-    margin-left: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-left: 6%;
 }
 
 .matTileCard {
@@ -18,7 +18,7 @@
   background: hsl(0 0% 100%);
   width: 60vmin;
   height: 54vmin;
-  display: inherit;
+  display: block;
   place-items: center;
   padding: 3ch;
   border-radius: 15px;
@@ -46,20 +46,12 @@
   }
   
   .header { grid-area: header; }
-  .main { grid-area: main; }
+  // .main { grid-area: main; }
   .footer { grid-area: footer; }
 
   /* .smallcard {
 
-  } */
- 
-  // .qw-cards {
-    //   display: flex;
-    //   flex-wrap: wrap;
-    //   margin-left: -8px;
-    //   margin-right: -8px;
-    // }
-    
+  } */ 
     .qw-cards {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -230,3 +222,14 @@
     .mb-1 {margin-bottom: 4px;}
     h3,h4 {margin-bottom: 2px; margin-top: 0;}
     .w-100 { width: 100%; } 
+
+// checkbox
+
+/* Customize the label (the line-container) */
+.line-container {
+  display: block;
+  position: relative;
+  width: 50%;
+  float: right;
+}
+
