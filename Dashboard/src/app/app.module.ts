@@ -33,7 +33,6 @@ import { DifficultyBarComponent } from './subcomponents/difficulty-bar/difficult
     MatCheckboxModule,
     MatCardModule,
     MatGridListModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]
