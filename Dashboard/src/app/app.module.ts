@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DifficultyBarComponent } from './subcomponents/difficulty-bar/difficulty-bar.component';
 import { ContentcardComponent } from './subcomponents/contentcard/contentcard.component';
 import { FooterComponent } from './subcomponents/footer/footer.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { FooterComponent } from './subcomponents/footer/footer.component';
     MatCheckboxModule,
     MatCardModule,
     MatGridListModule,
-    MatStepperModule
+    MatStepperModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

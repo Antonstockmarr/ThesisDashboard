@@ -8,7 +8,7 @@
               <div class="qw-card_media">
                 <div class="qw-avatar-lg">
                   <div class="qw-avatar qw-avatar-icon qw-blue-8" aria-label="Anonymous user">
-                    <span class="fa fa-paper-plane"> </span>
+                    <fa-icon [icon]="faUsers"></fa-icon>
                   </div>
                 </div>
               </div>
@@ -33,7 +33,8 @@
               <div class="qw-card_media">
                 <div class="qw-avatar-lg">
                   <div class="qw-avatar qw-avatar-icon qw-blue-8" aria-label="Anonymous user">
-                    <span class="fa fa-paper-plane"> </span>
+                    <fa-icon [icon]="faSensorTriangleExclamation"></fa-icon>
+                    <!-- <span class="fa fa-paper-plane"> </span> -->
                   </div>
                 </div>
               </div>
@@ -41,7 +42,7 @@
                 <div class="qw-card_header">
                   <div class="">
                     <div class="qw-card_title">
-                      <h4 class="m-0 mb-1">UX monitoring</h4>
+                      <h4 class="m-0 mb-1">Incident Handling</h4>
                     </div>
                     <div class="qw-card_subtitle"></div>
                   </div>
@@ -58,7 +59,7 @@
               <div class="qw-card_media">
                 <div class="qw-avatar-lg">
                   <div class="qw-avatar qw-avatar-icon qw-blue-8" aria-label="Anonymous user">
-                    <span class="fa fa-paper-plane"> </span>
+                    <fa-icon [icon]="faServer"></fa-icon>
                   </div>
                 </div>
               </div>
@@ -66,7 +67,7 @@
                 <div class="qw-card_header">
                   <div class="">
                     <div class="qw-card_title">
-                      <h4 class="m-0 mb-1">UX monitoring</h4>
+                      <h4 class="m-0 mb-1">Resource Management</h4>
                     </div>
                     <div class="qw-card_subtitle"></div>
                   </div>
@@ -83,7 +84,7 @@
               <div class="qw-card_media">
                 <div class="qw-avatar-lg">
                   <div class="qw-avatar qw-avatar-icon qw-blue-8" aria-label="Anonymous user">
-                    <span class="fa fa-paper-plane"> </span>
+                    <fa-icon [icon]="faServer"></fa-icon>
                   </div>
                 </div>
               </div>
@@ -91,7 +92,7 @@
                 <div class="qw-card_header">
                   <div class="">
                     <div class="qw-card_title">
-                      <h4 class="m-0 mb-1">UX monitoring</h4>
+                      <h4 class="m-0 mb-1">Compliance</h4>
                     </div>
                     <div class="qw-card_subtitle"></div>
                   </div>
@@ -106,18 +107,17 @@
         </mat-grid-list>
       </mat-card>
       <div class="line-container">
-        <app-checkbox-line [description]="'description'"
-          [tooltip]="'This is a slightly longer tooltip to illustrate how these might lookThis is a slightly longer tooltip to illustrate how these might look'">
-        </app-checkbox-line>
-        <app-checkbox-line [description]="'description'" [tooltip]="'tooltip'"></app-checkbox-line>
-        <app-checkbox-line [description]="'description'" [tooltip]="'tooltip'"></app-checkbox-line>
-        <app-checkbox-line [description]="'description'" [tooltip]="'tooltip'"></app-checkbox-line>
-        <app-checkbox-line [description]="'description'"
+      <ul *ngFor="let approach of Approaches">
+        <app-checkbox-line [description]="approach" [tooltip]="'tooltip'"></app-checkbox-line>
+      </ul>
+        <!-- <app-checkbox-line [description]="'Network Traffic'" [tooltip]="'tooltip'"></app-checkbox-line>
+        <app-checkbox-line [description]="'Health Checks'" [tooltip]="'tooltip'"></app-checkbox-line>
+        <app-checkbox-line [description]="'Distributed Tracing'"
         [tooltip]="'This is a slightly longer tooltip to illustrate how these might lookThis is a slightly longer tooltip to illustrate how these might look'">
         </app-checkbox-line>
-        <app-checkbox-line [description]="'description'" [tooltip]="'tooltip'"></app-checkbox-line>
-        <app-checkbox-line [description]="'description'" [tooltip]="'tooltip'"></app-checkbox-line>
-        <app-checkbox-line [description]="'description'" [tooltip]="'tooltip'"></app-checkbox-line>
+        <app-checkbox-line  [description]="'Error Logs'" [tooltip]="'tooltip'"></app-checkbox-line>
+        <app-checkbox-line [description]="'Alert System'" [tooltip]="'tooltip'"></app-checkbox-line>
+        <app-checkbox-line [description]="'OS Metrics'" [tooltip]="'tooltip'"></app-checkbox-line> -->
       </div>
     </div>
   </div>
@@ -125,13 +125,3 @@
 
 
 
-<!-- <mat-card class="smallCard">
-  <mat-card-title-group>
-    <mat-card-title class="qw-card_media">Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Small</mat-card-subtitle>
-    <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
-  </mat-card-title-group>
-  <mat-card-content>
-    {{longText}}
-  </mat-card-content>
-</mat-card> -->
