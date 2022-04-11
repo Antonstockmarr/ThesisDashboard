@@ -107,17 +107,9 @@
         </mat-grid-list>
       </mat-card>
       <div class="line-container">
-      <ul *ngFor="let approach of Approaches">
-        <app-checkbox-line [description]="approach" [tooltip]="'tooltip'"></app-checkbox-line>
+      <ul *ngFor="let approach of checkboxesDataList">
+        <app-checkbox-line [description]="approach.label" [tooltip]="'tooltip'" type="checkbox" (onClick)="changeSelection($event,approach.label)"></app-checkbox-line>
       </ul>
-        <!-- <app-checkbox-line [description]="'Network Traffic'" [tooltip]="'tooltip'"></app-checkbox-line>
-        <app-checkbox-line [description]="'Health Checks'" [tooltip]="'tooltip'"></app-checkbox-line>
-        <app-checkbox-line [description]="'Distributed Tracing'"
-        [tooltip]="'This is a slightly longer tooltip to illustrate how these might lookThis is a slightly longer tooltip to illustrate how these might look'">
-        </app-checkbox-line>
-        <app-checkbox-line  [description]="'Error Logs'" [tooltip]="'tooltip'"></app-checkbox-line>
-        <app-checkbox-line [description]="'Alert System'" [tooltip]="'tooltip'"></app-checkbox-line>
-        <app-checkbox-line [description]="'OS Metrics'" [tooltip]="'tooltip'"></app-checkbox-line> -->
       </div>
     </div>
   </div>

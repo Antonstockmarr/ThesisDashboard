@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CheckboxLineComponent implements OnInit {
   @Input() description!: string;
   @Input() tooltip!: string;
-  @Input() onClick: (value: boolean) => void = (value) => {};
+  @Output() onClick: EventEmitter<MatCheckboxChange> = new EventEmitter<MatCheckboxChange>();
   @Input() disabled: boolean = false;
   @Input() checked: boolean = false;
 
@@ -17,4 +18,9 @@ export class CheckboxLineComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  onChange(ob: MatCheckboxChange) {
+    this.onClick.emit(ob); 
+  }
+
 }
