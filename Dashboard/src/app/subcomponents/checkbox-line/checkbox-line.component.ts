@@ -9,17 +9,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CheckboxLineComponent implements OnInit {
   @Input() description!: string;
   @Input() tooltip!: string;
-  public checkbox: boolean = false; 
+  @Input() onClick: (value: boolean) => void = (value) => {};
+  @Input() disabled: boolean = false;
+  @Input() checked: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
-  public toggleChk(): void{
-    this.checkbox = (this.checkbox)? true : false;
-    console.log(this.checkbox.valueOf());
-  }
-
-
 }

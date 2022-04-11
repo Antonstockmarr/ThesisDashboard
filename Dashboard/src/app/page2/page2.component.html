@@ -14,15 +14,28 @@
   <div class="page-content">
     <app-contentcard [title]="'Instrumentation'">
       <div class="line-container">
-        <app-checkbox-line [description]="'description'"
-          [tooltip]="'This is a slightly longer tooltip to illustrate how these might lookThis is a slightly longer tooltip to illustrate how these might look'">
+        <app-checkbox-line
+          [description]="'description'"
+          [tooltip]="'This is a slightly longer tooltip to illustrate how these might lookThis is a slightly longer tooltip to illustrate how these might look'"
+          [onClick]="checkbox">
         </app-checkbox-line>
         <app-difficulty-bar [difficulty]="'hard'"></app-difficulty-bar>
-        <app-checkbox-line [description]="'description'" [tooltip]="'tooltip'"></app-checkbox-line>
+        <app-checkbox-line
+          [description]="'description'"
+          [tooltip]="'tooltip'"
+          [disabled]="true"></app-checkbox-line>
         <app-difficulty-bar [difficulty]="'easy'"></app-difficulty-bar>
-        <app-checkbox-line [description]="'description'" [tooltip]="'tooltip'"></app-checkbox-line>
+        <app-checkbox-line
+          [description]="'description'"
+          [tooltip]="'tooltip'"
+          [checked]="true"></app-checkbox-line>
         <app-difficulty-bar [difficulty]="'medium'"></app-difficulty-bar>
-        <app-checkbox-line [description]="'description'" [tooltip]="'tooltip'"></app-checkbox-line>
+        <app-checkbox-line
+          [description]="'description'"
+          [tooltip]="'tooltip'"
+          [checked]="true"
+          [disabled]="true">
+        </app-checkbox-line>
         <app-difficulty-bar [difficulty]="'hard'"></app-difficulty-bar>
       </div>
     </app-contentcard>
