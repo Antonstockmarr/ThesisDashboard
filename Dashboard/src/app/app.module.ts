@@ -10,6 +10,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 
 
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Page2Component } from './page2/page2.component';
@@ -21,6 +22,7 @@ import { ContentcardComponent } from './subcomponents/contentcard/contentcard.co
 import { FooterComponent } from './subcomponents/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LocalStorageComponent } from './local-storage/local-storage.component';
+import { LocalStorageService } from './services/local-storage.service';
 
 
 @NgModule({
@@ -43,9 +45,9 @@ import { LocalStorageComponent } from './local-storage/local-storage.component';
     MatCardModule,
     MatGridListModule,
     MatStepperModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
-  providers: [],
+  providers: [LocalStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,6 +4,7 @@ import {ThemePalette} from '@angular/material/core';
 import { faUsers,faTriangleExclamation, faServer, faFileContract} from '@fortawesome/free-solid-svg-icons';
 import { CheckboxLineComponent } from '../subcomponents/checkbox-line/checkbox-line.component';
 import { LocalStorageComponent } from '../local-storage/local-storage.component';
+import { LocalStorageService } from '../services/local-storage.service';
 
 
 @Component({
@@ -18,7 +19,6 @@ export class Page1Component implements OnInit {
   faSensorTriangleExclamation = faTriangleExclamation;
   faServer = faServer;
   faContract = faFileContract;
-  localStorage = new LocalStorageComponent();
 
   public temp: boolean = false;
 
@@ -63,9 +63,11 @@ export class Page1Component implements OnInit {
   ]
 
 
-  constructor() { }
+  constructor(private storageService: LocalStorageService) {
+  }
 
   ngOnInit(): void {
+
   }
 
   public presetValues(value: string) {
@@ -112,7 +114,7 @@ export class Page1Component implements OnInit {
         element.isChecked = e; 
       } 
     });
-    this.localStorage.set(keyLabel, e ? "true": "false");
+    this.storageService.set(keyLabel, e ? "true": "false");
   }
 
 }
