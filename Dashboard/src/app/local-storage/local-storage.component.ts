@@ -12,8 +12,12 @@ export class LocalStorageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public storeInLocalStorage(keyLabel:string, value: string) {
+  public set(keyLabel:string, value: string) {
     localStorage.setItem(keyLabel, value);
+  }
+
+  public get(key: string){
+   return localStorage.getItem(key); 
   }
 
 }

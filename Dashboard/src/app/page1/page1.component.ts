@@ -22,37 +22,42 @@ export class Page1Component implements OnInit {
 
   public temp: boolean = false;
 
-  Approaches : string[] = ['Health Checks', 'Distributed Tracing', 'Network Traffic', 'Custom Logs', 'Error Logs', 'Alert System', 'OS Metrics'];
+  // Approaches : string[] = ['Health Checks', 'Distributed Tracing', 'Network Traffic', 'Custom Logs', 'Error Logs', 'Alert System', 'OS Metrics'];
 
   checkboxesDataList : any[] = [
     {
-      id: 'HC',
-      label: 'Health Checks',
+      id: '1',
+      label: 'Availability',
       isChecked: false
     },
     {
-      id: 'DT',
-      label: 'Distributed Tracing',
+      id: '2',
+      label: 'Performance',
       isChecked: false
     },
     {
-      id: 'NT',
-      label: 'Network Traffic',
+      id: '3',
+      label: 'User behaviour',
       isChecked: false
     },
     {
-      id: 'EL',
-      label: 'Error Logs',
+      id: '4',
+      label: 'Error Management',
       isChecked: false
     },
     {
-      id: 'AS',
-      label: 'Alert System',
+      id: '5',
+      label: 'Network Security',
       isChecked: false
     },
     {
-      id: 'OM',
-      label: 'OS Metrics',
+      id: '6',
+      label: 'Scalability',
+      isChecked: false
+    },
+    {
+      id: '7',
+      label: 'Capacity planning',
       isChecked: false
     }
   ]
@@ -68,21 +73,21 @@ export class Page1Component implements OnInit {
 
     this.checkboxesDataList.forEach(element => {
       if (value == "UX") {
-        if (element.id == "HC" || element.id == "DT" || element.id =="NT") {
+        if (element.id == "1" || element.id == "2" || element.id =="3") {
           element.isChecked = true;
           this.changeSelection(element.isChecked, element.id);
           return;
         }
       }
       if (value == "IH") {
-        if (element.id == "DT" || element.id == "NT" || element.id =="AS" || element.id =="EL") {
+        if (element.id == "4" || element.id == "5") {
           element.isChecked = true;
           this.changeSelection(element.isChecked, element.id);
           return;
         }
       }
       if (value == "RM") {
-        if (element.id == "OM" || element.id == "NT") {
+        if (element.id == "6" || element.id == "7") {
           element.isChecked = true;
           this.changeSelection(element.isChecked, element.id);
           return; 
@@ -107,7 +112,7 @@ export class Page1Component implements OnInit {
         element.isChecked = e; 
       } 
     });
-    this.localStorage.storeInLocalStorage(keyLabel, e ? "true": "false");
+    this.localStorage.set(keyLabel, e ? "true": "false");
   }
 
 }
