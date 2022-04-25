@@ -3,7 +3,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import {ThemePalette} from '@angular/material/core';
 import { faUsers,faTriangleExclamation, faServer, faFileContract} from '@fortawesome/free-solid-svg-icons';
 import { CheckboxLineComponent } from '../subcomponents/checkbox-line/checkbox-line.component';
-
+import { LocalStorageComponent } from '../local-storage/local-storage.component';
 
 
 @Component({
@@ -18,6 +18,7 @@ export class Page1Component implements OnInit {
   faSensorTriangleExclamation = faTriangleExclamation;
   faServer = faServer;
   faContract = faFileContract;
+  localStorage = new LocalStorageComponent();
 
   public temp: boolean = false;
 
@@ -71,22 +72,26 @@ export class Page1Component implements OnInit {
       if (value == "UX") {
         if (element.id == "HC" || element.id == "DT" || element.id =="NT") {
           element.isChecked = true;
+          this.changeSelection(element.isChecked, element.id);
           return;
         }
       }
       if (value == "IH") {
         if (element.id == "DT" || element.id == "NT" || element.id =="AS" || element.id =="EL") {
           element.isChecked = true;
+          this.changeSelection(element.isChecked, element.id);
           return;
         }
       }
       if (value == "RM") {
         if (element.id == "OM" || element.id == "NT") {
           element.isChecked = true;
+          this.changeSelection(element.isChecked, element.id);
           return; 
         }
       }
       element.isChecked =false;
+      this.changeSelection(element.isChecked, element.id);
     });
   }
 
@@ -97,8 +102,9 @@ export class Page1Component implements OnInit {
   selectedItemsList : any[] = [];
   checkedIDs : any[] = [];
 
-  changeSelection(e: MatCheckboxChange, keyLabel:string) {
-    localStorage.setItem(keyLabel,e.checked? "true":"false");
+  changeSelection(e: boolean, keyLabel:string) {
+    console.log("something");
+    this.localStorage.storeInLocalStorage(keyLabel, e ? "true": "false");
   }
 
 

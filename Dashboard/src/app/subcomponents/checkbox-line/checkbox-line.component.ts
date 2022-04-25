@@ -10,17 +10,17 @@ import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
 export class CheckboxLineComponent implements OnInit {
   @Input() description!: string;
   @Input() tooltip!: string;
-  @Output() onClick: EventEmitter<MatCheckboxChange> = new EventEmitter<MatCheckboxChange>();
+  @Output() onClick: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() disabled: boolean = false;
-  @Input() checked: boolean = false;
+  @Input() isChecked: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onChange(ob: MatCheckboxChange) {
-    this.onClick.emit(ob); 
+  onChange(e: MatCheckboxChange) {
+    this.onClick.emit(e.checked); 
   }
 
 }

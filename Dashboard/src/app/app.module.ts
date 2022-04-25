@@ -20,6 +20,7 @@ import { DifficultyBarComponent } from './subcomponents/difficulty-bar/difficult
 import { ContentcardComponent } from './subcomponents/contentcard/contentcard.component';
 import { FooterComponent } from './subcomponents/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LocalStorageComponent } from './local-storage/local-storage.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     DifficultyBarComponent,
     ContentcardComponent,
     FooterComponent,
+    LocalStorageComponent,
   ],
   imports: [
     BrowserModule,

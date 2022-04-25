@@ -83,7 +83,7 @@
       </mat-card>
       <div class="line-container">
       <ul *ngFor="let approach of checkboxesDataList">
-        <app-checkbox-line [description]="approach.label" [tooltip]="'tooltip'" type="checkbox" (onClick)="changeSelection($event,approach.label)" [checked]="approach.isChecked"></app-checkbox-line>
+        <app-checkbox-line [description]="approach.label" [tooltip]="'tooltip'" type="checkbox" [isChecked]="approach.isChecked" (onClick)="changeSelection($event,approach.id)"></app-checkbox-line>
       </ul>
       </div>
     </div>
