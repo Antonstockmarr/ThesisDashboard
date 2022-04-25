@@ -4,7 +4,7 @@
       <mat-card class="card">
         <mat-grid-list cols="2" rowHeight="1:1" gutterSize="15px">
           <mat-grid-tile class="matTileCard">
-            <div class="qw-card qw-card_centered">
+            <div class="qw-card qw-card_centered" (click)="presetValues('UX')">
               <div class="qw-card_media">
                 <div class="qw-avatar-lg">
                   <div class="qw-avatar qw-avatar-icon qw-blue-8" aria-label="Anonymous user">
@@ -28,7 +28,7 @@
               </div>
             </div>
           </mat-grid-tile>
-          <mat-grid-tile class="matTileCard">
+          <mat-grid-tile class="matTileCard" (click)="presetValues('IH')">
             <div class="qw-card qw-card_centered">
               <div class="qw-card_media">
                 <div class="qw-avatar-lg">
@@ -54,7 +54,7 @@
               </div>
             </div>
           </mat-grid-tile>
-          <mat-grid-tile class="matTileCard">
+          <mat-grid-tile class="matTileCard" (click)="presetValues('RM')">
             <div class="qw-card qw-card_centered">
               <div class="qw-card_media">
                 <div class="qw-avatar-lg">
@@ -79,36 +79,11 @@
               </div>
             </div>
           </mat-grid-tile>
-          <mat-grid-tile class="matTileCard">
-            <div class="qw-card qw-card_centered">
-              <div class="qw-card_media">
-                <div class="qw-avatar-lg">
-                  <div class="qw-avatar qw-avatar-icon qw-blue-8" aria-label="Anonymous user">
-                    <fa-icon [icon]="faServer"></fa-icon>
-                  </div>
-                </div>
-              </div>
-              <div class="qw-card_inner">
-                <div class="qw-card_header">
-                  <div class="">
-                    <div class="qw-card_title">
-                      <h4 class="m-0 mb-1">Compliance</h4>
-                    </div>
-                    <div class="qw-card_subtitle"></div>
-                  </div>
-                </div>
-                <div class="qw-card_separator"></div>
-                <div class="qw-card_body">
-                  <p>A Weekly email to Goal users, sent out at 3pm, to update their goals</p>
-                </div>
-              </div>
-            </div>
-          </mat-grid-tile>
         </mat-grid-list>
       </mat-card>
       <div class="line-container">
       <ul *ngFor="let approach of checkboxesDataList">
-        <app-checkbox-line [description]="approach.label" [tooltip]="'tooltip'" type="checkbox" (onClick)="changeSelection($event,approach.label)"></app-checkbox-line>
+        <app-checkbox-line [description]="approach.label" [tooltip]="'tooltip'" type="checkbox" (onClick)="changeSelection($event,approach.label)" [checked]="approach.isChecked"></app-checkbox-line>
       </ul>
       </div>
     </div>

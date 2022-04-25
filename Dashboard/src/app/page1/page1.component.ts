@@ -25,39 +25,34 @@ export class Page1Component implements OnInit {
 
   checkboxesDataList : any[] = [
     {
-      id: 'C001',
+      id: 'HC',
       label: 'Health Checks',
-      isChecked: true
-    },
-    {
-      id: 'C002',
-      label: 'Distributed Tracing',
-      isChecked: true
-    },
-    {
-      id: 'C003',
-      label: 'Network Traffic',
-      isChecked: true
-    },
-    {
-      id: 'C004',
-      label: 'Custom Logs',
       isChecked: false
     },
     {
-      id: 'C004',
+      id: 'DT',
+      label: 'Distributed Tracing',
+      isChecked: false
+    },
+    {
+      id: 'NT',
+      label: 'Network Traffic',
+      isChecked: false
+    },
+    {
+      id: 'EL',
       label: 'Error Logs',
       isChecked: false
     },
     {
-      id: 'C005',
+      id: 'AS',
       label: 'Alert System',
-      isChecked: true
+      isChecked: false
     },
     {
-      id: 'C006',
+      id: 'OM',
       label: 'OS Metrics',
-      isChecked: true
+      isChecked: false
     }
   ]
 
@@ -69,8 +64,30 @@ export class Page1Component implements OnInit {
     this.fetchCheckedIDs()
   }
 
-  public preSetValus(value: boolean) {
-    console.log(this.temp.valueOf());
+  public presetValues(value: string) {
+    console.log(value);
+
+    this.checkboxesDataList.forEach(element => {
+      if (value == "UX") {
+        if (element.id == "HC" || element.id == "DT" || element.id =="NT") {
+          element.isChecked = true;
+          return;
+        }
+      }
+      if (value == "IH") {
+        if (element.id == "DT" || element.id == "NT" || element.id =="AS" || element.id =="EL") {
+          element.isChecked = true;
+          return;
+        }
+      }
+      if (value == "RM") {
+        if (element.id == "OM" || element.id == "NT") {
+          element.isChecked = true;
+          return; 
+        }
+      }
+      element.isChecked =false;
+    });
   }
 
   public key: string = 'Name';
@@ -83,6 +100,9 @@ export class Page1Component implements OnInit {
   changeSelection(e: MatCheckboxChange, keyLabel:string) {
     localStorage.setItem(keyLabel,e.checked? "true":"false");
   }
+
+
+
 
   fetchSelectedItems() {
     console.log("something2");
