@@ -61,8 +61,6 @@ export class Page1Component implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.fetchSelectedItems()
-    this.fetchCheckedIDs()
   }
 
   public presetValues(value: string) {
@@ -104,29 +102,12 @@ export class Page1Component implements OnInit {
 
   changeSelection(e: boolean, keyLabel:string) {
     console.log("something");
+    this.checkboxesDataList.forEach(element => {
+      if (element.id == keyLabel) {
+        element.isChecked = e; 
+      } 
+    });
     this.localStorage.storeInLocalStorage(keyLabel, e ? "true": "false");
-  }
-
-
-
-
-  fetchSelectedItems() {
-    console.log("something2");
-    this.selectedItemsList = this.checkboxesDataList.filter((value, index) => {
-      return value.isChecked
-    });
-  }
-
-
-  fetchCheckedIDs() {
-     this.checkedIDs = []
-     console.log("something3");
-    this.checkboxesDataList.forEach((value, index) => {
-      if (value.isChecked) {
-      this.checkedIDs.push(value.id);
-       console.log(value.id);
-      }
-    });
   }
 
 }
