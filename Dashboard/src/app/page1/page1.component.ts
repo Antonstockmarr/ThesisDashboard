@@ -5,6 +5,7 @@ import { faUsers,faTriangleExclamation, faServer, faFileContract} from '@fortawe
 import { CheckboxLineComponent } from '../subcomponents/checkbox-line/checkbox-line.component';
 import { LocalStorageComponent } from '../local-storage/local-storage.component';
 import { LocalStorageService } from '../services/local-storage.service';
+import { DataRepositoryService } from '../services/data-repository.service';
 
 
 @Component({
@@ -63,7 +64,7 @@ export class Page1Component implements OnInit {
   ]
 
 
-  constructor(private storageService: LocalStorageService) {
+  constructor(private storageService: LocalStorageService, private dataRepository: DataRepositoryService) {
   }
 
   ngOnInit(): void {
@@ -72,6 +73,8 @@ export class Page1Component implements OnInit {
 
   public presetValues(value: string) {
     console.log(value);
+    console.log(this.dataRepository.getFocusAreas());
+    
 
     this.checkboxesDataList.forEach(element => {
       if (value == "UX") {

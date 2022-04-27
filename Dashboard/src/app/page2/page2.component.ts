@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataRepositoryService } from '../services/data-repository.service';
 import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class Page2Component implements OnInit {
   private value : string = "";
   
 
-  constructor(private storageService: LocalStorageService) { }
+  constructor(private storageService: LocalStorageService, private dataRepository: DataRepositoryService) { }
 
   ngOnInit(): void {
     this.storageService.watchStorage().subscribe((idvalue:[string,string]) => {
@@ -23,7 +24,7 @@ export class Page2Component implements OnInit {
           element.isChecked = this.value == 'true' ? true : false;
         }
       });
-    })
+    });
   }
 
   checkbox(value: boolean): void {
