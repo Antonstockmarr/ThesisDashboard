@@ -14,13 +14,13 @@
   <div class="page-content">
     <div *ngFor="let concern of checkboxesDataList">
       <app-contentcard [title]="concern.label" *ngIf="concern.isChecked">
-        <div class="line-container">
+        <div class="line-container" *ngFor="let approach of concern.approaches">
           <app-checkbox-line
-            [description]="'Source code'"
-            [tooltip]="'This is a slightly longer tooltip to illustrate how these might lookThis is a slightly longer tooltip to illustrate how these might look'"
+            [description]="approach.description"
+            [tooltip]="approach.tooltip"
             >
           </app-checkbox-line>
-          <app-difficulty-bar [difficulty]="'hard'"></app-difficulty-bar>
+          <app-difficulty-bar [difficulty]="approach.difficulty"></app-difficulty-bar>
         </div>
       </app-contentcard>
     </div>
