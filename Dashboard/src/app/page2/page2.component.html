@@ -13,7 +13,7 @@
   </div>
   <div class="page-content">
     <div *ngFor="let concern of checkboxesDataList">
-      <app-contentcard [title]="concern.label" *ngIf="concern.isChecked">
+      <app-contentcard class="card" [title]="concern.label" *ngIf="concern.isChecked">
         <div class="line-container" *ngFor="let approach of concern.approaches">
           <app-checkbox-line
             [description]="approach.description"

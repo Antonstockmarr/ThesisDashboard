@@ -28,7 +28,10 @@
     height: 100%;
     padding: 3em;
     display: grid;
-    row-gap: 30px;    
+}
+
+.card {
+    margin: 0 15px;
 }
 
 .line-container {
