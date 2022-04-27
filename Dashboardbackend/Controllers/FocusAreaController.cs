@@ -15,7 +15,13 @@ namespace Dashboardbackend.Controllers
     [ApiController]
     public class FocusAreaController : ControllerBase
     {
-        private readonly focusAreaRepository _repository = new focusAreaRepository();
+        private readonly IfocusAreaRepository _repository;
+
+        public FocusAreaController(IfocusAreaRepository repository)
+        {
+            _repository = repository;
+        }
+
         // GET: api/<FocusAreaController>
         [HttpGet]
         public ActionResult <IEnumerable<FocusArea>> GetAllFocusArea()
