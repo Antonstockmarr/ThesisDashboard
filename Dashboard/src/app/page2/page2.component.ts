@@ -34,37 +34,44 @@ export class Page2Component implements OnInit {
     {
       description: 'Health checks',
       tooltip: 'Periodically ping services to see if they are up',
-      difficulty: 'easy'
+      implementationDifficulty: 'easy',
+      maintenanceDifficulty: 'easy'
     },
     {
       description: 'Work metrics',
       tooltip: 'Metrics on how the services are running, like latency, throughput, etc.',
-      difficulty: 'medium'
+      implementationDifficulty: 'easy',
+      maintenanceDifficulty: 'easy'
     },
     {
       description: 'Distributed tracing',
       tooltip: 'Track requests across services to link events and produce timelines.',
-      difficulty: 'hard'
+      implementationDifficulty: 'easy',
+      maintenanceDifficulty: 'easy'
     },
     {
       description: 'Application logs',
       tooltip: 'Logs that are produced within the application. This requires source code instrumentation.',
-      difficulty: 'easy'
+      implementationDifficulty: 'easy',
+      maintenanceDifficulty: 'easy'
     },
     {
       description: 'Alert system',
       tooltip: 'Send alerts to stakeholders as reaction to specific events or thresholds.',
-      difficulty: 'medium'
+      implementationDifficulty: 'easy',
+      maintenanceDifficulty: 'easy'
     },
     {
       description: 'Network logs',
       tooltip: 'Monitor network log to analyse traffic and identify malicious activity.',
-      difficulty: 'easy'
+      implementationDifficulty: 'easy',
+      maintenanceDifficulty: 'easy'
     },
     {
       description: 'Resource metrics',
       tooltip: 'Monitor CPU, storage and memory usage',
-      difficulty: 'easy'
+      implementationDifficulty: 'easy',
+      maintenanceDifficulty: 'easy'
     }
   ];
 
