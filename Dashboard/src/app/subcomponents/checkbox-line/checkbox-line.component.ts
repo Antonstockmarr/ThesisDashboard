@@ -5,7 +5,7 @@ import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
 @Component({
   selector: 'app-checkbox-line',
   templateUrl: './checkbox-line.component.html',
-  styleUrls: ['./checkbox-line.component.css']
+  styleUrls: ['./checkbox-line.component.scss']
 })
 export class CheckboxLineComponent implements OnInit {
   @Input() description!: string;

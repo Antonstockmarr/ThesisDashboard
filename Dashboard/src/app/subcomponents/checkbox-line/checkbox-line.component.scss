@@ -58,7 +58,7 @@
   
   .tooltip .tooltiptext {
     width: max-content;
-    max-width: 60vw;
+    max-width: 30vw;
     visibility: hidden;
     background-color: black;
     color: #fff;
@@ -73,7 +73,6 @@
     z-index: 1;
     bottom: 100%;
     right: 100%;
-    margin-left: -60px;
     }
   
   .tooltip:hover .tooltiptext {
