@@ -29,15 +29,25 @@ namespace Dashboardbackend
         {
             services.AddDbContext<FocusAreaContext>(opt => opt.UseSqlServer
             (Configuration.GetConnectionString("FocusAreaConnectionString")));
-            services.AddCors(options => {
-                        options.AddPolicy("CorsPolicy",
-                            builder => builder
-                            .AllowAnyOrigin()
-                            .AllowAnyMethod()
-                            .AllowAnyHeader()
-                            );
-             });
+            //services.AddCors(options => {
+            //            options.AddPolicy("CorsPolicy",
+            //                builder => builder
+            //                .AllowAnyOrigin()
+            //                .AllowAnyMethod()
+            //                .AllowAnyHeader()
+            //                );
+            // });
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                    builder.SetIsOriginAllowed(_ => true)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
             services.AddControllers();
+            services.AddScoped<IfocusAreaRepository, focusAreaRepository>(); 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Dashboardbackend", Version = "v1" });
