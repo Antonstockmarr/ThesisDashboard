@@ -1,0 +1,26 @@
+<div class="page">
+    <div class="page-header">
+      <div class="page-title">
+        <h1>
+          System Insights
+        </h1>
+      </div>
+      <div class="page-description">
+        <p>
+          Select the options that are true for your system
+        </p>
+      </div>
+    </div>
+    <div class="page-content">
+        <app-contentcard class="card" [title]="'Technologies used in the system'">
+            <div *ngFor="let technology of technologies">
+                <app-checkbox-line
+                    [description]="technology.label"
+                    [isChecked]="technology.isChecked"
+                    (onClick)="click($event)"
+                ></app-checkbox-line>
+            </div>
+        </app-contentcard>
+    </div>
+  </div>
+  

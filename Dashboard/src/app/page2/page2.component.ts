@@ -80,7 +80,9 @@ export class Page2Component implements OnInit {
 
   getApproach(description: string): MonitoringApproach {
     const approach = this.monitoringApproaches.find(a => a.description === description);
-    return approach ? approach : {description: 'not found', tooltip: '', implementationDifficulty: 'easy', maintenanceDifficulty: 'easy'};
+    return approach
+      ? approach
+      : {description: 'not found', tooltip: '', implementationDifficulty: 'easy', maintenanceDifficulty: 'easy'};
   }
 
   checkboxesDataList : MonitoringConcern[] = [
