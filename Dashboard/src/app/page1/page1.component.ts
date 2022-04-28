@@ -6,6 +6,7 @@ import { CheckboxLineComponent } from '../subcomponents/checkbox-line/checkbox-l
 import { LocalStorageComponent } from '../local-storage/local-storage.component';
 import { LocalStorageService } from '../services/local-storage.service';
 import { DataRepositoryService } from '../services/data-repository.service';
+import { FocusArea } from '../models/focus-area';
 
 
 @Component({
@@ -15,6 +16,17 @@ import { DataRepositoryService } from '../services/data-repository.service';
 })
 export class Page1Component implements OnInit {
 
+
+  constructor(private storageService: LocalStorageService, private dataRepository: DataRepositoryService) {
+    this.dataRepository.getFocusAreas().subscribe((focusAreas: FocusArea[]) => {
+      this.focusAreas = focusAreas;
+    });
+  }
+
+  ngOnInit(): void {
+
+  }
+
   // Icons
   faUsers = faUsers;
   faSensorTriangleExclamation = faTriangleExclamation;
@@ -22,6 +34,8 @@ export class Page1Component implements OnInit {
   faContract = faFileContract;
 
   public temp: boolean = false;
+
+  focusAreas: FocusArea[] = [];
 
   // Approaches : string[] = ['Health Checks', 'Distributed Tracing', 'Network Traffic', 'Custom Logs', 'Error Logs', 'Alert System', 'OS Metrics'];
 
@@ -62,19 +76,9 @@ export class Page1Component implements OnInit {
       isChecked: false
     }
   ]
-
-
-  constructor(private storageService: LocalStorageService, private dataRepository: DataRepositoryService) {
-  }
-
-  ngOnInit(): void {
-
-  }
-
+    
   public presetValues(value: string) {
     console.log(value);
-    console.log(this.dataRepository.getFocusAreas());
-    
 
     this.checkboxesDataList.forEach(element => {
       if (value == "UX") {
@@ -111,7 +115,6 @@ export class Page1Component implements OnInit {
   checkedIDs : any[] = [];
 
   changeSelection(e: boolean, keyLabel:string) {
-    console.log("something");
     this.checkboxesDataList.forEach(element => {
       if (element.id == keyLabel) {
         element.isChecked = e; 
