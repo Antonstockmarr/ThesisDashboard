@@ -26,7 +26,7 @@ namespace Dashboardbackend.Controllers
         [HttpGet]
         public ActionResult <IEnumerable<FocusArea>> GetAllFocusArea()
         {
-            var focusAreas = _repository.GetFocusAreas();
+            var focusAreas = _repository.GetAllFocusAreas();
             return Ok(focusAreas);
         }
 

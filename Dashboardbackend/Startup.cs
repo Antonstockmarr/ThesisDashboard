@@ -28,15 +28,7 @@ namespace Dashboardbackend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<FocusAreaContext>(opt => opt.UseSqlServer
-            (Configuration.GetConnectionString("FocusAreaConnectionString")));
-            //services.AddCors(options => {
-            //            options.AddPolicy("CorsPolicy",
-            //                builder => builder
-            //                .AllowAnyOrigin()
-            //                .AllowAnyMethod()
-            //                .AllowAnyHeader()
-            //                );
-            // });
+            (Configuration.GetConnectionString("DashBoardConnectionString")));
 
             services.AddCors(options =>
             {

@@ -13,7 +13,7 @@ namespace Dashboardbackend.Data
             return new FocusArea { Id = 0, name = "UX", Description = "something cool" };
         }
 
-        public IEnumerable<FocusArea> GetFocusAreas()
+        public IEnumerable<FocusArea> GetAllFocusAreas()
         {
             var focusAreas = new List<FocusArea>
             {

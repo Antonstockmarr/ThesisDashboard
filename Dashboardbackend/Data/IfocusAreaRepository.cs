@@ -8,7 +8,7 @@ namespace Dashboardbackend.Data
 {
     public interface IfocusAreaRepository
     {
-        IEnumerable<FocusArea> GetFocusAreas();
+        IEnumerable<FocusArea> GetAllFocusAreas();
         FocusArea GetFocusAreaById(int id);
     }
 }
