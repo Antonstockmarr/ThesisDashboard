@@ -22,6 +22,7 @@
           <app-checkbox-line
             [description]="approach.description"
             [tooltip]="approach.tooltip"
+            (onClick)="checkbox($event)"
             >
           </app-checkbox-line>
           <app-difficulty-bar [difficulty]="approach.implementationDifficulty"></app-difficulty-bar>

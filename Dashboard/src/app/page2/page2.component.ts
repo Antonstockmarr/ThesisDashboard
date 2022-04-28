@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MonitoringApproach } from '../models/monitoring-approach';
+import { MonitoringConcern } from '../models/monitoring-concern';
 import { DataRepositoryService } from '../services/data-repository.service';
 import { LocalStorageService } from '../services/local-storage.service';
 
@@ -31,7 +33,7 @@ export class Page2Component implements OnInit {
     console.log(value);
   }
 
-  monitoringApproaches: any[] = [
+  monitoringApproaches: MonitoringApproach[] = [
     {
       description: 'Health checks',
       tooltip: 'Periodically ping services to see if they are up',
@@ -76,11 +78,12 @@ export class Page2Component implements OnInit {
     }
   ];
 
-  getApproach(description: string): any {
-    return this.monitoringApproaches.find(a => a.description === description);
+  getApproach(description: string): MonitoringApproach {
+    const approach = this.monitoringApproaches.find(a => a.description === description);
+    return approach ? approach : {description: 'not found', tooltip: '', implementationDifficulty: 'easy', maintenanceDifficulty: 'easy'};
   }
 
-  checkboxesDataList : any[] = [
+  checkboxesDataList : MonitoringConcern[] = [
     {
       id: '1',
       label: 'Availability',
