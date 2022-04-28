@@ -14,4 +14,6 @@ export class Page4Component implements OnInit {
 
   textFile = 'https://configurationfiles.blob.core.windows.net/configuration/test.txt'
   zipFile = 'https://configurationfiles.blob.core.windows.net/configuration/Nyt arkiv.zip'
+
+  tools = ['Grafana', 'Prometheus']
 }
