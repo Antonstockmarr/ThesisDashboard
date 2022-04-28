@@ -28,28 +28,3 @@
     height: 100%;
     padding: 3em;
 }
-
-.line-container {
-    display: grid;
-    position: relative;
-    grid-template-columns: 50% 1fr 1fr;
-}
-
-.difficulty-header {
-    width: 100%;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: underline;
-    word-wrap: break-word;
-    overflow: hidden;
-}
-
-.implementation-difficulty-header {
-    grid-column: 2;
-}
-
-.maintenance-difficulty-header {
-    grid-column: 3;
-}
-
-
