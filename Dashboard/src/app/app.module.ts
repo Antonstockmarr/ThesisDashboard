@@ -23,7 +23,7 @@ import { FooterComponent } from './subcomponents/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LocalStorageComponent } from './local-storage/local-storage.component';
 import { LocalStorageService } from './services/local-storage.service';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -46,6 +46,7 @@ import { LocalStorageService } from './services/local-storage.service';
     MatGridListModule,
     MatStepperModule,
     FontAwesomeModule,
+    HttpClientModule
   ],
   providers: [LocalStorageService],
   bootstrap: [AppComponent]
