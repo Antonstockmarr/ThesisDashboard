@@ -1,9 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { MatCheckboxChange } from '@angular/material/checkbox';
-import {ThemePalette} from '@angular/material/core';
+import { Component, OnInit } from '@angular/core';
 import { faUsers,faTriangleExclamation, faServer, faFileContract} from '@fortawesome/free-solid-svg-icons';
-import { CheckboxLineComponent } from '../subcomponents/checkbox-line/checkbox-line.component';
-import { LocalStorageComponent } from '../local-storage/local-storage.component';
 import { LocalStorageService } from '../services/local-storage.service';
 import { DataRepositoryService } from '../services/data-repository.service';
 import { Objective } from '../models/objective';
@@ -17,6 +13,10 @@ import { Concern } from '../models/concern';
 })
 export class Page1Component implements OnInit {
 
+  objectives: Objective[] = [];
+  concerns: Concern[] = [];
+
+  checkedConcerns: Map<number, boolean> = new Map();
 
   constructor(private storageService: LocalStorageService, private dataRepository: DataRepositoryService) {
     this.dataRepository.getObjectives().subscribe((objectives: Objective[]) => {
@@ -41,14 +41,6 @@ export class Page1Component implements OnInit {
   faSensorTriangleExclamation = faTriangleExclamation;
   faServer = faServer;
   faContract = faFileContract;
-
-  objectives: Objective[] = [];
-  concerns: Concern[] = [];
-
-  checkedConcerns: Map<number, boolean> = new Map();
-
-  // Approaches : string[] = ['Health Checks', 'Distributed Tracing', 'Network Traffic', 'Custom Logs', 'Error Logs', 'Alert System', 'OS Metrics'];
-
     
   presetConcerns(objective: Objective) {
     console.log(objective);
