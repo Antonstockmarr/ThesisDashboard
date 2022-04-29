@@ -13,6 +13,8 @@ export class Page2Component implements OnInit {
 
   approaches: Approach[] = [];
   concerns: Concern[] = [];
+  checkedConcerns: Map<number, boolean> = new Map();
+
 
   constructor(private storageService: LocalStorageService, private dataRepository: DataRepositoryService) {
     this.dataRepository.getApproaches().subscribe((approaches: Approach[]) => {
@@ -21,6 +23,11 @@ export class Page2Component implements OnInit {
 
     this.dataRepository.getConcerns().subscribe((concerns: Concern[]) => {
       this.concerns = concerns;
+      concerns.forEach((concern) => {
+        if (!(this.checkedConcerns.has(concern.id)))
+          this.checkedConcerns.set(concern.id, false)
+      });
+
     });
    }
 
@@ -32,7 +39,7 @@ export class Page2Component implements OnInit {
       if (!concern) return;
       this.concerns.forEach(c => {
         if (c.id === concern.id) {
-          c.isChecked = isChecked == 'true' ? true : false;
+          this.checkedConcerns.set(concern.id,isChecked == 'true' ? true : false);
         }
       });
     });

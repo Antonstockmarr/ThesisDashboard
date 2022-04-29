@@ -13,7 +13,7 @@
   </div>
   <div class="page-content">
     <div *ngFor="let concern of concerns">
-      <app-contentcard class="card" [title]="concern.name" *ngIf="concern.isChecked">
+      <app-contentcard class="card" [title]="concern.name" *ngIf="checkedConcerns.get(concern.id)">
         <div class="line-container">
           <div class="implementation-difficulty-header difficulty-header">Implementation</div>
           <div class="maintenance-difficulty-header difficulty-header">Maintanence</div>

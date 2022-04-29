@@ -110,7 +110,7 @@
       </mat-card>
       <div class="line-container">
       <ul *ngFor="let concern of concerns">
-        <app-checkbox-line [description]="concern.name" [tooltip]="concern.description" type="checkbox" [isChecked]="concern.isChecked" (onClick)="changeSelection(concern, $event)"></app-checkbox-line>
+        <app-checkbox-line [description]="concern.name" [tooltip]="concern.description" type="checkbox" [isChecked]="checkedConcerns.get(concern.id) ? true : false" (onClick)="changeSelection(concern, $event)"></app-checkbox-line>
       </ul>
       </div>
     </div>

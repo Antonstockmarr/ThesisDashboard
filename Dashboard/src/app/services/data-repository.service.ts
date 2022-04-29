@@ -44,49 +44,42 @@ export class DataRepositoryService {
           id: 1,
           name: 'Availability',
           description: 'description',
-          isChecked: false,
           objectiveId: 0,
         },
         {
           id: 2,
           name: 'Performance',
           description: 'description',
-          isChecked: false,
           objectiveId: 0,
         },
         {
           id: 3,
           name: 'User behaviour',
           description: 'description',
-          isChecked: false,
           objectiveId: 0,
         },
         {
           id: 4,
           name: 'Error Management',
           description: 'description',
-          isChecked: false,
           objectiveId: 1,
         },
         {
           id: 5,
           name: 'Network Security',
           description: 'description',
-          isChecked: false,
           objectiveId: 1,
         },
         {
           id: 6,
           name: 'Scalability',
           description: 'description',
-          isChecked: false,
           objectiveId: 2,
         },
         {
           id: 7,
           name: 'Capacity planning',
           description: 'description',
-          isChecked: false,
           objectiveId: 2,
         }
       ]);
@@ -103,7 +96,6 @@ export class DataRepositoryService {
         description: 'Periodically ping services to see if they are up',
         implementationDifficulty: 'easy',
         maintenanceDifficulty: 'easy',
-        isChecked: false,
         concernId: 1,
       },
       {
@@ -112,7 +104,6 @@ export class DataRepositoryService {
         description: 'Metrics on how the services are running, like latency, throughput, etc.',
         implementationDifficulty: 'easy',
         maintenanceDifficulty: 'easy',
-        isChecked: false,
         concernId: 1,
       },
       {
@@ -121,7 +112,6 @@ export class DataRepositoryService {
         description: 'Track requests across services to link events and produce timelines.',
         implementationDifficulty: 'easy',
         maintenanceDifficulty: 'easy',
-        isChecked: false,
         concernId: 2,
       },
       {
@@ -130,7 +120,6 @@ export class DataRepositoryService {
         description: 'Logs that are produced within the application. This requires source code instrumentation.',
         implementationDifficulty: 'easy',
         maintenanceDifficulty: 'easy',
-        isChecked: false,
         concernId: 2,
       },
       {
@@ -139,7 +128,6 @@ export class DataRepositoryService {
         description: 'Send alerts to stakeholders as reaction to specific events or thresholds.',
         implementationDifficulty: 'easy',
         maintenanceDifficulty: 'easy',
-        isChecked: false,
         concernId: 4,
       },
       {
@@ -148,7 +136,6 @@ export class DataRepositoryService {
         description: 'Monitor network log to analyse traffic and identify malicious activity.',
         implementationDifficulty: 'easy',
         maintenanceDifficulty: 'easy',
-        isChecked: false,
         concernId: 5,
       },
       {
@@ -157,7 +144,6 @@ export class DataRepositoryService {
         description: 'Monitor CPU, storage and memory usage',
         implementationDifficulty: 'easy',
         maintenanceDifficulty: 'easy',
-        isChecked: false,
         concernId: 1,
       }
       ]);

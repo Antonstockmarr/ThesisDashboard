@@ -25,6 +25,10 @@ export class Page1Component implements OnInit {
 
     this.dataRepository.getConcerns().subscribe((concerns: Concern[]) => {
       this.concerns = concerns;
+      concerns.forEach((concern) => {
+        if (!(this.checkedConcerns.has(concern.id)))
+          this.checkedConcerns.set(concern.id, false)
+      });
     });
   }
 
@@ -41,6 +45,8 @@ export class Page1Component implements OnInit {
   objectives: Objective[] = [];
   concerns: Concern[] = [];
 
+  checkedConcerns: Map<number, boolean> = new Map();
+
   // Approaches : string[] = ['Health Checks', 'Distributed Tracing', 'Network Traffic', 'Custom Logs', 'Error Logs', 'Alert System', 'OS Metrics'];
 
     
@@ -53,7 +59,7 @@ export class Page1Component implements OnInit {
   }
 
   changeSelection(concern: Concern, value: boolean) {
-    concern.isChecked = value;
-    this.storageService.set(concern.name, concern.isChecked ? "true" : "false");
+    this.checkedConcerns.set(concern.id, value);
+    this.storageService.set(concern.name, value ? "true" : "false");
   }
 }
