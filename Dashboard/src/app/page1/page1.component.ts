@@ -1,12 +1,9 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { MatCheckboxChange } from '@angular/material/checkbox';
-import {ThemePalette} from '@angular/material/core';
+import { Component, OnInit } from '@angular/core';
 import { faUsers,faTriangleExclamation, faServer, faFileContract} from '@fortawesome/free-solid-svg-icons';
-import { CheckboxLineComponent } from '../subcomponents/checkbox-line/checkbox-line.component';
-import { LocalStorageComponent } from '../local-storage/local-storage.component';
 import { LocalStorageService } from '../services/local-storage.service';
 import { DataRepositoryService } from '../services/data-repository.service';
-import { FocusArea } from '../models/focus-area';
+import { Objective } from '../models/objective';
+import { Concern } from '../models/concern';
 
 
 @Component({
@@ -16,10 +13,22 @@ import { FocusArea } from '../models/focus-area';
 })
 export class Page1Component implements OnInit {
 
+  objectives: Objective[] = [];
+  concerns: Concern[] = [];
+
+  checkedConcerns: Map<number, boolean> = new Map();
 
   constructor(private storageService: LocalStorageService, private dataRepository: DataRepositoryService) {
-    this.dataRepository.getFocusAreas().subscribe((focusAreas: FocusArea[]) => {
-      this.focusAreas = focusAreas;
+    this.dataRepository.getObjectives().subscribe((objectives: Objective[]) => {
+      this.objectives = objectives;
+    });
+
+    this.dataRepository.getConcerns().subscribe((concerns: Concern[]) => {
+      this.concerns = concerns;
+      concerns.forEach((concern) => {
+        if (!(this.checkedConcerns.has(concern.id)))
+          this.checkedConcerns.set(concern.id, false)
+      });
     });
   }
 
@@ -27,100 +36,26 @@ export class Page1Component implements OnInit {
 
   }
 
-  // Icons
-  faUsers = faUsers;
-  faSensorTriangleExclamation = faTriangleExclamation;
-  faServer = faServer;
-  faContract = faFileContract;
-
-  public temp: boolean = false;
-
-  focusAreas: FocusArea[] = [];
-
-  // Approaches : string[] = ['Health Checks', 'Distributed Tracing', 'Network Traffic', 'Custom Logs', 'Error Logs', 'Alert System', 'OS Metrics'];
-
-  checkboxesDataList : any[] = [
-    {
-      id: '1',
-      label: 'Availability',
-      isChecked: false
-    },
-    {
-      id: '2',
-      label: 'Performance',
-      isChecked: false
-    },
-    {
-      id: '3',
-      label: 'User behaviour',
-      isChecked: false
-    },
-    {
-      id: '4',
-      label: 'Error Management',
-      isChecked: false
-    },
-    {
-      id: '5',
-      label: 'Network Security',
-      isChecked: false
-    },
-    {
-      id: '6',
-      label: 'Scalability',
-      isChecked: false
-    },
-    {
-      id: '7',
-      label: 'Capacity planning',
-      isChecked: false
-    }
-  ]
+  getIcon(objective: Objective) {
+    if (objective.name == "UX")
+      return faUsers;
+    if (objective.name == "resource")
+      return faServer;
+    if (objective.name == "Incident")
+      return faTriangleExclamation
+    else return faUsers;
+  }
     
-  public presetValues(value: string) {
-    console.log(value);
+  presetConcerns(objective: Objective) {
+    console.log(objective);
 
-    this.checkboxesDataList.forEach(element => {
-      if (value == "UX") {
-        if (element.id == "1" || element.id == "2" || element.id =="3") {
-          element.isChecked = true;
-          this.changeSelection(element.isChecked, element.id);
-          return;
-        }
-      }
-      if (value == "IH") {
-        if (element.id == "4" || element.id == "5") {
-          element.isChecked = true;
-          this.changeSelection(element.isChecked, element.id);
-          return;
-        }
-      }
-      if (value == "RM") {
-        if (element.id == "6" || element.id == "7") {
-          element.isChecked = true;
-          this.changeSelection(element.isChecked, element.id);
-          return; 
-        }
-      }
-      element.isChecked =false;
-      this.changeSelection(element.isChecked, element.id);
+    this.concerns.forEach(concern => {
+      this.changeSelection(concern, objective.id == concern.objectiveId);
     });
   }
 
-  public key: string = 'Name';
-  public myItem: string | null = '';
-  
-
-  selectedItemsList : any[] = [];
-  checkedIDs : any[] = [];
-
-  changeSelection(e: boolean, keyLabel:string) {
-    this.checkboxesDataList.forEach(element => {
-      if (element.id == keyLabel) {
-        element.isChecked = e; 
-      } 
-    });
-    this.storageService.set(keyLabel, e ? "true": "false");
+  changeSelection(concern: Concern, value: boolean) {
+    this.checkedConcerns.set(concern.id, value);
+    this.storageService.set(concern.name, value ? "true" : "false");
   }
-
 }

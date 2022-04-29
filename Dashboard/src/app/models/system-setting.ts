@@ -1,5 +1,5 @@
 export interface SystemSetting {
     id: string;
-    label: string;
+    name: string;
     isChecked: boolean;
 }

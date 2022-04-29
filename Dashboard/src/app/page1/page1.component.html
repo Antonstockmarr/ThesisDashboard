@@ -3,7 +3,32 @@
     <div class="center">
       <mat-card class="card">
         <mat-grid-list cols="2" rowHeight="1:1" gutterSize="15px">
-          <mat-grid-tile class="matTileCard">
+          <mat-grid-tile class="matTileCard" *ngFor="let objective of objectives">
+            <div class="qw-card qw-card_centered" (click)="presetConcerns(objective)">
+              <div class="qw-card_media">
+                <div class="qw-avatar-lg">
+                  <div class="qw-avatar qw-avatar-icon qw-blue-8" aria-label="Anonymous user">
+                    <fa-icon [icon]="getIcon(objective)"></fa-icon>
+                  </div>
+                </div>
+              </div>
+              <div class="qw-card_inner">
+                <div class="qw-card_header">
+                  <div class="">
+                    <div class="qw-card_title">
+                      <h4 class="m-0 mb-1">{{objective.name}}</h4>
+                    </div>
+                    <div class="qw-card_subtitle"></div>
+                  </div>
+                </div>
+                <div class="qw-card_separator"></div>
+                <div class="qw-card_body">
+                  <p>{{objective.description}}</p>
+                </div>
+              </div>
+            </div>
+          </mat-grid-tile>
+<!--         <mat-grid-tile class="matTileCard">
             <div class="qw-card qw-card_centered" (click)="presetValues('UX')">
               <div class="qw-card_media">
                 <div class="qw-avatar-lg">
@@ -34,7 +59,8 @@
                 <div class="qw-avatar-lg">
                   <div class="qw-avatar qw-avatar-icon qw-blue-8" aria-label="Anonymous user">
                     <fa-icon [icon]="faSensorTriangleExclamation"></fa-icon>
-                    <!-- <span class="fa fa-paper-plane"> </span> -->
+
+                    
                   </div>
                 </div>
               </div>
@@ -79,11 +105,12 @@
               </div>
             </div>
           </mat-grid-tile>
+          -->
         </mat-grid-list>
       </mat-card>
       <div class="line-container">
-      <ul *ngFor="let approach of checkboxesDataList">
-        <app-checkbox-line [description]="approach.label" [tooltip]="'tooltip'" type="checkbox" [isChecked]="approach.isChecked" (onClick)="changeSelection($event,approach.id)"></app-checkbox-line>
+      <ul *ngFor="let concern of concerns">
+        <app-checkbox-line [description]="concern.name" [tooltip]="concern.description" type="checkbox" [isChecked]="checkedConcerns.get(concern.id) ? true : false" (onClick)="changeSelection(concern, $event)"></app-checkbox-line>
       </ul>
       </div>
     </div>

@@ -20,17 +20,17 @@ export class Page3Component implements OnInit {
   technologies: SystemSetting[] = [
     {
       id: '0',
-      label: 'Kubernetes',
+      name: 'Kubernetes',
       isChecked: false
     },
     {
       id: '1',
-      label: 'Docker',
+      name: 'Docker',
       isChecked: false
     },
     {
       id: '2',
-      label: 'Prometheus',
+      name: 'Prometheus',
       isChecked: false
     }
   ]
