@@ -28,10 +28,10 @@ namespace Dashboardbackend.Controllers
 
         // GET: api/<FocusAreaController>
         [HttpGet]
-        public ActionResult <IEnumerable<FocusArea>> GetAllFocusArea()
+        public ActionResult <IEnumerable<FocusAreaReadDto>> GetAllFocusArea()
         {
             var focusAreas = _repository.GetAllFocusAreas();
-            return Ok(focusAreas);
+            return Ok(_mapper.Map<IEnumerable<FocusAreaReadDto>>(focusAreas));
         }
 
         // GET api/<FocusAreaController>/5

@@ -40,7 +40,9 @@ namespace Dashboardbackend
             });
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddScoped<IfocusAreaRepository, focusAreaRepository>(); 
+            services.AddScoped<IfocusAreaRepository, focusAreaRepository>();
+            services.AddScoped<IConcernRepository, ConcernRepository>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Dashboardbackend", Version = "v1" });
