@@ -36,11 +36,15 @@ export class Page1Component implements OnInit {
 
   }
 
-  // Icons
-  faUsers = faUsers;
-  faSensorTriangleExclamation = faTriangleExclamation;
-  faServer = faServer;
-  faContract = faFileContract;
+  getIcon(objective: Objective) {
+    if (objective.name == "UX")
+      return faUsers;
+    if (objective.name == "resource")
+      return faServer;
+    if (objective.name == "Incident")
+      return faTriangleExclamation
+    else return faUsers;
+  }
     
   presetConcerns(objective: Objective) {
     console.log(objective);
