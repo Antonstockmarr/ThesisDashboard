@@ -6,7 +6,7 @@
       [disabled]="disabled"
       [checked]="isChecked"
       ></mat-checkbox>
-    <div class="tooltip">
+    <div class="tooltip" *ngIf="tooltip != ''">
       <p>?</p>
       <span class="tooltiptext">{{tooltip}}</span>
     </div>

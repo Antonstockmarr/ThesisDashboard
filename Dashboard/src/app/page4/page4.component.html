@@ -1,0 +1,26 @@
+<div class="page">
+    <div class="page-header">
+      <div class="page-title">
+        <h1>
+          Monitoring Recommendation
+        </h1>
+      </div>
+      <div class="page-description">
+        <p>
+          Components of a monitoring solution that can adress the selected concerns
+        </p>
+      </div>
+    </div>
+    <div class="page-content">
+        <div class="top-banner">
+            <div class="overview">
+                <div *ngFor="let tool of tools">{{tool}}</div>
+            </div>
+            <div class="illustration">
+                <img src="assets/Architecture.png">
+            </div>
+        </div>
+        <a href="{{textFile}}" target="_blank" class="button">Link to text file</a>
+        <a href="{{zipFile}}" target="_blank" class="button">Link to zip file</a>
+    </div>
+  </div>

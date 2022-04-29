@@ -29,27 +29,29 @@
     padding: 3em;
 }
 
-.line-container {
+.top-banner {
     display: grid;
-    position: relative;
-    grid-template-columns: 50% 1fr 1fr;
+    grid-template-columns: calc(30% - 10px) calc(70% - 10px);
+    column-gap: 20px;
 }
 
-.difficulty-header {
+.overview {
+    border: 1px solid black;
+}
+
+.illustration {
+    border: 1px solid black;
+}
+
+img {
     width: 100%;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: underline;
-    word-wrap: break-word;
-    overflow: hidden;
 }
 
-.implementation-difficulty-header {
-    grid-column: 2;
+.button {
+    display: block;
+    box-sizing: border-box;
+    background-color: lightblue;
+    text-decoration: none;
+    padding: 10px;
+    border: 1px solid black;
 }
-
-.maintenance-difficulty-header {
-    grid-column: 3;
-}
-
-
