@@ -39,6 +39,7 @@ namespace Dashboardbackend
                     .AllowCredentials());
             });
             services.AddControllers();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IfocusAreaRepository, focusAreaRepository>(); 
             services.AddSwaggerGen(c =>
             {
