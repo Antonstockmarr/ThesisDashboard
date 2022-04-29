@@ -19,7 +19,7 @@ export class DataRepositoryService {
   
   constructor(private http: HttpClient) {
     this.objectives = this.http.get<Objective[]>(
-      this.baseUrl + '/api/objectives',
+      this.baseUrl + '/api/FocusAreas',
       {observe: 'body', responseType: 'json'});
 
     /*this.concerns = this.http.get<Concern[]>(
