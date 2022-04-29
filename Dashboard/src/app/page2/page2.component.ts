@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MonitoringApproach } from '../models/monitoring-approach';
-import { MonitoringConcern } from '../models/monitoring-concern';
+import { Approach } from '../models/approach';
+import { Concern } from '../models/concern';
 import { DataRepositoryService } from '../services/data-repository.service';
 import { LocalStorageService } from '../services/local-storage.service';
 
@@ -11,143 +11,46 @@ import { LocalStorageService } from '../services/local-storage.service';
 })
 export class Page2Component implements OnInit {
 
-  private id : string = "";
-  private value : string = "";
-  
+  approaches: Approach[] = [];
+  concerns: Concern[] = [];
+  checkedConcerns: Map<number, boolean> = new Map();
 
-  constructor(private storageService: LocalStorageService, private dataRepository: DataRepositoryService) { }
+
+  constructor(private storageService: LocalStorageService, private dataRepository: DataRepositoryService) {
+    this.dataRepository.getApproaches().subscribe((approaches: Approach[]) => {
+      this.approaches = approaches;
+    });
+
+    this.dataRepository.getConcerns().subscribe((concerns: Concern[]) => {
+      this.concerns = concerns;
+      concerns.forEach((concern) => {
+        if (!(this.checkedConcerns.has(concern.id)))
+          this.checkedConcerns.set(concern.id, false)
+      });
+
+    });
+   }
 
   ngOnInit(): void {
-    this.storageService.watchStorage().subscribe((idvalue:[string,string]) => {
-      this.id = idvalue[0];
-      this.value = idvalue[1];
-      this.checkboxesDataList.forEach(element => {
-        if (element.id === this.id) {
-          element.isChecked = this.value == 'true' ? true : false;
+    this.storageService.watchStorage().subscribe((valuePair:[string,string]) => {
+      const concernName = valuePair[0];
+      const isChecked = valuePair[1];
+      const concern = this.concerns.find((c) => c.name === concernName);
+      if (!concern) return;
+      this.concerns.forEach(c => {
+        if (c.id === concern.id) {
+          this.checkedConcerns.set(concern.id,isChecked == 'true' ? true : false);
         }
       });
     });
   }
 
+  concernApproaches(concern: Concern): Approach[] {
+    return this.approaches.filter(approach => approach.concernId == concern.id);
+  }
+
+
   checkbox(value: boolean): void {
     console.log(value);
   }
-
-  monitoringApproaches: MonitoringApproach[] = [
-    {
-      description: 'Health checks',
-      tooltip: 'Periodically ping services to see if they are up',
-      implementationDifficulty: 'easy',
-      maintenanceDifficulty: 'easy'
-    },
-    {
-      description: 'Work metrics',
-      tooltip: 'Metrics on how the services are running, like latency, throughput, etc.',
-      implementationDifficulty: 'easy',
-      maintenanceDifficulty: 'easy'
-    },
-    {
-      description: 'Distributed tracing',
-      tooltip: 'Track requests across services to link events and produce timelines.',
-      implementationDifficulty: 'easy',
-      maintenanceDifficulty: 'easy'
-    },
-    {
-      description: 'Application logs',
-      tooltip: 'Logs that are produced within the application. This requires source code instrumentation.',
-      implementationDifficulty: 'easy',
-      maintenanceDifficulty: 'easy'
-    },
-    {
-      description: 'Alert system',
-      tooltip: 'Send alerts to stakeholders as reaction to specific events or thresholds.',
-      implementationDifficulty: 'easy',
-      maintenanceDifficulty: 'easy'
-    },
-    {
-      description: 'Network logs',
-      tooltip: 'Monitor network log to analyse traffic and identify malicious activity.',
-      implementationDifficulty: 'easy',
-      maintenanceDifficulty: 'easy'
-    },
-    {
-      description: 'Resource metrics',
-      tooltip: 'Monitor CPU, storage and memory usage',
-      implementationDifficulty: 'easy',
-      maintenanceDifficulty: 'easy'
-    }
-  ];
-
-  getApproach(description: string): MonitoringApproach {
-    const approach = this.monitoringApproaches.find(a => a.description === description);
-    return approach
-      ? approach
-      : {description: 'not found', tooltip: '', implementationDifficulty: 'easy', maintenanceDifficulty: 'easy'};
-  }
-
-  checkboxesDataList : MonitoringConcern[] = [
-    {
-      id: '1',
-      label: 'Availability',
-      isChecked: false,
-      approaches: [
-        this.getApproach('Health checks'),
-        this.getApproach('Work metrics')
-      ]
-    },
-    {
-      id: '2',
-      label: 'Performance',
-      isChecked: false,
-      approaches: [
-        this.getApproach('Work metrics'),
-        this.getApproach('Distributed tracing'),
-      ]
-    },
-    {
-      id: '3',
-      label: 'User behaviour',
-      isChecked: false,
-      approaches: [
-        this.getApproach('Distributed tracing'),
-      ]
-    },
-    {
-      id: '4',
-      label: 'Error Management',
-      isChecked: false,
-      approaches: [
-        this.getApproach('Distributed tracing'),
-        this.getApproach('Application logs'),
-        this.getApproach('Alert system'),
-      ]
-    },
-    {
-      id: '5',
-      label: 'Network Security',
-      isChecked: false,
-      approaches: [
-        this.getApproach('Network logs'),
-      ]
-    },
-    {
-      id: '6',
-      label: 'Scalability',
-      isChecked: false,
-      approaches: [
-        this.getApproach('Work metrics'),
-        this.getApproach('Resource metrics'),
-      ]
-    },
-    {
-      id: '7',
-      label: 'Capacity planning',
-      isChecked: false,
-      approaches: [
-        this.getApproach('Resource metrics'),
-      ]
-    }
-  ]
-
-
 }

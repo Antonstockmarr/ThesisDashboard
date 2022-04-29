@@ -21,7 +21,6 @@ import { DifficultyBarComponent } from './subcomponents/difficulty-bar/difficult
 import { ContentcardComponent } from './subcomponents/contentcard/contentcard.component';
 import { FooterComponent } from './subcomponents/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { LocalStorageComponent } from './local-storage/local-storage.component';
 import { LocalStorageService } from './services/local-storage.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Page3Component } from './page3/page3.component';
@@ -36,7 +35,6 @@ import { Page4Component } from './page4/page4.component';
     DifficultyBarComponent,
     ContentcardComponent,
     FooterComponent,
-    LocalStorageComponent,
     Page3Component,
     Page4Component,
   ],
