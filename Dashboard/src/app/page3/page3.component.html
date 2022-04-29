@@ -15,7 +15,7 @@
         <app-contentcard class="card" [title]="'Technologies used in the system'">
             <div *ngFor="let technology of technologies">
                 <app-checkbox-line
-                    [description]="technology.label"
+                    [description]="technology.name"
                     [isChecked]="technology.isChecked"
                     (onClick)="click($event)"
                 ></app-checkbox-line>

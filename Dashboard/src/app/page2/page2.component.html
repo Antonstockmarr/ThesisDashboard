@@ -12,16 +12,16 @@
     </div>
   </div>
   <div class="page-content">
-    <div *ngFor="let concern of checkboxesDataList">
-      <app-contentcard class="card" [title]="concern.label" *ngIf="concern.isChecked">
+    <div *ngFor="let concern of concerns">
+      <app-contentcard class="card" [title]="concern.name" *ngIf="concern.isChecked">
         <div class="line-container">
           <div class="implementation-difficulty-header difficulty-header">Implementation</div>
           <div class="maintenance-difficulty-header difficulty-header">Maintanence</div>
         </div>
-        <div class="line-container" *ngFor="let approach of concern.approaches">
+        <div class="line-container" *ngFor="let approach of concernApproaches(concern)">
           <app-checkbox-line
-            [description]="approach.description"
-            [tooltip]="approach.tooltip"
+            [description]="approach.name"
+            [tooltip]="approach.description"
             (onClick)="checkbox($event)"
             >
           </app-checkbox-line>

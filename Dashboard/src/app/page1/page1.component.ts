@@ -6,7 +6,8 @@ import { CheckboxLineComponent } from '../subcomponents/checkbox-line/checkbox-l
 import { LocalStorageComponent } from '../local-storage/local-storage.component';
 import { LocalStorageService } from '../services/local-storage.service';
 import { DataRepositoryService } from '../services/data-repository.service';
-import { FocusArea } from '../models/focus-area';
+import { Objective } from '../models/objective';
+import { Concern } from '../models/concern';
 
 
 @Component({
@@ -18,8 +19,12 @@ export class Page1Component implements OnInit {
 
 
   constructor(private storageService: LocalStorageService, private dataRepository: DataRepositoryService) {
-    this.dataRepository.getFocusAreas().subscribe((focusAreas: FocusArea[]) => {
-      this.focusAreas = focusAreas;
+    this.dataRepository.getObjectives().subscribe((objectives: Objective[]) => {
+      this.objectives = objectives;
+    });
+
+    this.dataRepository.getConcerns().subscribe((concerns: Concern[]) => {
+      this.concerns = concerns;
     });
   }
 
@@ -33,94 +38,22 @@ export class Page1Component implements OnInit {
   faServer = faServer;
   faContract = faFileContract;
 
-  public temp: boolean = false;
-
-  focusAreas: FocusArea[] = [];
+  objectives: Objective[] = [];
+  concerns: Concern[] = [];
 
   // Approaches : string[] = ['Health Checks', 'Distributed Tracing', 'Network Traffic', 'Custom Logs', 'Error Logs', 'Alert System', 'OS Metrics'];
 
-  checkboxesDataList : any[] = [
-    {
-      id: '1',
-      label: 'Availability',
-      isChecked: false
-    },
-    {
-      id: '2',
-      label: 'Performance',
-      isChecked: false
-    },
-    {
-      id: '3',
-      label: 'User behaviour',
-      isChecked: false
-    },
-    {
-      id: '4',
-      label: 'Error Management',
-      isChecked: false
-    },
-    {
-      id: '5',
-      label: 'Network Security',
-      isChecked: false
-    },
-    {
-      id: '6',
-      label: 'Scalability',
-      isChecked: false
-    },
-    {
-      id: '7',
-      label: 'Capacity planning',
-      isChecked: false
-    }
-  ]
     
-  public presetValues(value: string) {
-    console.log(value);
+  presetConcerns(objective: Objective) {
+    console.log(objective);
 
-    this.checkboxesDataList.forEach(element => {
-      if (value == "UX") {
-        if (element.id == "1" || element.id == "2" || element.id =="3") {
-          element.isChecked = true;
-          this.changeSelection(element.isChecked, element.id);
-          return;
-        }
-      }
-      if (value == "IH") {
-        if (element.id == "4" || element.id == "5") {
-          element.isChecked = true;
-          this.changeSelection(element.isChecked, element.id);
-          return;
-        }
-      }
-      if (value == "RM") {
-        if (element.id == "6" || element.id == "7") {
-          element.isChecked = true;
-          this.changeSelection(element.isChecked, element.id);
-          return; 
-        }
-      }
-      element.isChecked =false;
-      this.changeSelection(element.isChecked, element.id);
+    this.concerns.forEach(concern => {
+      this.changeSelection(concern, objective.id == concern.objectiveId);
     });
   }
 
-  public key: string = 'Name';
-  public myItem: string | null = '';
-  
-
-  selectedItemsList : any[] = [];
-  checkedIDs : any[] = [];
-
-  changeSelection(e: boolean, keyLabel:string) {
-    this.checkboxesDataList.forEach(element => {
-      if (element.id == keyLabel) {
-        element.isChecked = e; 
-      } 
-    });
-    this.storageService.set(keyLabel, e ? "true": "false");
+  changeSelection(concern: Concern, value: boolean) {
+    concern.isChecked = value;
+    this.storageService.set(concern.name, concern.isChecked ? "true" : "false");
   }
-
 }
