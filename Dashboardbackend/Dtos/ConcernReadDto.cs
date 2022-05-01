@@ -12,6 +12,6 @@ namespace Dashboardbackend.Dtos
         public string name { get; set; }
         public string Description { get; set; }
         public int FocusAreaForeignKey { get; set; }
-        public FocusArea focusArea { get; set; }
+        //public FocusArea focusArea { get; set; }
     }
 }

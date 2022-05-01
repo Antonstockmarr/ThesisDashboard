@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Dashboardbackend.Controllers
 {
-    [Route("api/concern")]
+    [Route("api/concerns")]
     [ApiController]
     public class ConcernController : ControllerBase
     {
@@ -27,20 +27,20 @@ namespace Dashboardbackend.Controllers
 
         // GET: api/<ValuesController>
         [HttpGet]
-        public ActionResult <IEnumerable<Concern>> GetAllConcerns()
+        public ActionResult <IEnumerable<ConcernReadDto>> GetAllConcerns()
         {
-            var concern = _repository.getAllConcerns();
-            return Ok(concern);
+            var concerns = _repository.getAllConcerns();
+            return Ok(_mapper.Map<IEnumerable<ConcernReadDto>>(concerns));
         }
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
         public ActionResult <ConcernReadDto> GetConcernByID(int id)
         {
-            var conern = _repository.getConcernByID(id);
-            if (conern != null)
+            var concern = _repository.getConcernByID(id);
+            if (concern != null)
             {
-                return Ok(_mapper.Map<ConcernReadDto>(conern));
+                return Ok(_mapper.Map<ConcernReadDto>(concern));
             }
 
             return NotFound();

@@ -16,6 +16,7 @@ namespace Dashboardbackend.Data
 
         public DbSet<FocusArea> focusAreas { get; set; }
         public DbSet<Concern> concerns { get; set; }
+        public DbSet<Approach> approaches { get; set; }
 
 
     }

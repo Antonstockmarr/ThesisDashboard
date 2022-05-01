@@ -1,4 +1,5 @@
 using Dashboardbackend.Data;
+using Dashboardbackend.Data.ApproachRepo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -42,6 +43,8 @@ namespace Dashboardbackend
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IfocusAreaRepository, focusAreaRepository>();
             services.AddScoped<IConcernRepository, ConcernRepository>();
+            services.AddScoped<IApproachRepository, ApproachRepository>();
+
 
             services.AddSwaggerGen(c =>
             {
