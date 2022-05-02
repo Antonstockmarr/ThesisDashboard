@@ -17,62 +17,63 @@ namespace Dashboardbackend.Data
 
         public async Task Seed()
         {
-            if (!_context.objectives.Any())
+            if (!_context.objectives.Any() && !_context.concerns.Any() && !_context.approaches.Any())
             {
-                _context.AddRange(_objectives);
+                Console.WriteLine("objectives");
+                _context.AddRange(GetObjectives());
                 await _context.SaveChangesAsync();
-            }
-
-            if (!_context.objectives.Any())
-            {
-                _context.AddRange(_concerns);
+                Console.WriteLine("concerns");
+                _context.AddRange(GetConcerns());
                 await _context.SaveChangesAsync();
-            }
-            if (!_context.objectives.Any())
-            {
-                _context.AddRange(_approaches);
+                Console.WriteLine("approaches");
+                _context.AddRange(GetApproaches());
                 await _context.SaveChangesAsync();
             }
         }
 
-        List<Objective> _objectives = new List<Objective>
+        private List<Objective> GetObjectives()
         {
-            new Objective()
+            return new List<Objective>()
             {
-                Id = 1,
-                Name = "obj1",
-                Description = "desc"
-            },
-            new Objective()
-            {
-                Id = 2,
-                Name = "obj2",
-                Description = "desc"
-            },
-        };
+                new Objective()
+                {
+                    Name = "obj1",
+                    Description = "desc"
+                },
+                new Objective()
+                {
+                    Name = "obj2",
+                    Description = "desc"
+                },
+            };
+        }
 
-        List<Concern> _concerns = new List<Concern>
+        private List<Concern> GetConcerns()
         {
-            new Concern()
+            return new List<Concern>
             {
-                Id = 1,
-                Name = "concern1",
-                Description = "desc",
-                ObjectiveId = 1
-            }
-        };
+                new Concern()
+                {
+                    Name = "concern1",
+                    Description = "desc",
+                    ObjectiveId = _context.objectives.First(objective => objective.Name == "obj1").Id
+                }
+            };
+        }
 
-        List<Approach> _approaches = new List<Approach>
+        private List<Approach> GetApproaches()
         {
-            new Approach()
+            return new List<Approach>
             {
-                Id = 1,
-                Name = "appr1",
-                Description = "desc",
-                ImplementationDifficulty = "easy",
-                MaintenanceDifficulty = "easy",
-                ConcernId = 1
-            }
-        };
+                new Approach()
+                {
+                    Name = "appr1",
+                    Description = "desc",
+                    ImplementationDifficulty = "easy",
+                    MaintenanceDifficulty = "easy",
+                    ConcernId = _context.concerns.First(concern => concern.Name == "concern1").Id
+                }
+            };
+        }
     }
 }
