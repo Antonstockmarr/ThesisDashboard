@@ -12,16 +12,16 @@ namespace Dashboardbackend.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public string name { get; set; }
+        public string Name { get; set; }
         [Required]
-        public string description { get; set; }
+        public string Description { get; set; }
         [Required]
-        public string implementationDifficulty { get; set; }
+        public string ImplementationDifficulty { get; set; }
         [Required]
-        public string maintenanceDifficulty { get; set; }
-        public int concernForeignKey { get; set; }
-        [ForeignKey("concernForeignKey")]
-        public Concern concern { get; set; }
+        public string MaintenanceDifficulty { get; set; }
+        public int ConcernId { get; set; }
+        [ForeignKey("ConcernId")]
+        public Concern Concern { get; set; }
 
     }
 }

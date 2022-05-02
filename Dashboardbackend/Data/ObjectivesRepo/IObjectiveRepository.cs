@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Dashboardbackend.Data
 {
-    public interface IfocusAreaRepository
+    public interface IObjectiveRepository
     {
-        IEnumerable<FocusArea> GetAllFocusAreas();
-        FocusArea GetFocusAreaById(int id);
+        IEnumerable<Objective> GetAllObjectives();
+        Objective GetObjectiveById(int id);
     }
 }

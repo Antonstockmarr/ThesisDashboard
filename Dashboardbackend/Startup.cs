@@ -28,8 +28,13 @@ namespace Dashboardbackend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<FocusAreaContext>(opt => opt.UseSqlServer
-            (Configuration.GetConnectionString("DashBoardConnectionString")));
+            services.AddDbContext<ApplicationContext>(options => options.UseCosmos("https://thesisdb.documents.azure.com:443/",
+                "MthfczZPDJiDb9NhyqcO6ZLqaGIGTrdHHM8ITpNAJbUqVc9cC1za0E9OR87eUaMqY0M8xOiMMkM8L06sTyhqkw==", 
+                databaseName:"CosmosDatabase"
+                ));
+
+            //services.AddDbContext<ApplicationContext>(opt => opt.UseSqlServer
+            //(Configuration.GetConnectionString("DashBoardConnectionString")));
 
             services.AddCors(options =>
             {
@@ -41,7 +46,7 @@ namespace Dashboardbackend
             });
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddScoped<IfocusAreaRepository, focusAreaRepository>();
+            services.AddScoped<IObjectiveRepository, ObjectiveRepository>();
             services.AddScoped<IConcernRepository, ConcernRepository>();
             services.AddScoped<IApproachRepository, ApproachRepository>();
 

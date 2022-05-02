@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Dashboardbackend.Data
 {
-    public class FocusAreaContext : DbContext
+    public class ApplicationContext : DbContext
     {
-        public FocusAreaContext(DbContextOptions<FocusAreaContext> opt) : base(opt)
+        public ApplicationContext(DbContextOptions<ApplicationContext> opt) : base(opt)
         {
 
         }
 
-        public DbSet<FocusArea> focusAreas { get; set; }
+        public DbSet<Objective> objectives { get; set; }
         public DbSet<Concern> concerns { get; set; }
         public DbSet<Approach> approaches { get; set; }
 

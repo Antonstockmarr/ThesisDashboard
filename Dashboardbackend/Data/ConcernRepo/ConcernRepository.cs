@@ -8,9 +8,9 @@ namespace Dashboardbackend.Data
 {
     public class ConcernRepository : IConcernRepository
     {
-        private readonly FocusAreaContext _context;
+        private readonly ApplicationContext _context;
 
-        public ConcernRepository(FocusAreaContext context)
+        public ConcernRepository(ApplicationContext context)
         {
             _context = context;
         }

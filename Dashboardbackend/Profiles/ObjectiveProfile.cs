@@ -4,12 +4,12 @@ using Dashboardbackend.Models;
 
 namespace Dashboardbackend.Profiles
 {
-    public class FocusAreasProfile : Profile
+    public class ObjectivesProfile : Profile
     {
-        public FocusAreasProfile()
+        public ObjectivesProfile()
         {
             // By mapping we ensure that the whole domain object dosent get returned
-            CreateMap<FocusArea, FocusAreaReadDto>();
+            CreateMap<Objective, ObjectiveReadDto>();
         }
     }
 }

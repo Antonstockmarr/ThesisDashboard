@@ -8,8 +8,8 @@ namespace Dashboardbackend.Data.ApproachRepo
 {
     public class ApproachRepository : IApproachRepository
     {
-        private readonly FocusAreaContext _context;
-        public ApproachRepository(FocusAreaContext context)
+        private readonly ApplicationContext _context;
+        public ApproachRepository(ApplicationContext context)
         {
             _context = context;
         }

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Dashboardbackend.Models
 {
-    public class FocusArea
+    public class Objective
     {   
         [Key]
         public int Id { get; set; }
         [Required]
-        public string name { get; set; }
+        public string Name { get; set; }
         [Required]
         public string Description { get; set; }
 
