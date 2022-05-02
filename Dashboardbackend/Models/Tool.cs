@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dashboardbackend.Models
 {
-    public class Approach
+    public class Tool
     {
         [Key]
         public int Id { get; set; }
@@ -15,16 +15,7 @@ namespace Dashboardbackend.Models
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }
-        [Required]
-        public string ImplementationDifficulty { get; set; }
-        [Required]
-        public string MaintenanceDifficulty { get; set; }
-        public int ConcernId { get; set; }
-        [ForeignKey("ConcernId")]
-        public Concern Concern { get; set; }
-        [ForeignKey("ToolId")]
-        public ICollection<Tool> Tools { get; set; }
-
+        [ForeignKey("ApproachId")]
+        public ICollection<Approach> Approaches { get; set; }
     }
 }
-    

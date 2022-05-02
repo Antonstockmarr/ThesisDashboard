@@ -23,12 +23,12 @@ namespace Dashboardbackend.Data
                 await _context.SaveChangesAsync();
             }
 
-            if (!_context.objectives.Any())
+            if (!_context.concerns.Any())
             {
                 _context.AddRange(_concerns);
                 await _context.SaveChangesAsync();
             }
-            if (!_context.objectives.Any())
+            if (!_context.approaches.Any())
             {
                 _context.AddRange(_approaches);
                 await _context.SaveChangesAsync();
@@ -39,13 +39,13 @@ namespace Dashboardbackend.Data
         {
             new Objective()
             {
-                Id = 1,
+                //Id = 1,
                 Name = "obj1",
                 Description = "desc"
             },
             new Objective()
             {
-                Id = 2,
+               // Id = 2,
                 Name = "obj2",
                 Description = "desc"
             },
@@ -55,7 +55,7 @@ namespace Dashboardbackend.Data
         {
             new Concern()
             {
-                Id = 1,
+                //Id = 1,
                 Name = "concern1",
                 Description = "desc",
                 ObjectiveId = 1
@@ -66,7 +66,7 @@ namespace Dashboardbackend.Data
         {
             new Approach()
             {
-                Id = 1,
+                //Id = 1,
                 Name = "appr1",
                 Description = "desc",
                 ImplementationDifficulty = "easy",

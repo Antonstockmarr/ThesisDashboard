@@ -17,5 +17,6 @@ namespace Dashboardbackend.Data
         public DbSet<Objective> objectives { get; set; }
         public DbSet<Concern> concerns { get; set; }
         public DbSet<Approach> approaches { get; set; }
+        public DbSet<Tool> tools { get; set; }
     }
 }
