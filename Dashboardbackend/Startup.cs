@@ -52,10 +52,12 @@ namespace Dashboardbackend
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Dashboardbackend", Version = "v1" });
             });
+
+            services.AddTransient<DataSeeder>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataSeeder dataSeeder)
         {
             if (env.IsDevelopment())
             {
@@ -74,6 +76,8 @@ namespace Dashboardbackend
             {
                 endpoints.MapControllers();
             });
+
+            dataSeeder.Seed().Wait();
         }
     }
 }
