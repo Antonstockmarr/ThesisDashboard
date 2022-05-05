@@ -23,5 +23,11 @@ namespace Dashboardbackend.Data.ToolRepo
         {
             return _context.tools.FirstOrDefault(p => p.Id == id);
         }
+
+        // get a list of all tools with certain ID
+        //public List<Tool> GetApproachById(int id)
+        //{
+            
+        //}
     }
 }
