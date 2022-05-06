@@ -20,10 +20,10 @@ namespace Dashboardbackend.Data.ConfigurationRepo
         {
             var configuration = new List<SetupConfiguration>
             {
-                new SetupConfiguration { Id= 0, ImageURL = "prometheus-grafana-conf/SystemDesignPromGraf.png", SetupURL = ".zip", MainObjective = "Maybe we dont need this", ConfigurationDescription = "nice it works" },
-                new SetupConfiguration { Id= 1, ImageURL = "logstash-netdata/SystemDesignPromGraf.png", SetupURL = ".zip", MainObjective = "Maybe we dont need this", ConfigurationDescription = "nice it works" },
-                new SetupConfiguration { Id= 2, ImageURL = "prometheus-grafana-conf/SystemDesignPromGraf.png", SetupURL = ".zip", MainObjective = "Maybe we dont need this", ConfigurationDescription = "nice it works" },
-                new SetupConfiguration { Id= 3, ImageURL = "prometheus-grafana-conf/SystemDesignPromGraf.png", SetupURL = ".zip", MainObjective = "Maybe we dont need this", ConfigurationDescription = "nice it works" },
+                new SetupConfiguration { Id= 0, ImageURL = "prometheus-grafana-conf/SystemDesignPromGraf.png", SetupURL = ".zip", ConfigurationDescription = "nice it works" },
+                new SetupConfiguration { Id= 1, ImageURL = "logstash-netdata/SystemDesignPromGraf.png", SetupURL = ".zip", ConfigurationDescription = "nice it works" },
+                new SetupConfiguration { Id= 2, ImageURL = "prometheus-grafana-conf/SystemDesignPromGraf.png", SetupURL = ".zip",  ConfigurationDescription = "nice it works" },
+                new SetupConfiguration { Id= 3, ImageURL = "prometheus-grafana-conf/SystemDesignPromGraf.png", SetupURL = ".zip", ConfigurationDescription = "nice it works" },
             };
             return configuration;
 
@@ -33,7 +33,7 @@ namespace Dashboardbackend.Data.ConfigurationRepo
         public SetupConfiguration GetConfigurationById(int id)
         {
             //return _context.setupConfigurations.FirstOrDefault(p => p.Id == id);
-            return new SetupConfiguration { Id = 0, ImageURL = "prometheus-grafana-conf/SystemDesignPromGraf.png", SetupURL = ".zip", MainObjective = "Maybe we dont need this", ConfigurationDescription = "nice it works" };
+            return new SetupConfiguration { Id = 0, ImageURL = "prometheus-grafana-conf/SystemDesignPromGraf.png", SetupURL = ".zip", ConfigurationDescription = "nice it works" };
         }
     }
 }

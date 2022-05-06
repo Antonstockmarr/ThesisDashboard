@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dashboardbackend.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220502104657_2Migration")]
-    partial class _2Migration
+    [Migration("20220506115311_initialMigration")]
+    partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,21 +22,6 @@ namespace Dashboardbackend.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("ApproachTool", b =>
-                {
-                    b.Property<int>("ApproachId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ToolId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ApproachId", "ToolId");
-
-                    b.HasIndex("ToolId");
-
-                    b.ToTable("ApproachTool");
-                });
 
             modelBuilder.Entity("Dashboardbackend.Models.Approach", b =>
                 {
@@ -72,6 +57,32 @@ namespace Dashboardbackend.Migrations
                     b.ToTable("approaches");
                 });
 
+            modelBuilder.Entity("Dashboardbackend.Models.ApproachTool", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ApproachId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ConfigurationDifficulty")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ToolId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApproachId");
+
+                    b.HasIndex("ToolId");
+
+                    b.ToTable("approachTools");
+                });
+
             modelBuilder.Entity("Dashboardbackend.Models.Concern", b =>
                 {
                     b.Property<int>("Id")
@@ -98,6 +109,29 @@ namespace Dashboardbackend.Migrations
                     b.ToTable("concerns");
                 });
 
+            modelBuilder.Entity("Dashboardbackend.Models.ConfigurationPackage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ApproachToolId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SetupConfigurationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApproachToolId");
+
+                    b.HasIndex("SetupConfigurationId");
+
+                    b.ToTable("configurationPackages");
+                });
+
             modelBuilder.Entity("Dashboardbackend.Models.Objective", b =>
                 {
                     b.Property<int>("Id")
@@ -117,6 +151,31 @@ namespace Dashboardbackend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("objectives");
+                });
+
+            modelBuilder.Entity("Dashboardbackend.Models.SetupConfiguration", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ConfigurationDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SetupURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("setupConfigurations");
                 });
 
             modelBuilder.Entity("Dashboardbackend.Models.Tool", b =>
@@ -140,21 +199,6 @@ namespace Dashboardbackend.Migrations
                     b.ToTable("tools");
                 });
 
-            modelBuilder.Entity("ApproachTool", b =>
-                {
-                    b.HasOne("Dashboardbackend.Models.Tool", null)
-                        .WithMany()
-                        .HasForeignKey("ApproachId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Dashboardbackend.Models.Approach", null)
-                        .WithMany()
-                        .HasForeignKey("ToolId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Dashboardbackend.Models.Approach", b =>
                 {
                     b.HasOne("Dashboardbackend.Models.Concern", "Concern")
@@ -166,6 +210,25 @@ namespace Dashboardbackend.Migrations
                     b.Navigation("Concern");
                 });
 
+            modelBuilder.Entity("Dashboardbackend.Models.ApproachTool", b =>
+                {
+                    b.HasOne("Dashboardbackend.Models.Approach", "Approach")
+                        .WithMany("ApproachTools")
+                        .HasForeignKey("ApproachId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Dashboardbackend.Models.Tool", "Tool")
+                        .WithMany("ApproachTools")
+                        .HasForeignKey("ToolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Approach");
+
+                    b.Navigation("Tool");
+                });
+
             modelBuilder.Entity("Dashboardbackend.Models.Concern", b =>
                 {
                     b.HasOne("Dashboardbackend.Models.Objective", "Objective")
@@ -175,6 +238,45 @@ namespace Dashboardbackend.Migrations
                         .IsRequired();
 
                     b.Navigation("Objective");
+                });
+
+            modelBuilder.Entity("Dashboardbackend.Models.ConfigurationPackage", b =>
+                {
+                    b.HasOne("Dashboardbackend.Models.ApproachTool", "ApproachTool")
+                        .WithMany("ConfigurationPackages")
+                        .HasForeignKey("ApproachToolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Dashboardbackend.Models.SetupConfiguration", "SetupConfiguration")
+                        .WithMany("ConfigurationPackages")
+                        .HasForeignKey("SetupConfigurationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApproachTool");
+
+                    b.Navigation("SetupConfiguration");
+                });
+
+            modelBuilder.Entity("Dashboardbackend.Models.Approach", b =>
+                {
+                    b.Navigation("ApproachTools");
+                });
+
+            modelBuilder.Entity("Dashboardbackend.Models.ApproachTool", b =>
+                {
+                    b.Navigation("ConfigurationPackages");
+                });
+
+            modelBuilder.Entity("Dashboardbackend.Models.SetupConfiguration", b =>
+                {
+                    b.Navigation("ConfigurationPackages");
+                });
+
+            modelBuilder.Entity("Dashboardbackend.Models.Tool", b =>
+                {
+                    b.Navigation("ApproachTools");
                 });
 #pragma warning restore 612, 618
         }

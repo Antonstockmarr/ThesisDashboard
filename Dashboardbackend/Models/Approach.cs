@@ -19,8 +19,7 @@ namespace Dashboardbackend.Models
         public int ConcernId { get; set; }
         [ForeignKey("ConcernId")]
         public Concern Concern { get; set; }
-        [ForeignKey("ToolId")]
-        public ICollection<Tool> Tools { get; set; }
+        public ICollection<ApproachTool> ApproachTools { get; set; }
 
     }
 }

@@ -14,12 +14,12 @@ namespace Dashboardbackend.Data
 
         public Objective GetObjectiveById(int id)
         {
-            return _context.Objectives.FirstOrDefault(p => p.Id == id);
+            return _context.objectives.FirstOrDefault(p => p.Id == id);
         }
 
         public IEnumerable<Objective> GetAllObjectives()
         {
-            return _context.Objectives.ToList();
+            return _context.objectives.ToList();
         }
     }
 }

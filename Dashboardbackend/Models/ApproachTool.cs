@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dashboardbackend.Models
@@ -15,6 +16,7 @@ namespace Dashboardbackend.Models
         public Tool Tool { get; set; }
         [Required]
         public int ConfigurationDifficulty { get; set; }
+        public ICollection<ConfigurationPackage> ConfigurationPackages { get; set; }
 
     }
 }

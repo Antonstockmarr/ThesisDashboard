@@ -1,5 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dashboardbackend.Models
 {
@@ -12,8 +13,7 @@ namespace Dashboardbackend.Models
         [Required]
         public string SetupURL { get; set; }
         [Required]
-        public string MainObjective { get; set; }
-        [Required]
         public string ConfigurationDescription { get; set; }
+        public ICollection<ConfigurationPackage> ConfigurationPackages { get; set; }
     }
 }

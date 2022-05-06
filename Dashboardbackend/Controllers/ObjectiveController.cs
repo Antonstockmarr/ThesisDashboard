@@ -13,7 +13,7 @@ using Dashboardbackend.Dtos;
 
 namespace Dashboardbackend.Controllers
 {
-    [Route("api/Objectives")]
+    [Route("api/objectives")]
     [ApiController]
     public class ObjectiveController : ControllerBase
     {
@@ -26,12 +26,12 @@ namespace Dashboardbackend.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/Objectives
+        // GET: api/objectives
         [HttpGet]
         public ActionResult <IEnumerable<ObjectiveReadDto>> GetAllObjective()
         {
-            var Objectives = _repository.GetAllObjectives();
-            return Ok(_mapper.Map<IEnumerable<ObjectiveReadDto>>(Objectives));
+            var objectives = _repository.GetAllObjectives();
+            return Ok(_mapper.Map<IEnumerable<ObjectiveReadDto>>(objectives));
         }
 
         // GET api/objectives/5

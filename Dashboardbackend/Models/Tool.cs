@@ -12,7 +12,6 @@ namespace Dashboardbackend.Models
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }
-        [ForeignKey("ApproachId")]
-        public ICollection<Approach> Approaches { get; set; }
+        public ICollection<ApproachTool> ApproachTools { get; set; }
     }
 }
