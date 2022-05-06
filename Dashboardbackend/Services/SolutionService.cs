@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Dashboardbackend.Data.ApproachToolRepo;
+using Dashboardbackend.Data.ToolRepo;
 using Dashboardbackend.Models;
 
 namespace Dashboardbackend.Services
@@ -11,6 +12,8 @@ namespace Dashboardbackend.Services
     public class SolutionService : ISolutionService
     {
         private IApproachToolRepository _approachTools;
+        private IToolRepository _tools;
+
 
         private IEnumerable<Approach> testApproaches = new List<Approach>
         {
@@ -35,38 +38,40 @@ namespace Dashboardbackend.Services
         };
 
 
-        public SolutionService(IApproachToolRepository approachTools)
+        public SolutionService(IApproachToolRepository approachTools, IToolRepository tools)
         {
             _approachTools = approachTools;
+            _tools = tools;
         }
 
-        public List<Tool> ComputeSolution(List<Approach> approaches)
+        public List<ApproachTool> ComputeSolution(List<Approach> approaches)
         {
             //approaches = testApproaches.ToList();
-            Dictionary<List<Tool>, int> combinations = new Dictionary<List<Tool>, int>();
+            Dictionary<List<ApproachTool>, int> solutions = new Dictionary<List<ApproachTool>, int>();
 
-            FindToolCombinations(combinations, approaches, new List<Tool>(), 0);
-            int minumumScore = 9999;
-            List<Tool> tools = new List<Tool>();
-            foreach (KeyValuePair<List<Tool>, int> keyValue in combinations) 
+            FindSolutions(solutions, approaches, new List<ApproachTool>());
+            int minumumScore = 999999;
+            List<ApproachTool> approachTools = new List<ApproachTool>();
+            foreach (KeyValuePair<List<ApproachTool>, int> keyValue in solutions) 
             {
                 if (minumumScore > keyValue.Value)
                 {
                     minumumScore = keyValue.Value;
-                    tools = keyValue.Key;
+                    approachTools = keyValue.Key;
                 }
             }
 
-            return tools;
+            return approachTools;
         }
 
-        private void FindToolCombinations(Dictionary<List<Tool>, int> combinations, List<Approach> approaches, List<Tool> tools, int score)
+        private void FindSolutions(Dictionary<List<ApproachTool>, int> solutions, List<Approach> approaches, List<ApproachTool> solution)
         {
-            List<Tool> toolsCopy = new List<Tool>(tools);
+            List<ApproachTool> solutionCopy = new List<ApproachTool>(solution);
 
             if (!approaches.Any())
             {
-                combinations.Add(toolsCopy, score);
+                int score = computeDifficulty(solutionCopy);
+                solutions.Add(solutionCopy, score);
                 return;
             }
 
@@ -75,35 +80,30 @@ namespace Dashboardbackend.Services
             Approach approach = approachesCopy.ElementAt(0);
             approachesCopy.RemoveAt(0);
 
-            List<Tool> approachTools = GetApproachTools(approach.Id);
-            foreach (Tool tool in approachTools)
+            List<ApproachTool> approachTools = GetApproachTools(approach.Id);
+            foreach (ApproachTool approachTool in approachTools)
             {
-                toolsCopy.Add(tool);
-                int difficulty = GetApproachToolDifficulty(approach.Id, tool.Id);
-                score += difficulty;
-
-                FindToolCombinations(combinations, approachesCopy, toolsCopy, score);
-
-                toolsCopy.Remove(tool);
-                score -= difficulty;
+                solutionCopy.Add(approachTool);
+                FindSolutions(solutions, approachesCopy, solutionCopy);
+                solutionCopy.Remove(approachTool);
             }
         }
 
-        private List<Tool> GetApproachTools(int approach)
+        private int computeDifficulty(List<ApproachTool> solution)
         {
-            IEnumerable<Tool> tools = from n in _approachTools.GetAllApproachTools()
+            int numberOfTools = solution.ConvertAll(approachTool => approachTool.ToolId).Distinct().Count();
+            int difficultySum = solution.Sum(approachTool => approachTool.ConfigurationDifficulty);
+
+            return numberOfTools * 100 + difficultySum;
+        }
+
+        private List<ApproachTool> GetApproachTools(int approach)
+        {
+            IEnumerable<ApproachTool> approachTools = from n in _approachTools.GetAllApproachTools()
             where n.ApproachId == approach
-            select n.Tool;
+            select n;
 
-            return tools.ToList();
+            return approachTools.ToList();
         }
-
-        private int GetApproachToolDifficulty(int approach, int tool)
-        {
-            return (from n in _approachTools.GetAllApproachTools()
-                   where n.ApproachId == approach && n.ToolId == tool
-                   select n.ConfigurationDifficulty).First();
-        }
-
     }
 }

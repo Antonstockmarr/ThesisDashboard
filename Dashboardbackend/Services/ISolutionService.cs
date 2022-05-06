@@ -6,6 +6,6 @@ namespace Dashboardbackend.Services
 {
     public interface ISolutionService
     {
-        List<Tool> ComputeSolution(List<Approach> approaches);
+        List<ApproachTool> ComputeSolution(List<Approach> approaches);
     }
 }

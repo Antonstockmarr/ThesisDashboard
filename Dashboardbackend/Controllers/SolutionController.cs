@@ -30,7 +30,7 @@ namespace Dashboardbackend.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ToolReadDto>> GetSolution([FromQuery]List<int> approachIds)
+        public ActionResult<IEnumerable<ApproachTool>> GetSolution([FromQuery]List<int> approachIds)
         {
 
             List<Approach> approaches = new List<Approach>();
@@ -47,8 +47,8 @@ namespace Dashboardbackend.Controllers
                     approaches.Add(approach);
                 }
             }
-            var solution = _solutionService.ComputeSolution(approaches);
-            return Ok(_mapper.Map<IEnumerable<ToolReadDto>>( solution));
+            IEnumerable<ApproachTool> solution = _solutionService.ComputeSolution(approaches);
+            return Ok(solution);
 
         }
 
