@@ -1,10 +1,4 @@
-﻿using Dashboardbackend.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Dashboardbackend.Dtos
+﻿namespace Dashboardbackend.Dtos
 {
     public class ApproachReadDto
     {
@@ -14,7 +8,5 @@ namespace Dashboardbackend.Dtos
         public string ImplementationDifficulty { get; set; }
         public string MaintenanceDifficulty { get; set; }
         public int ConcernId { get; set; }
-       // public int ToolId { get; set; }
-        //public Concern concern { get; set; }
     }
 }

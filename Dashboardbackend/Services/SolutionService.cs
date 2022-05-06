@@ -12,36 +12,10 @@ namespace Dashboardbackend.Services
     public class SolutionService : ISolutionService
     {
         private IApproachToolRepository _approachTools;
-        private IToolRepository _tools;
 
-
-        private IEnumerable<Approach> testApproaches = new List<Approach>
-        {
-            new Approach
-            {
-                Id = 1, Name="name", Description="desc", ImplementationDifficulty="easy", MaintenanceDifficulty="easy"
-            }
-        };
-
-        private IEnumerable<ApproachTool> testApproachTools = new List<ApproachTool>
-        {
-            new ApproachTool
-            {
-                Id = 1, ApproachId = 1, ToolId = 1, ConfigurationDifficulty = 4, Tool = new Tool { Id = 1, Name = "tool", Description = "desc"
-                }
-            },
-            new ApproachTool
-            {
-                Id = 2, ApproachId = 1, ToolId = 2, ConfigurationDifficulty = 3, Tool = new Tool { Id = 2, Name = "tool", Description = "desc"
-                }
-            }
-        };
-
-
-        public SolutionService(IApproachToolRepository approachTools, IToolRepository tools)
+        public SolutionService(IApproachToolRepository approachTools)
         {
             _approachTools = approachTools;
-            _tools = tools;
         }
 
         public List<ApproachTool> ComputeSolution(List<Approach> approaches)

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Dashboardbackend.Data;
 using Dashboardbackend.Models;
 using Dashboardbackend.Data.ApproachRepo;
 using AutoMapper;
-using Dashboardbackend.Dtos;
 using Dashboardbackend.Services;
 
 namespace Dashboardbackend.Controllers

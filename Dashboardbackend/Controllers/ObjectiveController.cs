@@ -26,7 +26,7 @@ namespace Dashboardbackend.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/<ObjectiveController>
+        // GET: api/Objectives
         [HttpGet]
         public ActionResult <IEnumerable<ObjectiveReadDto>> GetAllObjective()
         {
@@ -34,7 +34,7 @@ namespace Dashboardbackend.Controllers
             return Ok(_mapper.Map<IEnumerable<ObjectiveReadDto>>(Objectives));
         }
 
-        // GET api/<ObjectiveController>/5
+        // GET api/objectives/5
         [HttpGet("{id}")]
         public ActionResult <ObjectiveReadDto> GetObjectiveById(int id)
         {

@@ -1,8 +1,6 @@
 ﻿using Dashboardbackend.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Dashboardbackend.Data.ApproachRepo
 {
@@ -14,12 +12,12 @@ namespace Dashboardbackend.Data.ApproachRepo
             _context = context;
         }
 
-        public IEnumerable<Approach> getAllApproach()
+        public IEnumerable<Approach> GetAllApproach()
         {
             return _context.approaches.ToList();
         }
 
-        public Approach getApproachByID(int ID)
+        public Approach GetApproachByID(int ID)
         {
             return _context.approaches.FirstOrDefault(p => p.Id == ID);
         }
