@@ -109,7 +109,7 @@ namespace Dashboardbackend.Data
                 new Approach()
                 {
                     Name = "Health checks",
-                    Description = "desc",
+                    Description = "Periodically ping services to see if they are up",
                     ImplementationDifficulty = "easy",
                     MaintenanceDifficulty = "easy",
                     ConcernId = _context.concerns.First(concern => concern.Name == "Availability").Id
@@ -117,7 +117,7 @@ namespace Dashboardbackend.Data
                 new Approach()
                 {
                     Name = "Network Traffic Performance",
-                    Description = "desc",
+                    Description = "Monitor CPU, storage and memory usage",
                     ImplementationDifficulty = "easy",
                     MaintenanceDifficulty = "easy",
                     ConcernId = _context.concerns.First(concern => concern.Name == "Performance").Id
@@ -125,7 +125,7 @@ namespace Dashboardbackend.Data
                 new Approach()
                 {
                     Name = "Network Traffic Security",
-                    Description = "desc",
+                    Description = "Monitor network log to analyse traffic and identify malicious activity.",
                     ImplementationDifficulty = "easy",
                     MaintenanceDifficulty = "easy",
                     ConcernId = _context.concerns.First(concern => concern.Name == "Network Security").Id
@@ -141,7 +141,7 @@ namespace Dashboardbackend.Data
                 new Approach()
                 {
                     Name = "Distributed Tracing Performance",
-                    Description = "desc",
+                    Description = "Track requests across services to link events and produce timelines",
                     ImplementationDifficulty = "easy",
                     MaintenanceDifficulty = "easy",
                     ConcernId = _context.concerns.First(concern => concern.Name == "Performance").Id
@@ -149,7 +149,7 @@ namespace Dashboardbackend.Data
                 new Approach()
                 {
                     Name = "Distributed Tracing User",
-                    Description = "desc",
+                    Description = "Track requests across services to link events and produce timelines",
                     ImplementationDifficulty = "easy",
                     MaintenanceDifficulty = "easy",
                     ConcernId = _context.concerns.First(concern => concern.Name == "User Behaviour").Id
@@ -157,7 +157,7 @@ namespace Dashboardbackend.Data
                 new Approach()
                 {
                     Name = "Distributed Tracing Error",
-                    Description = "desc",
+                    Description = "Track requests across services to link events and produce timelines",
                     ImplementationDifficulty = "easy",
                     MaintenanceDifficulty = "easy",
                     ConcernId = _context.concerns.First(concern => concern.Name == "Error Management").Id
@@ -165,7 +165,7 @@ namespace Dashboardbackend.Data
                 new Approach()
                 {
                     Name = "Error Logs",
-                    Description = "desc",
+                    Description = "Logs that are produced within the application. This requires source code instrumentation.",
                     ImplementationDifficulty = "easy",
                     MaintenanceDifficulty = "easy",
                     ConcernId = _context.concerns.First(concern => concern.Name == "Error Management").Id
@@ -173,7 +173,7 @@ namespace Dashboardbackend.Data
                 new Approach()
                 {
                     Name = "Alert System",
-                    Description = "desc",
+                    Description = "Send alerts to stakeholders as reaction to specific events or thresholds.",
                     ImplementationDifficulty = "easy",
                     MaintenanceDifficulty = "easy",
                     ConcernId = _context.concerns.First(concern => concern.Name == "Error Management").Id
@@ -181,7 +181,7 @@ namespace Dashboardbackend.Data
                 new Approach()
                 {
                     Name = "OS Metrics Scalability",
-                    Description = "desc",
+                    Description = "Metrics on how the services are running, like latency, throughput, etc",
                     ImplementationDifficulty = "easy",
                     MaintenanceDifficulty = "easy",
                     ConcernId = _context.concerns.First(concern => concern.Name == "Scalability").Id
@@ -189,7 +189,7 @@ namespace Dashboardbackend.Data
                 new Approach()
                 {
                     Name = "OS Metrics Capacity",
-                    Description = "desc",
+                    Description = "Metrics on how the services are running, like latency, throughput, etc",
                     ImplementationDifficulty = "easy",
                     MaintenanceDifficulty = "easy",
                     ConcernId = _context.concerns.First(concern => concern.Name == "Capacity Planning").Id
