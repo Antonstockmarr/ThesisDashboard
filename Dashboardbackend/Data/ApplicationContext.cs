@@ -10,11 +10,11 @@ namespace Dashboardbackend.Data
 
         }
 
-        public DbSet<Objective> objectives { get; set; }
-        public DbSet<Concern> concerns { get; set; }
-        public DbSet<Approach> approaches { get; set; }
-        public DbSet<Tool> tools { get; set; }
-        public DbSet<ApproachTool> approachTools { get; set; }    
-        public DbSet<SetupConfiguration> setupConfigurations { get; set; }
+        public DbSet<Objective> Objectives { get; set; }
+        public DbSet<Concern> Concerns { get; set; }
+        public DbSet<Approach> Approaches { get; set; }
+        public DbSet<Tool> Tools { get; set; }
+        public DbSet<ApproachTool> ApproachTools { get; set; }    
+        public DbSet<SetupConfiguration> SetupConfigurations { get; set; }
     }
 }

@@ -14,12 +14,12 @@ namespace Dashboardbackend.Data.ToolRepo
 
         public IEnumerable<Tool> GetAllTools()
         {
-            return _context.tools.ToList();
+            return _context.Tools.ToList();
         }
 
         public Tool GetToolById(int id)
         {
-            return _context.tools.FirstOrDefault(p => p.Id == id);
+            return _context.Tools.FirstOrDefault(p => p.Id == id);
         }
     }
 }

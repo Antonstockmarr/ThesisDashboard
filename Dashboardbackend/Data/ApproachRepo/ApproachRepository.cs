@@ -14,12 +14,12 @@ namespace Dashboardbackend.Data.ApproachRepo
 
         public IEnumerable<Approach> GetAllApproach()
         {
-            return _context.approaches.ToList();
+            return _context.Approaches.ToList();
         }
 
         public Approach GetApproachByID(int ID)
         {
-            return _context.approaches.FirstOrDefault(p => p.Id == ID);
+            return _context.Approaches.FirstOrDefault(p => p.Id == ID);
         }
     }
 }

@@ -13,12 +13,12 @@ namespace Dashboardbackend.Data.ApproachToolRepo
         }
         public IEnumerable<ApproachTool> GetAllApproachTools()
         {
-            return _context.approachTools.ToList();
+            return _context.ApproachTools.ToList();
         }
 
         public ApproachTool GetApproachToolById(int id)
         {
-            return _context.approachTools.FirstOrDefault(p => p.Id == id);
+            return _context.ApproachTools.FirstOrDefault(p => p.Id == id);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Dashboardbackend.Data.ApproachRepo
 {
     public interface IApproachRepository
     {
-        IEnumerable<Approach> getAllApproach();
-        Approach getApproachByID(int ID);
+        IEnumerable<Approach> GetAllApproach();
+        Approach GetApproachByID(int ID);
     }
 }

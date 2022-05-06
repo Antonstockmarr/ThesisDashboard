@@ -23,7 +23,7 @@ namespace Dashboardbackend.Controllers
         [HttpGet]
         public  ActionResult<IEnumerable<ApproachReadDto>> Getapproaches()
         {
-            var approaches =  _repository.getAllApproach();
+            var approaches =  _repository.GetAllApproach();
             return Ok(_mapper.Map<IEnumerable<ApproachReadDto>>(approaches));
         }
 
@@ -31,7 +31,7 @@ namespace Dashboardbackend.Controllers
         [HttpGet("{id}")]
         public  ActionResult<ApproachReadDto> GetApproach(int id)
         {
-            var approach = _repository.getApproachByID(id);
+            var approach = _repository.GetApproachByID(id);
 
             if (approach != null)
             {

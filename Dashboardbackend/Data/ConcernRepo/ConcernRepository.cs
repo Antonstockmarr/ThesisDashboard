@@ -15,12 +15,12 @@ namespace Dashboardbackend.Data
 
         public IEnumerable<Concern> getAllConcerns()
         {
-            return _context.concerns.ToList();
+            return _context.Concerns.ToList();
         }
 
         public Concern getConcernByID(int ID)
         {
-            return _context.concerns.FirstOrDefault(p => p.Id == ID);
+            return _context.Concerns.FirstOrDefault(p => p.Id == ID);
         }
     }
 }

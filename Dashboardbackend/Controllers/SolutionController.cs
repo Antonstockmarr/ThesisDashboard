@@ -30,7 +30,7 @@ namespace Dashboardbackend.Controllers
             List<Approach> approaches = new List<Approach>();
             foreach (int id in approachIds)
             {
-                Approach approach = _repository.getApproachByID(id);
+                Approach approach = _repository.GetApproachByID(id);
                 if (approach is null)
                 {
                     return NotFound();
