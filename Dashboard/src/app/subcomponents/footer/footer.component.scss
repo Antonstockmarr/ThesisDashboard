@@ -5,7 +5,7 @@
     left: 0;
     right: 0;
     height: 100px;
-    background-color: blue;
+    background-color: #a6c8d1;
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 25px 25%;
@@ -14,4 +14,5 @@
 
 .footer button {
     font-size: 24px;
+    border-radius: 30px;
 }

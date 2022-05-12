@@ -32,9 +32,9 @@ export class DataRepositoryService {
       this.baseUrl + '/api/approaches',
       {observe: 'body', responseType: 'json'});
 
-    this.setupConfiguration = this.http.get<setupConfiguration[]>(
-      this.baseUrl + '/api/setupConfigurationController',
-      {observe: 'body', responseType: 'json'});
+    // this.setupConfiguration = this.http.get<setupConfiguration[]>(
+    //   this.baseUrl + '/api/setupConfiguration',
+    //   {observe: 'body', responseType: 'json'});
   }
 
   getObjectives(): Observable<Objective[]> {

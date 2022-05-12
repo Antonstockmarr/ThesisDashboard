@@ -1,10 +1,22 @@
-<section>
-  <div class="main">
-    <div class="center">
-      <mat-card class="card">
-        <mat-grid-list cols="2" rowHeight="1:1" gutterSize="15px">
-          <mat-grid-tile class="matTileCard" *ngFor="let objective of objectives">
-            <div class="qw-card qw-card_centered" (click)="presetConcerns(objective)">
+<div class="page">
+  <div class="page-header">
+    <div class="page-title">
+      <h1>
+        Objectives Options
+      </h1>
+    </div>
+    <div class="page-description">
+      <p>
+        Some text to describe the page, like this is what you need to select
+      </p>
+    </div>
+  </div>
+  <div class="page-content">
+    <mat-card class="card">
+      <mat-grid-list cols="3" rowHeight="1:1" gutterSize="15px">
+        <mat-grid-tile *ngFor="let objective of objectives">
+          <div class="qw-card_centered">
+            <button class="custom-btn btn-1" (click)="presetConcerns(objective)">
               <div class="qw-card_media">
                 <div class="qw-avatar-lg">
                   <div class="qw-avatar qw-avatar-icon qw-blue-8" aria-label="Anonymous user">
@@ -26,96 +38,19 @@
                   <p>{{objective.description}}</p>
                 </div>
               </div>
-            </div>
-          </mat-grid-tile>
-<!--         <mat-grid-tile class="matTileCard">
-            <div class="qw-card qw-card_centered" (click)="presetValues('UX')">
-              <div class="qw-card_media">
-                <div class="qw-avatar-lg">
-                  <div class="qw-avatar qw-avatar-icon qw-blue-8" aria-label="Anonymous user">
-                    <fa-icon [icon]="faUsers"></fa-icon>
-                  </div>
-                </div>
-              </div>
-              <div class="qw-card_inner">
-                <div class="qw-card_header">
-                  <div class="">
-                    <div class="qw-card_title">
-                      <h4 class="m-0 mb-1">UX monitoring</h4>
-                    </div>
-                    <div class="qw-card_subtitle"></div>
-                  </div>
-                </div>
-                <div class="qw-card_separator"></div>
-                <div class="qw-card_body">
-                  <p>A Weekly email to Goal users, sent out at 3pm, to update their goals</p>
-                </div>
-              </div>
-            </div>
-          </mat-grid-tile>
-          <mat-grid-tile class="matTileCard" (click)="presetValues('IH')">
-            <div class="qw-card qw-card_centered">
-              <div class="qw-card_media">
-                <div class="qw-avatar-lg">
-                  <div class="qw-avatar qw-avatar-icon qw-blue-8" aria-label="Anonymous user">
-                    <fa-icon [icon]="faSensorTriangleExclamation"></fa-icon>
-
-                    
-                  </div>
-                </div>
-              </div>
-              <div class="qw-card_inner">
-                <div class="qw-card_header">
-                  <div class="">
-                    <div class="qw-card_title">
-                      <h4 class="m-0 mb-1">Incident Handling</h4>
-                    </div>
-                    <div class="qw-card_subtitle"></div>
-                  </div>
-                </div>
-                <div class="qw-card_separator"></div>
-                <div class="qw-card_body">
-                  <p>A Weekly email to Goal users, sent out at 3pm, to update their goals</p>
-                </div>
-              </div>
-            </div>
-          </mat-grid-tile>
-          <mat-grid-tile class="matTileCard" (click)="presetValues('RM')">
-            <div class="qw-card qw-card_centered">
-              <div class="qw-card_media">
-                <div class="qw-avatar-lg">
-                  <div class="qw-avatar qw-avatar-icon qw-blue-8" aria-label="Anonymous user">
-                    <fa-icon [icon]="faServer"></fa-icon>
-                  </div>
-                </div>
-              </div>
-              <div class="qw-card_inner">
-                <div class="qw-card_header">
-                  <div class="">
-                    <div class="qw-card_title">
-                      <h4 class="m-0 mb-1">Resource Management</h4>
-                    </div>
-                    <div class="qw-card_subtitle"></div>
-                  </div>
-                </div>
-                <div class="qw-card_separator"></div>
-                <div class="qw-card_body">
-                  <p>A Weekly email to Goal users, sent out at 3pm, to update their goals</p>
-                </div>
-              </div>
-            </div>
-          </mat-grid-tile>
-          -->
-        </mat-grid-list>
-      </mat-card>
+            </button>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card>
+    <div *ngIf="showDiv">
       <div class="line-container">
-      <ul *ngFor="let concern of concerns">
-        <app-checkbox-line [description]="concern.name" [tooltip]="concern.description" type="checkbox" [isChecked]="checkedConcerns.get(concern.id) ? true : false" (onClick)="changeSelection(concern, $event)"></app-checkbox-line>
-      </ul>
+        <ul *ngFor="let selectedConcerns of selectedConcerns">
+          <app-checkbox-line [description]="selectedConcerns.name" [tooltip]="selectedConcerns.description" type="checkbox"
+            [isChecked]="checkedConcerns.get(selectedConcerns.id) ? true : false" (onClick)="changeSelection(selectedConcerns, $event)">
+          </app-checkbox-line>
+        </ul>
       </div>
     </div>
   </div>
-</section>
-
-
-
+</div>

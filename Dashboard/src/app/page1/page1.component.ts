@@ -15,6 +15,9 @@ export class Page1Component implements OnInit {
 
   objectives: Objective[] = [];
   concerns: Concern[] = [];
+  selectedConcerns: Concern[] = [];
+  showDiv = false;
+
 
   checkedConcerns: Map<number, boolean> = new Map();
 
@@ -37,25 +40,33 @@ export class Page1Component implements OnInit {
   }
 
   getIcon(objective: Objective) {
-    if (objective.name == "UX")
+    if (objective.name == "User Experience")
       return faUsers;
-    if (objective.name == "resource")
+    if (objective.name == "Resource Management")
       return faServer;
-    if (objective.name == "Incident")
+    if (objective.name == "Incident Management")
       return faTriangleExclamation
     else return faUsers;
   }
     
   presetConcerns(objective: Objective) {
-    console.log(objective);
+    console.log(objective); 
 
     this.concerns.forEach(concern => {
+      if(concern.objectiveId == objective.id){
       this.changeSelection(concern, objective.id == concern.objectiveId);
+      this.showDiv = true;
+      }
     });
   }
 
   changeSelection(concern: Concern, value: boolean) {
+    if(!this.selectedConcerns.includes(concern))
+    {
+      this.selectedConcerns.push(concern);
+    } 
     this.checkedConcerns.set(concern.id, value);
     this.storageService.set(concern.name, value ? "true" : "false");
   }
+
 }

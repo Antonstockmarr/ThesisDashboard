@@ -1,7 +1,45 @@
+.page-header {
+  margin: 0 auto;
+  max-width: 40vw;
+  background-color: #a6c8d1;
+  border-radius: 30px;
+}
+
+.page-title {
+  margin: 0 auto;
+  padding: 1em 0;
+  width: fit-content;
+}
+
+.page-title h1 {
+  font-size: 32px;
+}
+
+.page-description {
+  margin: 0 auto;
+  padding: 1em 0;
+  width: fit-content;
+}
+
+.page-description p {
+  font-size: 20px;
+}
+
+.page-content {
+  height: 100%;
+  padding: 3em;
+}
+
+.line-container {
+  display: grid;
+  position: relative;
+  grid-template-columns: 50% 1fr 1fr;
+}
+
 
 
 .center {
-    display: grid;
+    display: block;
     grid-template-columns: 1fr 1fr;
     padding-left: 6%;
 }
@@ -9,15 +47,15 @@
 .matTileCard {
   overflow: visible;
  // margin-top: 2% !important;
-  padding-top: calc((40% - 0.5px) * 1 + 0px) !important;
+//  padding-top: calc((40% - 0.5px) * 1 + 0px) !important;
   //margin-top: calc((40% - 7.5px + -60) * 1) !important;
 }
 
 .card {
   box-shadow: 0 1rem 2rem hsl(0 0% 0% / 20%);
   background: hsl(0 0% 100%);
-  width: 60vmin;
-  height: 54vmin;
+  // width: 60vmin;
+  //height: 35vmin;
   display: block;
   place-items: center;
   padding: 3ch;
@@ -25,7 +63,21 @@
   border: 1px solid hsl(0 0% 83%);
 }
 
+// .objectiveCards {
+//   // width: 50px;
+//   // height: 50px;
+//   /* Center vertically and horizontally */
+//   // position: absolute;
+//   // top: 50%;
+//   // left: 50%;
+//   // margin: -25px 0 0 -25px;
+//   height: 80% !important; 
+//   top: -80px !important;
+// }
 
+// .mat-grid-tile-content {
+//   top: -80px;
+// }
 
 /* box design */
 
@@ -68,7 +120,7 @@
       margin: 8px;
       flex-grow: 0;
       width: 100%;
-      cursor: pointer;
+     cursor: pointer;
     }
     
     a.qw-card {
@@ -83,6 +135,7 @@
     
     .qw-card_centered {
       text-align: center;
+      display: contents;
     }
     
     .qw-card_horizontal {
@@ -232,6 +285,28 @@
   display: block;
   position: relative;
   width: 50%;
-  float: right;
+ // float: right;
 }
 
+/*button*/
+
+/* 1 */
+.btn-1 {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
+  // display: flex;
+  // flex-direction: column;
+  border: 1px solid #e1e3e5;
+  border-radius: 30px;
+  margin: 8px;
+  flex-grow: 0;
+  width: 100%;
+ cursor: pointer;
+  // border-radius: 15%;
+  // width: 100%;
+}
+.btn-1:hover {
+   background: rgb(117, 186, 247);
+   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+//background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
+}
