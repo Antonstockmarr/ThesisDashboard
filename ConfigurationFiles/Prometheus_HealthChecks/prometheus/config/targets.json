@@ -1,0 +1,17 @@
+[
+  {
+    "targets": ["host:port"],
+    "labels": {
+      "env": "env-name",
+      "job": "job-name"
+    }
+  },
+  {
+    "targets": ["host:port"],
+    "labels": {
+      "env": "env-name",
+      "job": "job-name"
+    }
+  },
+  ...
+]

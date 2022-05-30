@@ -1,0 +1,12 @@
+## Prometheus setup configuration
+
+# Server setup
+1. Add docker-compose.prometheus.yml file to root folder with other docker-compose.yml files
+2. Change port to desired monitoring display port
+3. Put folder "prometheus" into same directory
+4. Go to prometheus/config/targets.json and add all hosts and ports you want to get healthchecks for.
+5. Go to root folder and run
+  $ docker-compose -f docker-compose.prometheus.yml up
+6. Go to the monitoring display port and search for "UP". This metric is 0 if the target is down, 1 if it is up.
+
+## need to figure out automatic service discovery through k8s
