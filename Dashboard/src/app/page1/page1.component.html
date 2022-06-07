@@ -13,7 +13,7 @@
   </div>
   <div class="page-content">
     <mat-card class="card">
-      <mat-grid-list cols="3" rowHeight="1:1" gutterSize="15px">
+      <mat-grid-list [cols]="getGridColumns()" rowHeight="200px" gutterSize="15px">
         <mat-grid-tile *ngFor="let objective of objectives">
           <div class="qw-card_centered">
             <button class="custom-btn btn-1" (click)="presetConcerns(objective)">
@@ -43,13 +43,13 @@
         </mat-grid-tile>
       </mat-grid-list>
     </mat-card>
-    <div *ngIf="showDiv">
+    <div *ngIf="showConcerns">
       <div class="line-container">
-        <ul *ngFor="let selectedConcerns of selectedConcerns">
-          <app-checkbox-line [description]="selectedConcerns.name" [tooltip]="selectedConcerns.description" type="checkbox"
-            [isChecked]="checkedConcerns.get(selectedConcerns.id) ? true : false" (onClick)="changeSelection(selectedConcerns, $event)">
+        <div *ngFor="let concern of concerns">
+          <app-checkbox-line [description]="concern.name" [tooltip]="concern.description" type="checkbox"
+            [isChecked]="checkedConcerns.get(concern.id) ? true : false" (onClick)="changeSelection(concern, $event)">
           </app-checkbox-line>
-        </ul>
+        </div>
       </div>
     </div>
   </div>

@@ -3,7 +3,7 @@ import { LocalStorageService } from '../services/local-storage.service';
 import { DataRepositoryService } from '../services/data-repository.service';
 import { Objective } from '../models/objective';
 import { Concern } from '../models/concern';
-
+import { HostListener } from "@angular/core";
 
 @Component({
   selector: 'app-page1',
@@ -14,8 +14,7 @@ export class Page1Component implements OnInit {
 
   objectives: Objective[] = [];
   concerns: Concern[] = [];
-  selectedConcerns: Concern[] = [];
-  showDiv = false;
+  showConcerns = false;
 
 
   checkedConcerns: Map<number, boolean> = new Map();
@@ -34,8 +33,21 @@ export class Page1Component implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  public innerWidth: any;
+  ngOnInit() {
+      this.innerWidth = window.innerWidth;
+  }
 
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.innerWidth = window.innerWidth;
+  }
+
+  getGridColumns() {
+    if (this.innerWidth < 500) {
+      return 1;
+    }
+    else return 3;
   }
 
   getIcon(objective: Objective): string {
@@ -43,21 +55,13 @@ export class Page1Component implements OnInit {
   }
     
   presetConcerns(objective: Objective) {
-    console.log(objective); 
-
+    this.showConcerns = true;
     this.concerns.forEach(concern => {
-      if(concern.objectiveId == objective.id){
       this.changeSelection(concern, objective.id == concern.objectiveId);
-      this.showDiv = true;
-      }
     });
   }
 
   changeSelection(concern: Concern, value: boolean) {
-    if(!this.selectedConcerns.includes(concern))
-    {
-      this.selectedConcerns.push(concern);
-    } 
     this.checkedConcerns.set(concern.id, value);
     this.storageService.set(concern.name, value ? "true" : "false");
   }

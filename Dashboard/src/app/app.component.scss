@@ -24,3 +24,11 @@
       color: #FFF;
   }
 }
+
+::ng-deep .mat-step-header:not([aria-disabled="true"]):hover {
+  background-color: darkblue !important;
+
+  & div.mat-step-label {
+    color: #FFF;
+  }
+}
