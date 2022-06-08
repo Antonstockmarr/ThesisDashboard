@@ -1,0 +1,16 @@
+# Jaeger setup
+
+1. Add docker-compose.jaeger.yml file to root folder with other docker-compose.yml files
+
+2. Put folder "jaeger" into same directory
+
+3. Default UI port for Jaeger is 16686 but can be changed to desired port
+
+4. Access https://opentelemetry.io/docs/instrumentation/ and find the necessary packages that matches the programming framework of the application
+
+4.1 Install packages and instrument application as shown in documentation https://opentelemetry.io/docs/instrumentation/ 
+
+5. Go to root folder and run
+  $ docker-compose -f docker-compose.jaeger.yml up
+
+6. Go to the UI port click on the service dropdown to identify request made by service and service dependencies.
