@@ -1,5 +1,5 @@
 <div class="checkbox-line">
-  <label class="checkbox-column">{{description}}
+  <label class="checkbox-column" [style]="getTextStyle()">{{description}}
     <mat-checkbox
       class="checkmark"
       (change)="onChange($event)"
@@ -11,4 +11,5 @@
       <span class="tooltiptext">{{tooltip}}</span>
     </div>
   </label>
+  <ng-content *ngIf="isChecked"></ng-content>
 </div>

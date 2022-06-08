@@ -13,6 +13,7 @@ export class CheckboxLineComponent implements OnInit {
   @Output() onClick: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() disabled: boolean = false;
   @Input() isChecked: boolean = false;
+  @Input() fontSize?: number = 22;
 
   constructor() { }
 
@@ -23,4 +24,7 @@ export class CheckboxLineComponent implements OnInit {
     this.onClick.emit(e.checked); 
   }
 
+  getTextStyle(): string {
+    return `font-size: ${this.fontSize}px`
+  }
 }

@@ -1,20 +1,20 @@
 <div class="wrapper">  
   <mat-stepper linear #stepper label-position="bottom">
-    <mat-step label="Checklist">
-      <app-page1></app-page1>
+    <mat-step label="Checklist" [completed]="validate()">
+      <app-page1 [errorConcernIds]="errorConcernIds"></app-page1>
     </mat-step>
-    <mat-step label="Desired Design Options">
+<!--     <mat-step label="Desired Design Options">
       <app-page2></app-page2>
     </mat-step>
     <mat-step label="System Insights">
       <app-page3></app-page3>
     </mat-step>
-    <mat-step label="Recommendation">
+ -->    <mat-step label="Recommendation">
       <div>
         <app-page4></app-page4>
       </div>
     </mat-step>
   </mat-stepper>
 
-  <app-footer [stepper]="stepper"></app-footer>
+  <app-footer [stepper]="stepper" [error]="error" [validate]="validateCallback"></app-footer>
 </div>

@@ -8,7 +8,9 @@ import { MatStepper } from '@angular/material/stepper';
 })
 export class FooterComponent implements OnInit {
 
-  @Input() stepper!: MatStepper
+  @Input() stepper!: MatStepper;
+  @Input() error: string = "";
+  @Input() validate!: () => boolean;
 
   constructor() { }
 
@@ -20,7 +22,9 @@ export class FooterComponent implements OnInit {
   }
 
   goForward(stepper: MatStepper){
-    stepper.next();
+    if (this.validate()) {
+      stepper.next();
+    }
   }
 
   isFirst(stepper: MatStepper):boolean{
@@ -30,4 +34,6 @@ export class FooterComponent implements OnInit {
   isLast(stepper: MatStepper):boolean{
     return stepper.selectedIndex == stepper._steps.length - 1;
   }
+
+
 }

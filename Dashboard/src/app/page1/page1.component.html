@@ -44,11 +44,31 @@
       </mat-grid-list>
     </mat-card>
     <div *ngIf="showConcerns">
-      <div class="line-container">
+      <div class="concern-line-container">
         <div *ngFor="let concern of concerns">
-          <app-checkbox-line [description]="concern.name" [tooltip]="concern.description" type="checkbox"
-            [isChecked]="checkedConcerns.get(concern.id) ? true : false" (onClick)="changeSelection(concern, $event)">
-          </app-checkbox-line>
+          <app-contentcard [errorState]="getErrorState(concern)">
+            <app-checkbox-line [description]="concern.name" [tooltip]="concern.description" type="checkbox"
+              [isChecked]="checkedConcerns.get(concern.id) ? true : false" (onClick)="changeConcernSelection(concern, $event)">
+              <div class="approach-dropdown">
+                <div class="approach-line-container">
+                  <div class="implementation-difficulty-header difficulty-header">Implementation</div>
+                  <div class="maintenance-difficulty-header difficulty-header">Maintanence</div>
+                </div>
+                <div class="approach-line-container" *ngFor="let approach of concernApproaches(concern)">
+                  <app-checkbox-line
+                    [description]="approach.name"
+                    [tooltip]="approach.description"
+                    (onClick)="changeApproachSelection(approach, $event)"
+                    [isChecked]="checkedApproaches.get(approach.id) ? true : false"
+                    [fontSize]="18"
+                    >
+                  </app-checkbox-line>
+                  <app-difficulty-bar [difficulty]="approach.implementationDifficulty"></app-difficulty-bar>
+                  <app-difficulty-bar [difficulty]="approach.maintenanceDifficulty"></app-difficulty-bar>
+                </div>                 
+              </div>
+            </app-checkbox-line>
+          </app-contentcard>
         </div>
       </div>
     </div>

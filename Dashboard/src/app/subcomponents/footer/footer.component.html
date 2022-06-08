@@ -1,4 +1,6 @@
 <div class="footer">
     <button mat-raised-button [disabled]="isFirst(stepper)" (click)="goBack(stepper)" type="button">Back</button>
-    <button mat-raised-button [disabled]="isLast(stepper)" (click)="goForward(stepper)" type="button">Next</button>
+    <button mat-raised-button [disabled]="isLast(stepper)" (click)="goForward(stepper)" type="button">Next
+        <span *ngIf="error != ''" class="errortext">{{error}}</span>
+    </button>
  </div>

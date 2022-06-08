@@ -246,20 +246,45 @@
 // checkbox
 
 /* Customize the label (the line-container) */
-.line-container {
+.concern-line-container {
   display: block;
   margin-top: 25px;
   position: relative;
   width: 100%;
  // float: right;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 25px;  
 }
 
-@media only screen and (min-width: 750px) {
-  .line-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 25px;  }
+// Approach dropdown
+
+.approach-dropdown {
+  padding: 20px 0 0 15px;
 }
+
+.approach-line-container {
+  display: grid;
+  position: relative;
+  grid-template-columns: 50% 1fr 1fr;
+}
+
+.difficulty-header {
+  width: 100%;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: underline;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.implementation-difficulty-header {
+  grid-column: 2;
+}
+
+.maintenance-difficulty-header {
+  grid-column: 3;
+}
+
 
 /*button*/
 
