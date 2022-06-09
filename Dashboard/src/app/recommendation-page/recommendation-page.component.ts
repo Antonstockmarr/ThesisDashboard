@@ -11,6 +11,7 @@ import { DataRepositoryService } from '../services/data-repository.service';
 export class RecommendationPageComponent implements OnInit {
 
   @Input() submitApproaches!: Subject<void>;
+  Markdown: Subject<void> = new Subject<void>();
 
   configuration: SetupConfiguration = {id: -1, image: "", description: "", setupFiles: ""};
 
@@ -21,6 +22,7 @@ export class RecommendationPageComponent implements OnInit {
   ngOnInit(): void {
     this.submitApproaches.asObservable().subscribe(async () => {
       await this.getConfiguration();
+      this.Markdown.next();
     });
   }
   
