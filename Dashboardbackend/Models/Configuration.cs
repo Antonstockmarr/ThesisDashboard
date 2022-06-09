@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dashboardbackend.Models
 {
-    public class SetupConfiguration
+    public class Configuration
     {
         [Key]
         public int Id { get; set; }

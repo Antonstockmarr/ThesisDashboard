@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Dashboardbackend.Data.ToolRepo;
 using Dashboardbackend.Dtos;
+using Dashboardbackend.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -13,12 +13,12 @@ namespace Dashboardbackend.Controllers
     public class ToolsController : ControllerBase
     {
 
-        private readonly IToolRepository _repository;
+        private readonly IToolService _service;
         private readonly IMapper _mapper;
 
-        public ToolsController(IToolRepository repository, IMapper mapper)
+        public ToolsController(IToolService service, IMapper mapper)
         {
-            _repository = repository;
+            _service = service;
             _mapper = mapper;
         }
 
@@ -26,7 +26,7 @@ namespace Dashboardbackend.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<ToolReadDto>> Getapproaches()
         {
-            var tools = _repository.GetAllTools();
+            var tools = _service.GetTools();
             return Ok(_mapper.Map<IEnumerable<ToolReadDto>>(tools));
         }
 
@@ -34,11 +34,11 @@ namespace Dashboardbackend.Controllers
         [HttpGet("{id}")]
         public ActionResult<ToolReadDto> GetApproach(int id)
         {
-            var tool = _repository.GetToolById(id);
+            var tool = _service.GetToolById(id);
 
             if (tool != null)
             {
-                return Ok(_mapper.Map<ApproachReadDto>(tool));
+                return Ok(_mapper.Map<ToolReadDto>(tool));
             }
 
             return NotFound();

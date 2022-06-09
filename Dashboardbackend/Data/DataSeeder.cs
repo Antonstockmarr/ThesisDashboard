@@ -43,7 +43,7 @@ namespace Dashboardbackend.Data
                 && !_context.approaches.Any()
                 && !_context.tools.Any()
                 && !_context.approachTools.Any()
-                && !_context.setupConfigurations.Any()
+                && !_context.configurations.Any()
                 && !_context.configurationPackages.Any();
         }
 
@@ -366,17 +366,17 @@ namespace Dashboardbackend.Data
             };
         }
 
-        private List<SetupConfiguration> GetSetupConfigurations()
+        private List<Configuration> GetSetupConfigurations()
         {
-            return new List<SetupConfiguration>
+            return new List<Configuration>
             {
-                new SetupConfiguration
+                new Configuration
                 {
                     Image = "https://configurationfiles.blob.core.windows.net/images/prometheus-healthchecks-jaeger-tracing.png",
                     SetupFiles = "https://configurationfiles.blob.core.windows.net/configuration-files/prometheus-healthchecks-jaeger-tracing.zip",
                     Description = "prometheus-healthcheacks-jaeger-tracing"
                 },
-                new SetupConfiguration
+                new Configuration
                 {
                     Image = "https://configurationfiles.blob.core.windows.net/images/logstash-errorlogs.png",
                     SetupFiles = "https://configurationfiles.blob.core.windows.net/configuration-files/logstash-errorlogs.zip",
@@ -397,7 +397,7 @@ namespace Dashboardbackend.Data
                         && _context.approaches.Any(approach => (approach.Id == approachTool.ApproachId)
                                                 && (approach.Name == "Health Checks"))
                         ).Id,
-                    SetupConfigurationId = _context.setupConfigurations.First(setupConfiguration =>
+                    ConfigurationId = _context.configurations.First(setupConfiguration =>
                             setupConfiguration.Description == "prometheus-healthcheacks-jaeger-tracing").Id
                 },
                 new ConfigurationPackage
@@ -408,7 +408,7 @@ namespace Dashboardbackend.Data
                         && _context.approaches.Any(approach => (approach.Id == approachTool.ApproachId)
                                                 && (approach.Name == "Distributed Tracing Error"))
                         ).Id,
-                    SetupConfigurationId = _context.setupConfigurations.First(setupConfiguration =>
+                    ConfigurationId = _context.configurations.First(setupConfiguration =>
                             setupConfiguration.Description == "prometheus-healthcheacks-jaeger-tracing").Id
                 },
                 new ConfigurationPackage
@@ -419,7 +419,7 @@ namespace Dashboardbackend.Data
                         && _context.approaches.Any(approach => (approach.Id == approachTool.ApproachId)
                                                 && (approach.Name == "Error Logs"))
                         ).Id,
-                    SetupConfigurationId = _context.setupConfigurations.First(setupConfiguration =>
+                    ConfigurationId = _context.configurations.First(setupConfiguration =>
                             setupConfiguration.Description == "logstash-errorlogs").Id
                 },
             };

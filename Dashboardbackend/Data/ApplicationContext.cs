@@ -15,7 +15,7 @@ namespace Dashboardbackend.Data
         public DbSet<Approach> approaches { get; set; }
         public DbSet<Tool> tools { get; set; }
         public DbSet<ApproachTool> approachTools { get; set; }    
-        public DbSet<SetupConfiguration> setupConfigurations { get; set; }
+        public DbSet<Configuration> configurations { get; set; }
         public DbSet<ConfigurationPackage> configurationPackages { get; set; }
 
     }

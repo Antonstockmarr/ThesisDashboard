@@ -5,8 +5,8 @@ namespace Dashboardbackend.Data
 {
     public interface IConcernRepository
     {
-        IEnumerable<Concern> getAllConcerns();
-        Concern getConcernByID(int ID);
+        IEnumerable<Concern> GetAllConcerns();
+        Concern GetConcernByID(int ID);
         
     }
 }

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using Dashboardbackend.Data.ApproachToolRepo;
-using Dashboardbackend.Data.ToolRepo;
 using Dashboardbackend.Models;
 
 namespace Dashboardbackend.Services
@@ -23,8 +20,14 @@ namespace Dashboardbackend.Services
             Dictionary<List<ApproachTool>, int> solutions = new Dictionary<List<ApproachTool>, int>();
 
             FindSolutions(solutions, approaches, new List<ApproachTool>());
+
+            if (!solutions.Any())
+            {
+                throw new Exception("No solution found");
+            }
+
             int minumumScore = 999999;
-            List<ApproachTool> approachTools = new List<ApproachTool>();
+            List<ApproachTool> approachTools = new();
             foreach (KeyValuePair<List<ApproachTool>, int> keyValue in solutions) 
             {
                 if (minumumScore > keyValue.Value)
@@ -43,7 +46,7 @@ namespace Dashboardbackend.Services
 
             if (!approaches.Any())
             {
-                int score = computeDifficulty(solutionCopy);
+                int score = ComputeDifficulty(solutionCopy);
                 solutions.Add(solutionCopy, score);
                 return;
             }
@@ -62,7 +65,7 @@ namespace Dashboardbackend.Services
             }
         }
 
-        private int computeDifficulty(List<ApproachTool> solution)
+        private int ComputeDifficulty(List<ApproachTool> solution)
         {
             int numberOfTools = solution.ConvertAll(approachTool => approachTool.ToolId).Distinct().Count();
             int difficultySum = solution.Sum(approachTool => approachTool.ConfigurationDifficulty);

@@ -50,11 +50,14 @@ namespace Dashboardbackend
             services.AddScoped<IApproachToolRepository, ApproachToolRepository>();
             services.AddScoped<IConfigurationRepository, ConfigurationRepository>();
             services.AddScoped<IConfigurationPackageRepository, ConfigurationPackageRepository>();
+
             services.AddScoped<ISolutionService, SolutionService>();
-
-
-
-
+            services.AddScoped<IApproachService, ApproachService>();
+            services.AddScoped<IConcernService, ConcernService>();
+            services.AddScoped<IObjectiveService, ObjectiveService>();
+            services.AddScoped<IToolService, ToolService>();
+            services.AddScoped<IConfigurationService, ConfigurationService>();
+            services.AddScoped<IConfigurationPackageService, ConfigurationPackageService>();
 
             services.AddSwaggerGen(c =>
             {

@@ -1,6 +1,6 @@
 ﻿namespace Dashboardbackend.Dtos
 {
-    public class SetupConfigurationReadDto
+    public class ConfigurationReadDto
     {
         public int Id { get; set; }
         public string Image { get; set; }

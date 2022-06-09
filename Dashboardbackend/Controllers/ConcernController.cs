@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Dashboardbackend.Data;
 using Dashboardbackend.Dtos;
+using Dashboardbackend.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -12,12 +12,12 @@ namespace Dashboardbackend.Controllers
     [ApiController]
     public class ConcernController : ControllerBase
     {
-        private readonly IConcernRepository _repository;
+        private readonly IConcernService _service;
         private readonly IMapper _mapper;
 
-        public ConcernController(IConcernRepository repository, IMapper mapper)
+        public ConcernController(IConcernService service, IMapper mapper)
         {
-            _repository = repository;
+            _service = service;
             _mapper = mapper;
         }
 
@@ -25,7 +25,7 @@ namespace Dashboardbackend.Controllers
         [HttpGet]
         public ActionResult <IEnumerable<ConcernReadDto>> GetAllConcerns()
         {
-            var concerns = _repository.getAllConcerns();
+            var concerns = _service.GetConcerns();
             return Ok(_mapper.Map<IEnumerable<ConcernReadDto>>(concerns));
         }
 
@@ -33,7 +33,7 @@ namespace Dashboardbackend.Controllers
         [HttpGet("{id}")]
         public ActionResult <ConcernReadDto> GetConcernByID(int id)
         {
-            var concern = _repository.getConcernByID(id);
+            var concern = _service.GetConcernById(id);
             if (concern != null)
             {
                 return Ok(_mapper.Map<ConcernReadDto>(concern));

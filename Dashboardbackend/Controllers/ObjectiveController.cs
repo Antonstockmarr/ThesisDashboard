@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Dashboardbackend.Models;
-using Dashboardbackend.Data;
+﻿using System.Collections.Generic;
 using AutoMapper;
 using Dashboardbackend.Dtos;
+using Dashboardbackend.Services;
+using Microsoft.AspNetCore.Mvc;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -17,12 +13,12 @@ namespace Dashboardbackend.Controllers
     [ApiController]
     public class ObjectiveController : ControllerBase
     {
-        private readonly IObjectiveRepository _repository;
+        private readonly IObjectiveService _service;
         private readonly IMapper _mapper;
 
-        public ObjectiveController(IObjectiveRepository repository, IMapper mapper)
+        public ObjectiveController(IObjectiveService service, IMapper mapper)
         {
-            _repository = repository;
+            _service = service;
             _mapper = mapper;
         }
 
@@ -30,7 +26,7 @@ namespace Dashboardbackend.Controllers
         [HttpGet]
         public ActionResult <IEnumerable<ObjectiveReadDto>> GetAllObjective()
         {
-            var objectives = _repository.GetAllObjectives();
+            var objectives = _service.GetObjectives();
             return Ok(_mapper.Map<IEnumerable<ObjectiveReadDto>>(objectives));
         }
 
@@ -38,7 +34,7 @@ namespace Dashboardbackend.Controllers
         [HttpGet("{id}")]
         public ActionResult <ObjectiveReadDto> GetObjectiveById(int id)
         {
-            var Objective = _repository.GetObjectiveById(id);
+            var Objective = _service.GetObjectiveById(id);
             if (Objective != null)
             {
                 return Ok(_mapper.Map<ObjectiveReadDto>(Objective));

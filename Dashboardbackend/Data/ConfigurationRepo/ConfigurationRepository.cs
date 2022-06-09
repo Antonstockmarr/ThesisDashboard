@@ -1,9 +1,6 @@
-﻿using Dashboardbackend.Models;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Dashboardbackend.Models;
 
 namespace Dashboardbackend.Data.ConfigurationRepo
 {
@@ -16,14 +13,14 @@ namespace Dashboardbackend.Data.ConfigurationRepo
             _context = context;
         }
 
-        public IEnumerable<SetupConfiguration> GetAllConfigurations()
+        public IEnumerable<Configuration> GetAllConfigurations()
         {
-            return _context.setupConfigurations.ToList();
+            return _context.configurations.ToList();
         }
 
-        public SetupConfiguration GetConfigurationById(int id)
+        public Configuration GetConfigurationById(int id)
         {
-            return _context.setupConfigurations.FirstOrDefault(p => p.Id == id);
+            return _context.configurations.FirstOrDefault(p => p.Id == id);
         }
     }
 }
