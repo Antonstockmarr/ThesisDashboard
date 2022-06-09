@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Dashboardbackend.Models;
@@ -16,7 +17,7 @@ namespace Dashboardbackend.Data
 
         public async Task Seed()
         {
-            if (!_context.objectives.Any() && !_context.concerns.Any() && !_context.approaches.Any() && !_context.tools.Any() && !_context.approachTools.Any())
+            if (NotSeeded())
             {
                 _context.AddRange(GetObjectives());
                 await _context.SaveChangesAsync();
@@ -28,7 +29,22 @@ namespace Dashboardbackend.Data
                 await _context.SaveChangesAsync();
                 _context.AddRange(GetApproachTools());
                 await _context.SaveChangesAsync();
+                _context.AddRange(GetSetupConfigurations());
+                await _context.SaveChangesAsync();
+                _context.AddRange(GetConfigurationPackages());
+                await _context.SaveChangesAsync();
             }
+        }
+
+        private bool NotSeeded()
+        {
+            return !_context.objectives.Any()
+                && !_context.concerns.Any()
+                && !_context.approaches.Any()
+                && !_context.tools.Any()
+                && !_context.approachTools.Any()
+                && !_context.setupConfigurations.Any()
+                && !_context.configurationPackages.Any();
         }
 
         private List<Objective> GetObjectives()
@@ -107,7 +123,7 @@ namespace Dashboardbackend.Data
             {
                 new Approach()
                 {
-                    Name = "Health checks",
+                    Name = "Health Checks",
                     Description = "Periodically ping services to see if they are up",
                     ImplementationDifficulty = "easy",
                     MaintenanceDifficulty = "easy",
@@ -252,48 +268,48 @@ namespace Dashboardbackend.Data
                 new ApproachTool()
                 {
                     ApproachId = _context.approaches.First(Approach => Approach.Name == "Alert System").Id,
-                    ToolId = _context.tools.First(tools => tools.Name == "prometheus").Id,
+                    ToolId = _context.tools.First(tools => tools.Name == "Prometheus").Id,
                     ConfigurationDifficulty = 2,
                 },
                 new ApproachTool()
                 {
                     ApproachId = _context.approaches.First(Approach => Approach.Name == "Network Traffic Performance").Id,
-                    ToolId = _context.tools.First(tools => tools.Name == "prometheus").Id,
+                    ToolId = _context.tools.First(tools => tools.Name == "Prometheus").Id,
                     ConfigurationDifficulty = 3,
 
                 },
                 new ApproachTool()
                 {
                     ApproachId = _context.approaches.First(Approach => Approach.Name == "Network Traffic Security").Id,
-                    ToolId = _context.tools.First(tools => tools.Name == "prometheus").Id,
+                    ToolId = _context.tools.First(tools => tools.Name == "Prometheus").Id,
                     ConfigurationDifficulty = 3,
 
                 },
                 new ApproachTool()
                 {
                     ApproachId = _context.approaches.First(Approach => Approach.Name == "Network Traffic Scalability").Id,
-                    ToolId = _context.tools.First(tools => tools.Name == "prometheus").Id,
+                    ToolId = _context.tools.First(tools => tools.Name == "Prometheus").Id,
                     ConfigurationDifficulty = 3,
 
                 },
                 new ApproachTool()
                 {
                     ApproachId = _context.approaches.First(Approach => Approach.Name == "OS Metrics Scalability").Id,
-                    ToolId = _context.tools.First(tools => tools.Name == "prometheus").Id,
+                    ToolId = _context.tools.First(tools => tools.Name == "Prometheus").Id,
                     ConfigurationDifficulty = 3,
 
                 },
                 new ApproachTool()
                 {
                     ApproachId = _context.approaches.First(Approach => Approach.Name == "OS Metrics Capacity").Id,
-                    ToolId = _context.tools.First(tools => tools.Name == "prometheus").Id,
+                    ToolId = _context.tools.First(tools => tools.Name == "Prometheus").Id,
                     ConfigurationDifficulty = 3,
 
                 },
                 new ApproachTool()
                 {
-                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Health checks").Id,
-                    ToolId = _context.tools.First(tools => tools.Name == "Netdata").Id,
+                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Health Checks").Id,
+                    ToolId = _context.tools.First(tools => tools.Name == "Prometheus").Id,
                     ConfigurationDifficulty = 3,
 
                 },
@@ -349,5 +365,65 @@ namespace Dashboardbackend.Data
                 }
             };
         }
+
+        private List<SetupConfiguration> GetSetupConfigurations()
+        {
+            return new List<SetupConfiguration>
+            {
+                new SetupConfiguration
+                {
+                    Image = "https://configurationfiles.blob.core.windows.net/images/prometheus-healthchecks-jaeger-tracing.png",
+                    SetupFiles = "https://configurationfiles.blob.core.windows.net/configuration-files/prometheus-healthchecks-jaeger-tracing.zip",
+                    Description = "prometheus-healthcheacks-jaeger-tracing"
+                },
+                new SetupConfiguration
+                {
+                    Image = "https://configurationfiles.blob.core.windows.net/images/logstash-errorlogs.png",
+                    SetupFiles = "https://configurationfiles.blob.core.windows.net/configuration-files/logstash-errorlogs.zip",
+                    Description = "logstash-errorlogs"
+                },
+            };
+        }
+
+        private List<ConfigurationPackage> GetConfigurationPackages()
+        {
+            return new List<ConfigurationPackage>
+            {
+                new ConfigurationPackage
+                {
+                    ApproachToolId = _context.approachTools.First(approachTool =>
+                        _context.tools.Any(tool => (tool.Id == approachTool.ToolId)
+                                                && (tool.Name == "Prometheus"))
+                        && _context.approaches.Any(approach => (approach.Id == approachTool.ApproachId)
+                                                && (approach.Name == "Health Checks"))
+                        ).Id,
+                    SetupConfigurationId = _context.setupConfigurations.First(setupConfiguration =>
+                            setupConfiguration.Description == "prometheus-healthcheacks-jaeger-tracing").Id
+                },
+                new ConfigurationPackage
+                {
+                    ApproachToolId = _context.approachTools.First(approachTool =>
+                        _context.tools.Any(tool => (tool.Id == approachTool.ToolId)
+                                                && (tool.Name == "Jaeger"))
+                        && _context.approaches.Any(approach => (approach.Id == approachTool.ApproachId)
+                                                && (approach.Name == "Distributed Tracing Error"))
+                        ).Id,
+                    SetupConfigurationId = _context.setupConfigurations.First(setupConfiguration =>
+                            setupConfiguration.Description == "prometheus-healthcheacks-jaeger-tracing").Id
+                },
+                new ConfigurationPackage
+                {
+                    ApproachToolId = _context.approachTools.First(approachTool =>
+                        _context.tools.Any(tool => (tool.Id == approachTool.ToolId)
+                                                && (tool.Name == "Logstash"))
+                        && _context.approaches.Any(approach => (approach.Id == approachTool.ApproachId)
+                                                && (approach.Name == "Error Logs"))
+                        ).Id,
+                    SetupConfigurationId = _context.setupConfigurations.First(setupConfiguration =>
+                            setupConfiguration.Description == "logstash-errorlogs").Id
+                },
+            };
+        }
+
     }
 }

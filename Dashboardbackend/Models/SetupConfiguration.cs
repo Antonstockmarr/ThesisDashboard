@@ -9,11 +9,11 @@ namespace Dashboardbackend.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public string ImageURL { get; set; }
+        public string Image { get; set; }
         [Required]
-        public string SetupURL { get; set; }
+        public string SetupFiles { get; set; }
         [Required]
-        public string ConfigurationDescription { get; set; }
+        public string Description { get; set; }
         public ICollection<ConfigurationPackage> ConfigurationPackages { get; set; }
     }
 }

@@ -18,22 +18,12 @@ namespace Dashboardbackend.Data.ConfigurationRepo
 
         public IEnumerable<SetupConfiguration> GetAllConfigurations()
         {
-            var configuration = new List<SetupConfiguration>
-            {
-                new SetupConfiguration { Id= 0, ImageURL = "prometheus-grafana-conf/SystemDesignPromGraf.png", SetupURL = ".zip", ConfigurationDescription = "nice it works" },
-                new SetupConfiguration { Id= 1, ImageURL = "logstash-netdata/SystemDesignPromGraf.png", SetupURL = ".zip", ConfigurationDescription = "nice it works" },
-                new SetupConfiguration { Id= 2, ImageURL = "prometheus-grafana-conf/SystemDesignPromGraf.png", SetupURL = ".zip",  ConfigurationDescription = "nice it works" },
-                new SetupConfiguration { Id= 3, ImageURL = "prometheus-grafana-conf/SystemDesignPromGraf.png", SetupURL = ".zip", ConfigurationDescription = "nice it works" },
-            };
-            return configuration;
-
-            //return _context.configurations.ToList();
+            return _context.setupConfigurations.ToList();
         }
 
         public SetupConfiguration GetConfigurationById(int id)
         {
-            //return _context.setupConfigurations.FirstOrDefault(p => p.Id == id);
-            return new SetupConfiguration { Id = 0, ImageURL = "prometheus-grafana-conf/SystemDesignPromGraf.png", SetupURL = ".zip", ConfigurationDescription = "nice it works" };
+            return _context.setupConfigurations.FirstOrDefault(p => p.Id == id);
         }
     }
 }

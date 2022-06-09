@@ -1,11 +1,11 @@
-import { HttpClient, HttpClientModule, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, firstValueFrom, lastValueFrom, Observable } from 'rxjs';
 import { Objective } from '../models/objective';
 import { Concern } from '../models/concern';
 import { Approach } from '../models/approach';
-import { setupConfiguration } from '../models/setConfiguration';
+import { SetupConfiguration } from '../models/setupConfiguration';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +15,10 @@ export class DataRepositoryService {
   objectives: Observable<Objective[]> = new Observable<Objective[]>();
   concerns: Observable<Concern[]> = new Observable<Concern[]>();
   approaches: Observable<Approach[]> = new Observable<Approach[]>();
-  setupConfiguration: Observable<setupConfiguration[]> = new Observable<setupConfiguration[]>(); 
   
   baseUrl = 'http://localhost:5000';
   
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private localStorage: LocalStorageService) {
     this.objectives = this.http.get<Objective[]>(
       this.baseUrl + '/api/Objectives',
       {observe: 'body', responseType: 'json'});
@@ -62,7 +61,42 @@ export class DataRepositoryService {
     return this.approaches;
   }
 
-  getSetupConfiguration(): Observable<setupConfiguration[]> {
-    return this.setupConfiguration;
+  async getSetupConfiguration(): Promise<SetupConfiguration> {
+    let approaches = await lastValueFrom(this.getApproaches());
+
+    let params = new HttpParams();
+
+    approaches.forEach(approach => {
+      let selected = this.localStorage.get(`approach${approach.id}`);
+      if (selected == 'true') {
+        params = params.append('approachIds', approach.id);
+      } 
+    })
+    let observable = this.http.get<SetupConfiguration>(
+      this.baseUrl + '/api/setupconfiguration',
+      {observe: 'body', responseType: 'json', params: params})
+      .pipe(
+        catchError((error : HttpErrorResponse) => {
+          return new Observable<SetupConfiguration>((observer) => {
+            let description;
+            if (error.status == 404) {
+              description = "Sorry, this configuration has not been created yet";
+            }
+            else if (error.status == 500) {
+              description = "Sorry, there was an issue with the database";
+            }
+            else if (error.status == 0) {
+              description = "The connection to the backend was refused, is it running?";
+            }
+            else {
+              description = "There was a http exception with code " + error.status;
+            }
+            
+            observer.next({id: -1, setupFiles: "", description: description, image: ""});
+          });
+        })
+      );
+    
+    return firstValueFrom(observable);
   }
 }

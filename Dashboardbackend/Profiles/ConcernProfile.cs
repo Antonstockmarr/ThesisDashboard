@@ -4,9 +4,9 @@ using Dashboardbackend.Models;
 
 namespace Dashboardbackend.Profiles
 {
-    public class ConcernAreaProfile : Profile
+    public class ConcernProfile : Profile
     {
-        public ConcernAreaProfile()
+        public ConcernProfile()
         {
             CreateMap<Concern, ConcernReadDto>();
         }

@@ -1,4 +1,7 @@
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { Component, OnInit } from '@angular/core';
+import { MatStepper } from '@angular/material/stepper';
+import { Subject } from 'rxjs';
 import { Approach } from './models/approach';
 import { Concern } from './models/concern';
 import { DataRepositoryService } from './services/data-repository.service';
@@ -15,7 +18,9 @@ export class AppComponent implements OnInit {
   concerns: Concern[] = [];
   approaches: Approach[] = [];
   validateCallback: () => boolean = () => true;
+  submitApproaches: Subject<void> = new Subject<void>();
 
+  // init data
   constructor(private storageService: LocalStorageService, private dataRepository: DataRepositoryService) {
     this.dataRepository.getConcerns().subscribe((concerns: Concern[]) => {
       this.concerns = concerns;
@@ -26,10 +31,12 @@ export class AppComponent implements OnInit {
     });
   }
 
+  
   ngOnInit(): void {
     this.validateCallback = this.validateAndSetErrorStates.bind(this);
   }
 
+  // validation
   errorConcernIds: number[] = [];
 
   validate() : boolean {
@@ -75,5 +82,11 @@ export class AppComponent implements OnInit {
       let selected = this.storageService.get(`concern${concern.id}`);
       return selected == 'true';
     })
+  }
+
+  stepperEvents(stepper: MatStepper, event: StepperSelectionEvent) {
+    if (stepper._steps.length - 1 == event.selectedIndex) {
+      this.submitApproaches.next();
+    }
   }
 }

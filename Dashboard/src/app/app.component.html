@@ -1,5 +1,5 @@
 <div class="wrapper">  
-  <mat-stepper linear #stepper label-position="bottom">
+  <mat-stepper linear #stepper label-position="bottom" (selectionChange)="stepperEvents(stepper, $event)">
     <mat-step label="Checklist" [completed]="validate()">
       <app-page1 [errorConcernIds]="errorConcernIds"></app-page1>
     </mat-step>
@@ -11,7 +11,7 @@
     </mat-step>
  -->    <mat-step label="Recommendation">
       <div>
-        <app-page4></app-page4>
+        <app-recommendation-page [submitApproaches]="submitApproaches"></app-recommendation-page>
       </div>
     </mat-step>
   </mat-stepper>

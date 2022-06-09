@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dashboardbackend.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220506115311_initialMigration")]
-    partial class initialMigration
+    [Migration("20220609073243_Migration2")]
+    partial class Migration2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -161,15 +161,15 @@ namespace Dashboardbackend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("ConfigurationDescription")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageURL")
+                    b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SetupURL")
+                    b.Property<string>("SetupFiles")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

@@ -24,7 +24,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LocalStorageService } from './services/local-storage.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Page3Component } from './page3/page3.component';
-import { Page4Component } from './page4/page4.component';
+import { RecommendationPageComponent } from './recommendation-page/recommendation-page.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { Page4Component } from './page4/page4.component';
     ContentcardComponent,
     FooterComponent,
     Page3Component,
-    Page4Component,
+    RecommendationPageComponent,
   ],
   imports: [
     BrowserModule,

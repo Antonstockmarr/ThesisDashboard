@@ -1,6 +1,7 @@
 using Dashboardbackend.Data;
 using Dashboardbackend.Data.ApproachRepo;
 using Dashboardbackend.Data.ApproachToolRepo;
+using Dashboardbackend.Data.ConfigurationPackageRepo;
 using Dashboardbackend.Data.ConfigurationRepo;
 using Dashboardbackend.Data.ToolRepo;
 using Dashboardbackend.Services;
@@ -48,6 +49,7 @@ namespace Dashboardbackend
             services.AddScoped<IToolRepository, ToolRepository>();
             services.AddScoped<IApproachToolRepository, ApproachToolRepository>();
             services.AddScoped<IConfigurationRepository, ConfigurationRepository>();
+            services.AddScoped<IConfigurationPackageRepository, ConfigurationPackageRepository>();
             services.AddScoped<ISolutionService, SolutionService>();
 
 

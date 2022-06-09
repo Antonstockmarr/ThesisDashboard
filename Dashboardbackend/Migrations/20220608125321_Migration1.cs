@@ -4,7 +4,7 @@
 
 namespace Dashboardbackend.Migrations
 {
-    public partial class initialMigration : Migration
+    public partial class Migration1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,7 +30,7 @@ namespace Dashboardbackend.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SetupURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ConfigurationDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

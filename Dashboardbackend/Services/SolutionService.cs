@@ -20,7 +20,6 @@ namespace Dashboardbackend.Services
 
         public List<ApproachTool> ComputeSolution(List<Approach> approaches)
         {
-            //approaches = testApproaches.ToList();
             Dictionary<List<ApproachTool>, int> solutions = new Dictionary<List<ApproachTool>, int>();
 
             FindSolutions(solutions, approaches, new List<ApproachTool>());
