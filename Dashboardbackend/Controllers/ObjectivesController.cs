@@ -11,12 +11,12 @@ namespace Dashboardbackend.Controllers
 {
     [Route("api/objectives")]
     [ApiController]
-    public class ObjectiveController : ControllerBase
+    public class ObjectivesController : ControllerBase
     {
         private readonly IObjectiveService _service;
         private readonly IMapper _mapper;
 
-        public ObjectiveController(IObjectiveService service, IMapper mapper)
+        public ObjectivesController(IObjectiveService service, IMapper mapper)
         {
             _service = service;
             _mapper = mapper;

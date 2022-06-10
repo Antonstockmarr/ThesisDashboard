@@ -23,7 +23,7 @@ namespace Dashboardbackend.Services
         public IEnumerable<ConfigurationPackage> GetConfigurationPackagesWithConfigurationId(int configurationId)
         {
             return from configurationPackage in GetConfigurationPackages()
-                   where configurationPackage.Id == configurationId
+                   where configurationPackage.ConfigurationId == configurationId
                    select configurationPackage;
         }
     }

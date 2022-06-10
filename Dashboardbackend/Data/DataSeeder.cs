@@ -19,6 +19,7 @@ namespace Dashboardbackend.Data
         {
             if (NotSeeded())
             {
+                Console.WriteLine("Populating database...");
                 _context.AddRange(GetObjectives());
                 await _context.SaveChangesAsync();
                 _context.AddRange(GetConcerns());

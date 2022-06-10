@@ -13,6 +13,8 @@ namespace Dashboardbackend.Services
         Tool GetToolById(int id);
 
         public IEnumerable<Tool> GetTools();
+
+        IEnumerable<Tool> GetToolsByConfigurationId(int configurationId);
     }
 }
 

@@ -10,12 +10,12 @@ namespace Dashboardbackend.Controllers
 {
     [Route("api/concerns")]
     [ApiController]
-    public class ConcernController : ControllerBase
+    public class ConcernsController : ControllerBase
     {
         private readonly IConcernService _service;
         private readonly IMapper _mapper;
 
-        public ConcernController(IConcernService service, IMapper mapper)
+        public ConcernsController(IConcernService service, IMapper mapper)
         {
             _service = service;
             _mapper = mapper;

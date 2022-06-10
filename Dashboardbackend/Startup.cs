@@ -56,6 +56,7 @@ namespace Dashboardbackend
             services.AddScoped<IConcernService, ConcernService>();
             services.AddScoped<IObjectiveService, ObjectiveService>();
             services.AddScoped<IToolService, ToolService>();
+            services.AddScoped<IApproachToolService, ApproachToolService>();
             services.AddScoped<IConfigurationService, ConfigurationService>();
             services.AddScoped<IConfigurationPackageService, ConfigurationPackageService>();
 

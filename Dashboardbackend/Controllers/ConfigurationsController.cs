@@ -6,10 +6,11 @@ using Dashboardbackend.Dtos;
 using Dashboardbackend.Models;
 using Dashboardbackend.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Dashboardbackend.Controllers
 {
-    [Route("api/configuration")]
+    [Route("api/configurations")]
     [ApiController]
     public class ConfigurationsController : ControllerBase
     {
@@ -31,13 +32,8 @@ namespace Dashboardbackend.Controllers
 
         // GET: api/Configuration
         [HttpGet]
-        public ActionResult<IEnumerable<Configuration>> Getconfiguration([FromQuery] List<int> approachIds)
+        public ActionResult<IEnumerable<Configuration>> GetConfiguration([FromQuery][BindRequired] List<int> approachIds)
         {
-            if (!approachIds.Any())
-            {
-                return BadRequest();
-            }
-
             if (!_approachService.ApproachesExists(approachIds))
             {
                 return NotFound();
@@ -46,7 +42,6 @@ namespace Dashboardbackend.Controllers
             try
             {
                 var configuration = _configurationService.GetConfigurationFromApproachIds(approachIds);
-                Console.WriteLine(configuration);
                 return configuration == null
                     ? NotFound()
                     : Ok(_mapper.Map<ConfigurationReadDto>(configuration));

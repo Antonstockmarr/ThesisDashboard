@@ -6,7 +6,8 @@ namespace Dashboardbackend.Services
 {
 	public interface IConfigurationService
 	{
-		Configuration GetConfigurationFromApproachIds(IEnumerable<int> approachIds);
+        bool ConfigurationExists(int configurationId);
+        Configuration GetConfigurationFromApproachIds(IEnumerable<int> approachIds);
         Configuration GetConfigurationFromApproachToolIds(IEnumerable<int> approachToolIds);
         IEnumerable<Configuration> GetConfigurations();
     }

@@ -53,7 +53,7 @@ namespace Dashboardbackend.Migrations
 
                     b.HasIndex("ConcernId");
 
-                    b.ToTable("approaches");
+                    b.ToTable("approaches", (string)null);
                 });
 
             modelBuilder.Entity("Dashboardbackend.Models.ApproachTool", b =>
@@ -79,7 +79,7 @@ namespace Dashboardbackend.Migrations
 
                     b.HasIndex("ToolId");
 
-                    b.ToTable("approachTools");
+                    b.ToTable("approachTools", (string)null);
                 });
 
             modelBuilder.Entity("Dashboardbackend.Models.Concern", b =>
@@ -105,7 +105,7 @@ namespace Dashboardbackend.Migrations
 
                     b.HasIndex("ObjectiveId");
 
-                    b.ToTable("concerns");
+                    b.ToTable("concerns", (string)null);
                 });
 
             modelBuilder.Entity("Dashboardbackend.Models.Configuration", b =>
@@ -130,7 +130,7 @@ namespace Dashboardbackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("configurations");
+                    b.ToTable("configurations", (string)null);
                 });
 
             modelBuilder.Entity("Dashboardbackend.Models.ConfigurationPackage", b =>
@@ -156,7 +156,7 @@ namespace Dashboardbackend.Migrations
 
                     b.HasIndex("SetupConfigurationId");
 
-                    b.ToTable("configurationPackages");
+                    b.ToTable("configurationPackages", (string)null);
                 });
 
             modelBuilder.Entity("Dashboardbackend.Models.Objective", b =>
@@ -177,7 +177,7 @@ namespace Dashboardbackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("objectives");
+                    b.ToTable("objectives", (string)null);
                 });
 
             modelBuilder.Entity("Dashboardbackend.Models.Tool", b =>
@@ -198,7 +198,7 @@ namespace Dashboardbackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tools");
+                    b.ToTable("tools", (string)null);
                 });
 
             modelBuilder.Entity("Dashboardbackend.Models.Approach", b =>

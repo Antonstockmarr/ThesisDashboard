@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Dashboardbackend.Dtos;
+using Dashboardbackend.Models;
 using Dashboardbackend.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -13,28 +14,45 @@ namespace Dashboardbackend.Controllers
     public class ToolsController : ControllerBase
     {
 
-        private readonly IToolService _service;
+        private readonly IToolService _toolService;
+        private readonly IConfigurationService _configurationService;
         private readonly IMapper _mapper;
 
-        public ToolsController(IToolService service, IMapper mapper)
+        public ToolsController(IToolService toolService, IConfigurationService configurationService, IMapper mapper)
         {
-            _service = service;
+            _toolService = toolService;
+            _configurationService = configurationService;
             _mapper = mapper;
         }
 
         // GET: api/Tools
         [HttpGet]
-        public ActionResult<IEnumerable<ToolReadDto>> Getapproaches()
+        public ActionResult<IEnumerable<ToolReadDto>> GetTools([FromQuery] int? configurationId)
         {
-            var tools = _service.GetTools();
+            IEnumerable<Tool> tools;
+            if (configurationId == null)
+            {
+                tools = _toolService.GetTools();
+            }
+            else
+            {
+                if (!_configurationService.ConfigurationExists(configurationId.Value))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    tools = _toolService.GetToolsByConfigurationId(configurationId.Value);
+                }
+            }
             return Ok(_mapper.Map<IEnumerable<ToolReadDto>>(tools));
         }
 
         // GET: api/Tools/5
         [HttpGet("{id}")]
-        public ActionResult<ToolReadDto> GetApproach(int id)
+        public ActionResult<ToolReadDto> GetToolById(int id)
         {
-            var tool = _service.GetToolById(id);
+            var tool = _toolService.GetToolById(id);
 
             if (tool != null)
             {

@@ -26,6 +26,11 @@ namespace Dashboardbackend.Services
             _configurationPackageService = configurationPackageService;
 		}
 
+        public bool ConfigurationExists(int configurationId)
+        {
+            return _configurationRepository.GetConfigurationById(configurationId) != null;
+        }
+
         public Configuration GetConfigurationFromApproachIds(IEnumerable<int> approachIds)
         {
             if (!_approachService.ApproachesExists(approachIds))
@@ -37,6 +42,7 @@ namespace Dashboardbackend.Services
                                             select _approachService.GetApproachById(id)
                                         ).ToList();
 
+            
             List<ApproachTool> solution = _solutionService.ComputeSolution(approaches);
 
             return GetConfigurationFromApproachToolIds(solution.ConvertAll(approachTool => approachTool.Id));
