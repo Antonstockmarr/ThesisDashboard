@@ -5,6 +5,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatStepperModule} from '@angular/material/stepper';
+import { MarkdownModule } from 'ngx-markdown';
+
 
 
 
@@ -25,6 +27,9 @@ import { LocalStorageService } from './services/local-storage.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Page3Component } from './page3/page3.component';
 import { RecommendationPageComponent } from './recommendation-page/recommendation-page.component';
+import { MarkdownPreviewComponent } from './markdown-preview/markdown-preview.component';
+
+
 
 @NgModule({
   declarations: [
@@ -37,6 +42,7 @@ import { RecommendationPageComponent } from './recommendation-page/recommendatio
     FooterComponent,
     Page3Component,
     RecommendationPageComponent,
+    MarkdownPreviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +54,8 @@ import { RecommendationPageComponent } from './recommendation-page/recommendatio
     MatGridListModule,
     MatStepperModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    MarkdownModule.forRoot()
   ],
   providers: [LocalStorageService],
   bootstrap: [AppComponent]

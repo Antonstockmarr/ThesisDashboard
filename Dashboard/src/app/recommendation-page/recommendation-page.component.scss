@@ -1,8 +1,10 @@
 .page-header {
     margin: 0 auto;
     max-width: 40vw;
-    background-color: #bbb;
+    background-color: #a6c8d1;
+    border-radius: 30px;
 }
+
 
 .page-title {
     margin: 0 auto;
@@ -51,3 +53,55 @@ img {
     padding: 10px;
     border: 1px solid black;
 }
+
+/////////Download button///////////
+
+  .file {
+    position: sticky;
+    background: #f8f8f8;
+    border-radius: 3px;
+    overflow: hidden
+  }
+  
+  .file {
+    float: right;
+    width: 270px;
+    height: 36px;
+    border: 1px solid #4CAF50;
+  }
+  .text {
+    margin-left: 45px;
+    font: bold 11pt Verdana;
+    line-height: 36px;
+    color: #333
+  }
+  .text:before {
+    content: url("/assets/folder.png");
+    position: absolute;
+    font: 16pt FontAwesome;
+    transform: translate(-40px, 3px);
+  }
+  .text:after {
+    // content: '(83.1 kB)';
+    position: absolute;
+    margin-left: 8px;
+    font: 10pt Verdana;
+    color: #626262;
+    transform: translate(0, 10px);
+  }
+  .field {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 36px;
+    color: #fff;
+    background: #4CAF50;
+    content: url("/assets/downloadicon.png");
+    text-align: center;
+    line-height: 36px;
+    cursor: pointer;
+    transition: .2s;
+  }
+  .field:hover {background: #43A047}
+  
