@@ -54,7 +54,7 @@ namespace Dashboardbackend.Services
             IEnumerable<int> toolIds = from toolApproach in approachToolIds
                                        select _approachToolService.GetApproachToolById(toolApproach).ToolId;
 
-            return from toolId in toolIds
+            return from toolId in toolIds.Distinct()
                    select GetToolById(toolId);
         }
     }

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Configuration } from '../models/configuration';
+import { Tool } from '../models/tool';
 import { DataRepositoryService } from '../services/data-repository.service';
 
 @Component({
@@ -12,17 +13,19 @@ export class RecommendationPageComponent implements OnInit {
 
   @Input() submitApproaches!: Subject<void>;
   Markdown: Subject<string> = new Subject<string>();
+  tools: Tool[] = []
 
   configuration: Configuration = {id: -1, image: "", description: "", setupFiles: "", markdown: ""};
 
-  constructor(private dataRepository: DataRepositoryService) {
-    console.log(this.configuration);
-    }
+  constructor(private dataRepository: DataRepositoryService) {}
 
   ngOnInit(): void {
     this.submitApproaches.asObservable().subscribe(async () => {
       await this.getConfiguration();
-      this.Markdown.next(this.configuration.markdown);
+      if (this.configuration.id != -1){
+        this.Markdown.next(this.configuration.markdown);
+        this.tools = await this.dataRepository.getToolsFromConfigurationId(this.configuration.id);
+      }
     });
   }
   
