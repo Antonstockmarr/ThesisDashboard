@@ -46,8 +46,9 @@ namespace Dashboardbackend.Controllers
                     ? NotFound()
                     : Ok(_mapper.Map<ConfigurationReadDto>(configuration));
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 return StatusCode(500);
             }
         }

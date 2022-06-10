@@ -35,7 +35,7 @@ namespace Dashboardbackend.Services
         {
             if (!_approachService.ApproachesExists(approachIds))
             {
-                throw new Exception("approaches does not exist");
+                throw new Exception("approaches do not exist");
             }
 
             List<Approach> approaches = (from id in approachIds

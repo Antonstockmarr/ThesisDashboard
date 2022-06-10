@@ -73,7 +73,7 @@ export class DataRepositoryService {
       } 
     })
     let observable = this.http.get<SetupConfiguration>(
-      this.baseUrl + '/api/setupconfiguration',
+      this.baseUrl + '/api/configurations',
       {observe: 'body', responseType: 'json', params: params})
       .pipe(
         catchError((error : HttpErrorResponse) => {
