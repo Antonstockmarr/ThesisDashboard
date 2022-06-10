@@ -14,11 +14,18 @@
     <div class="page-content">
       {{configuration.description}}
         <div class="top-banner">
+          <!--List of tools-->
+          <div class="illustration" >
+            <img src="{{configuration.image}}">
+        </div>
             <div class="illustration" >
                 <img src="{{configuration.image}}">
             </div>
         </div>
-        <a href="{{configuration.setupFiles}}" target="_blank" class="button">Link to zip file</a>
+        <div class="file">
+          <a class="field" href="{{configuration.setupFiles}}">&#xf019;</a>
+          <div class="text">Configuration Files</div>
+        </div>
+        <app-markdown-preview [Markdown]="Markdown"></app-markdown-preview>
     </div>
-    <app-markdown-preview [Markdown]="Markdown"></app-markdown-preview>
   </div>

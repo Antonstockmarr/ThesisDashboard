@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
   
   ngOnInit(): void {
     this.validateCallback = this.validateAndSetErrorStates.bind(this);
+    // this.submitApproaches.next();
   }
 
   // validation

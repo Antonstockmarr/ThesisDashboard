@@ -14,19 +14,26 @@ export class MarkdownPreviewComponent implements OnInit {
 
   markdown: string | undefined;
   constructor(private mdService: MarkdownService, private http: HttpClient) { 
-    console.log(this.Markdown)
-    console.log(this.markdown);
   }
 
-   ngOnInit(): void {
+  ngOnInit(): void {
     this.Markdown.asObservable().subscribe(async () => {
       await this.getMarkdownfile();
     });
   }
 
+  // For testing
+  // async ngOnInit() {
+  //   const markdownRaw = await firstValueFrom(this.http.get('/markdown-files/setupDescription.md', 
+  //     { responseType: 'text' }));  
+  //   this.markdown = this.mdService.compile(markdownRaw);
+  // }
+
   async getMarkdownfile() {
     const markdownRaw =  await firstValueFrom(this.http.get('https://configurationfiles.blob.core.windows.net/markdown-files/setupDescription.md', { responseType: 'text' }));
+    // const markdownRaw =  await firstValueFrom(this.http.get('/markdown-files/markdown.md', { responseType: 'text' }));
     this.markdown = this.mdService.compile(markdownRaw);
+    console.log(markdownRaw);
     console.log(this.markdown);
   }  
 

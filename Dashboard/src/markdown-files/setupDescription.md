@@ -1,27 +1,27 @@
-## Setup Monitoring Solution 
-1.	Add <b>docker-compose.yml</b> file to root folder with other <b>docker-compose.yml</b> files
-2.	Find setup steps for monitoring tool below
+# Setup Monitoring Solution 
+1. Add <b>docker-compose.yml</b> file to root folder with other <b>docker-compose.yml</b> files
+2. Find setup steps for monitoring tool below
 
 
-## Setup ELK servers
+### ELK servers
 1. Put folder "elk" into root folder
 2. ELK uses one port for <u>LogStash</u>, which is <b>8080</b> per default. Change it in <b>docker-compose.yml</b>  if necessary.
 3. ELK uses one port for <u>ElasticSearch</u>, which is <b>9200</b> per default. Change it in "docker-compose.yml", "elk/logstash/config/logstash.yml" and "elk/kibana/config/kibana.yml" if necessary
 4. ELK uses one port for <u>Kibana</u>, which is 5601 per default. Change it in "docker-compose.yml" if necessary
 
 
-## Prometheus Server setup
+### Prometheus Server 
 1. Put folder "prometheus" into root folder
 3. Prometheus uses port 9090 per default. Change it in “docker-compose.yml” if necessary 
 4. Go to prometheus/config/targets.json and add all hosts and ports you want to get healthchecks for.
 
 
-## Jaeger Server Setup
+### Jaeger Server 
 1. Put folder "jaeger" into root folder
 2. Jaeger uses port 16686 per default. Change it in “docker-compose.yml” if necessary
     
 
-## Run Monitoring Servers
+### Run Monitoring Servers
 1. After completion of the steps for the desired monitoring tools - go to root folder and run
   $ docker-compose up
 
