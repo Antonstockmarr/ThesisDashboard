@@ -17,8 +17,8 @@ export class ContentcardComponent implements OnInit {
 
   getColor(): string {
     if (!this.errorState) {
-      return "background-color: #eeeeee"
+      return "background-color: #DBDFFD"
     }
-    else return "background-color: #FABFB8"
+    else return "background-color: #F47C7C"
   }
 }

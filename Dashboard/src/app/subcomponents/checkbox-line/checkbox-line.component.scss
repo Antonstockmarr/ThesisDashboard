@@ -16,6 +16,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    text-decoration: underline;
 }
   
   /* Hide the browser's default checkbox */
@@ -35,7 +36,8 @@
 
   /* On mouse-over, add a grey background color */
   .checkbox-column:hover {
-    background-color: #bbb;
+    background-color: #9BA3EB;
+    border-radius: 30px;
   }
   
   .tooltip {

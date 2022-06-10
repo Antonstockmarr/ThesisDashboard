@@ -1,18 +1,16 @@
 <div class="page">
-  <div class="page-header">
-    <div class="page-title">
-      <h1>
-        Objectives Options
-      </h1>
-    </div>
-    <div class="page-description">
-      <p>
-        Some text to describe the page, like this is what you need to select
-      </p>
-    </div>
-  </div>
   <div class="page-content">
     <mat-card class="card">
+      <div class="page-title">
+        <h1>
+          Objectives Options
+        </h1>
+      </div>
+      <div class="page-description">
+        <p>
+          Some text to describe the page, like this is what you need to select
+        </p>
+      </div>
       <mat-grid-list [cols]="getGridColumns()" rowHeight="200px" gutterSize="15px">
         <mat-grid-tile *ngFor="let objective of objectives">
           <div class="qw-card_centered">

@@ -3,12 +3,13 @@
     max-width: 40vw;
     background-color: #a6c8d1;
     border-radius: 30px;
+    text-align: center;
 }
 
 
 .page-title {
     margin: 0 auto;
-    padding: 1em 0;
+    padding: 1em 0 0px 20px;   
     width: fit-content;
 }
 
@@ -18,7 +19,7 @@
 
 .page-description {
     margin: 0 auto;
-    padding: 1em 0;
+    padding: 1em 0 20px 40px;
     width: fit-content;
 }
 
@@ -37,8 +38,16 @@
     column-gap: 20px;
 }
 
+
+.cardTools {
+  border: 1px solid black;
+  border-radius: 10px;
+  text-align: center;
+}
+
 .illustration {
     border: 1px solid black;
+    border-radius: 10px;
 }
 
 img {

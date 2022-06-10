@@ -1,4 +1,4 @@
-# Setup Monitoring Solution 
+# Setup Monitoring Solution
 1. Add <b>docker-compose.yml</b> file to root folder with other <b>docker-compose.yml</b> files
 2. Find setup steps for monitoring tool below
 

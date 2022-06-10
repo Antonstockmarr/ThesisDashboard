@@ -10,15 +10,16 @@ import { firstValueFrom, Subject } from 'rxjs';
 })
 export class MarkdownPreviewComponent implements OnInit {
 
-  @Input() Markdown!: Subject<void>;
+  @Input() Markdown!: Subject<string>;
+
 
   markdown: string | undefined;
   constructor(private mdService: MarkdownService, private http: HttpClient) { 
   }
 
   ngOnInit(): void {
-    this.Markdown.asObservable().subscribe(async () => {
-      await this.getMarkdownfile();
+    this.Markdown.asObservable().subscribe(async (markdownTemp) => {
+      await this.getMarkdownfile(markdownTemp);
     });
   }
 
@@ -29,8 +30,8 @@ export class MarkdownPreviewComponent implements OnInit {
   //   this.markdown = this.mdService.compile(markdownRaw);
   // }
 
-  async getMarkdownfile() {
-    const markdownRaw =  await firstValueFrom(this.http.get('https://configurationfiles.blob.core.windows.net/markdown-files/setupDescription.md', { responseType: 'text' }));
+  async getMarkdownfile(markdownTemp: string) {
+    const markdownRaw =  await firstValueFrom(this.http.get(markdownTemp, { responseType: 'text' }));
     // const markdownRaw =  await firstValueFrom(this.http.get('/markdown-files/markdown.md', { responseType: 'text' }));
     this.markdown = this.mdService.compile(markdownRaw);
     console.log(markdownRaw);
