@@ -6,5 +6,6 @@
         public string Image { get; set; }
         public string SetupFiles { get; set; }
         public string Description { get; set; }
+        public string Markdown { get; set; }
     }
 }

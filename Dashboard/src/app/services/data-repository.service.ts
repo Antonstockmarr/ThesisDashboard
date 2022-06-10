@@ -4,7 +4,7 @@ import { catchError, firstValueFrom, lastValueFrom, Observable } from 'rxjs';
 import { Objective } from '../models/objective';
 import { Concern } from '../models/concern';
 import { Approach } from '../models/approach';
-import { SetupConfiguration } from '../models/setupConfiguration';
+import { Configuration } from '../models/configuration';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
@@ -61,7 +61,7 @@ export class DataRepositoryService {
     return this.approaches;
   }
 
-  async getSetupConfiguration(): Promise<SetupConfiguration> {
+  async getConfiguration(): Promise<Configuration> {
     let approaches = await lastValueFrom(this.getApproaches());
 
     let params = new HttpParams();
@@ -72,12 +72,12 @@ export class DataRepositoryService {
         params = params.append('approachIds', approach.id);
       } 
     })
-    let observable = this.http.get<SetupConfiguration>(
+    let observable = this.http.get<Configuration>(
       this.baseUrl + '/api/configurations',
       {observe: 'body', responseType: 'json', params: params})
       .pipe(
         catchError((error : HttpErrorResponse) => {
-          return new Observable<SetupConfiguration>((observer) => {
+          return new Observable<Configuration>((observer) => {
             let description;
             if (error.status == 404) {
               description = "Sorry, this configuration has not been created yet";
@@ -92,7 +92,7 @@ export class DataRepositoryService {
               description = "There was a http exception with code " + error.status;
             }
             
-            observer.next({id: -1, setupFiles: "", description: description, image: ""});
+            observer.next({id: -1, setupFiles: "", description: description, image: "", markdown: ""});
           });
         })
       );

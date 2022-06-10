@@ -14,6 +14,8 @@ namespace Dashboardbackend.Models
         public string SetupFiles { get; set; }
         [Required]
         public string Description { get; set; }
+        [Required]
+        public string Markdown { get; set; }
         public ICollection<ConfigurationPackage> ConfigurationPackages { get; set; }
     }
 }

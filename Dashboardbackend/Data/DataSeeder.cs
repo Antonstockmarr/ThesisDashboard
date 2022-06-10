@@ -375,13 +375,15 @@ namespace Dashboardbackend.Data
                 {
                     Image = "https://configurationfiles.blob.core.windows.net/images/prometheus-healthchecks-jaeger-tracing.png",
                     SetupFiles = "https://configurationfiles.blob.core.windows.net/configuration-files/prometheus-healthchecks-jaeger-tracing.zip",
-                    Description = "prometheus-healthcheacks-jaeger-tracing"
+                    Description = "prometheus-healthcheacks-jaeger-tracing",
+                    Markdown = "path"
                 },
                 new Configuration
                 {
                     Image = "https://configurationfiles.blob.core.windows.net/images/logstash-errorlogs.png",
                     SetupFiles = "https://configurationfiles.blob.core.windows.net/configuration-files/logstash-errorlogs.zip",
-                    Description = "logstash-errorlogs"
+                    Description = "logstash-errorlogs",
+                    Markdown = "path"
                 },
             };
         }
