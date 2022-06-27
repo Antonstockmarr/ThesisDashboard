@@ -1,34 +1,22 @@
 <div class="page">
-    <!-- <div class="page-header">
-      <div class="page-title">
-        <h1>
-          Monitoring Recommendation
-        </h1>
-      </div>
-      <div class="page-description">
-        <p>
-          Components of a monitoring solution that can adress the selected concerns
-        </p>
-      </div>
-    </div> -->
-    <div class="page-content">
-        <div class="top-banner">
-          <!--List of tools-->
-          <div class="cardTools" >
-            <h2 style="text-decoration:underline">Monitoring tools</h2>
-            <p>Logstash</p>
-            <p>Prometheus</p>
-            <p>Jaeger</p>
-            <!-- <img src="{{configuration.image}}"> -->
-          </div>
-            <div class="illustration" >
-                <img src="{{configuration.image}}">
-            </div>
+  <div class="page-content"  *ngIf="configuration.id != -1">
+      <div class="top-banner">
+        <!--List of tools-->
+        <div class="cardTools" >
+          <h2>Monitoring tools</h2>
+          <p *ngFor="let tool of tools">{{tool.name}}</p>
         </div>
-        <div class="file">
-          <a class="field" href="{{configuration.setupFiles}}">&#xf019;</a>
-          <div class="text">Configuration Files</div>
+        <div class="illustration" >
+            <img src="{{configuration.image}}">
         </div>
+      </div>
+      <div class="file">
+        <a class="field" href="{{configuration.setupFiles}}" target="_blank">&#xf019;</a>
+        <div class="text">Configuration Files</div>
+      </div>
+      <div class="markdown">
         <app-markdown-preview [Markdown]="Markdown"></app-markdown-preview>
+      </div>
     </div>
+    <p *ngIf="configuration.id == -1">{{configuration.description}}</p>
   </div>

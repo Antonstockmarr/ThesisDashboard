@@ -32,9 +32,9 @@ export class MarkdownPreviewComponent implements OnInit {
 
   async getMarkdownfile(markdownTemp: string) {
     const markdownRaw =  await firstValueFrom(this.http.get(markdownTemp, { responseType: 'text' }));
+    console.log(markdownRaw);
     // const markdownRaw =  await firstValueFrom(this.http.get('/markdown-files/markdown.md', { responseType: 'text' }));
     this.markdown = this.mdService.compile(markdownRaw);
-    console.log(markdownRaw);
     console.log(this.markdown);
   }  
 

@@ -6,11 +6,15 @@ import { Concern } from '../models/concern';
 import { Approach } from '../models/approach';
 import { Configuration } from '../models/configuration';
 import { LocalStorageService } from './local-storage.service';
+import { Tool } from '../models/tool';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataRepositoryService {
+  getTools(): import("../models/tool").Tool[] | PromiseLike<import("../models/tool").Tool[]> {
+    throw new Error('Method not implemented.');
+  }
 
   objectives: Observable<Objective[]> = new Observable<Objective[]>();
   concerns: Observable<Concern[]> = new Observable<Concern[]>();
@@ -30,10 +34,6 @@ export class DataRepositoryService {
     this.approaches = this.http.get<Approach[]>(
       this.baseUrl + '/api/approaches',
       {observe: 'body', responseType: 'json'});
-
-    // this.setupConfiguration = this.http.get<setupConfiguration[]>(
-    //   this.baseUrl + '/api/setupConfiguration',
-    //   {observe: 'body', responseType: 'json'});
   }
 
   getObjectives(): Observable<Objective[]> {
@@ -46,18 +46,6 @@ export class DataRepositoryService {
   }
 
   getApproaches(): Observable<Approach[]> {
-    // let approaches = new Observable<Approach[]>((subscriber) => {
-    //   subscriber.next([
-    //   {
-    //     id: 1,
-    //     name: 'Health checks',
-    //     description: 'Periodically ping services to see if they are up',
-    //     implementationDifficulty: 'easy',
-    //     maintenanceDifficulty: 'easy',
-    //     concernId: 1,
-    //   }
-    //   ]);
-    // });
     return this.approaches;
   }
 
@@ -99,4 +87,16 @@ export class DataRepositoryService {
     
     return firstValueFrom(observable);
   }
+
+  async getToolsFromConfigurationId(configurationId: number): Promise<Tool[]> {
+    let params = new HttpParams();
+    params = params.set('configurationId', configurationId);
+
+    let observable = this.http.get<Tool[]>(
+      this.baseUrl + '/api/tools',
+      {observe: 'body', responseType: 'json', params: params })
+
+    return firstValueFrom(observable);
+  }
+
 }
