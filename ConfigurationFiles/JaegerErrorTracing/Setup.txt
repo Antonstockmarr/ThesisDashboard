@@ -4,7 +4,7 @@
 
 2. Put folder "jaeger" into same directory
 
-3. Default UI port for Jaeger is 16686 but can be changed to desired port
+3. Default UI port for Jaeger is 9412 but can be changed to desired port
 
 4. Access https://opentelemetry.io/docs/instrumentation/ and find the necessary packages that matches the programming framework of the application
 

@@ -3,12 +3,12 @@
 # Setup ELK servers
 1. Add docker-compose.elk.yml file to root folder with other docker-compose.yml files
 2. Put folder "elk" into same directory
-3. ELK uses one port for LogStash, which is 8080 per default. Change it in "docker-compose.elk.yml" if necessary.
-3. ELK uses one port for ElasticSearch, which is 9200 per default. Change it in "docker-compose..elk.yml", "elk/logstash/config/logstash.yml" and "elk/kibana/config/kibana.yml" if necessary
-3. ELK uses one port for Kibana, which is 5601 per default. Change it in "docker-compose..elk.yml" if necessary
+3. ELK uses one port for LogStash, which is 8080 per default with the HTTP plugin. Change it in "docker-compose.elk.yml" to "8080:newPort" if necessary.
+3. ELK uses one port for ElasticSearch, which is 9200 per default. Change it in "docker-compose.elk.yml" to "9200:newPort", "elk/logstash/pipeline/logstash.conf" to "ElasticSearch:newPort", and "elk/kibana/config/kibana.yml" to "http://elasticsearch:9200:newPort" if necessary
+3. ELK uses one port for Kibana, which is 5601 per default. Change it in "docker-compose.elk.yml" to "5601:newPort" if necessary
 5. Go to root folder and run
   $ docker-compose -f docker-compose.elk.yml up
-6. Go to the port used for Kibana after the setup is complete. Select an index for elastic search (fx "logstash-*").
+6. Go to the port used for Kibana after the setup is complete. Set index to "logstash-*".
 7. Kibana will display logs and provide search handles.
 
 # Setup logging
