@@ -88,19 +88,13 @@ namespace Dashboardbackend.Data
                 },
                 new Concern()
                 {
-                    Name = "User Behaviour",
-                    Description = "desc",
-                    ObjectiveId = _context.objectives.First(objective => objective.Name == "User Experience").Id
-                },
-                new Concern()
-                {
                     Name = "Error Management",
                     Description = "desc",
                     ObjectiveId = _context.objectives.First(objective => objective.Name == "Incident Management").Id
                 },
                 new Concern()
                 {
-                    Name = "Network Security",
+                    Name = "Security",
                     Description = "desc",
                     ObjectiveId = _context.objectives.First(objective => objective.Name == "Incident Management").Id
                 },
@@ -132,31 +126,7 @@ namespace Dashboardbackend.Data
                 },
                 new Approach()
                 {
-                    Name = "Network Traffic Performance",
-                    Description = "Monitor CPU, storage and memory usage",
-                    ImplementationDifficulty = "easy",
-                    MaintenanceDifficulty = "easy",
-                    ConcernId = _context.concerns.First(concern => concern.Name == "Performance").Id
-                },
-                new Approach()
-                {
-                    Name = "Network Traffic Security",
-                    Description = "Monitor network log to analyse traffic and identify malicious activity.",
-                    ImplementationDifficulty = "easy",
-                    MaintenanceDifficulty = "easy",
-                    ConcernId = _context.concerns.First(concern => concern.Name == "Network Security").Id
-                },
-                new Approach()
-                {
-                    Name = "Network Traffic Scalability",
-                    Description = "desc",
-                    ImplementationDifficulty = "easy",
-                    MaintenanceDifficulty = "easy",
-                    ConcernId = _context.concerns.First(concern => concern.Name == "Network Security").Id
-                },
-                new Approach()
-                {
-                    Name = "Distributed Tracing Performance",
+                    Name = "API Performance",
                     Description = "Track requests across services to link events and produce timelines",
                     ImplementationDifficulty = "easy",
                     MaintenanceDifficulty = "easy",
@@ -164,23 +134,23 @@ namespace Dashboardbackend.Data
                 },
                 new Approach()
                 {
-                    Name = "Distributed Tracing User",
+                    Name = "Interservice Communication",
                     Description = "Track requests across services to link events and produce timelines",
                     ImplementationDifficulty = "easy",
                     MaintenanceDifficulty = "easy",
-                    ConcernId = _context.concerns.First(concern => concern.Name == "User Behaviour").Id
+                    ConcernId = _context.concerns.First(concern => concern.Name == "Performance").Id
                 },
                 new Approach()
                 {
-                    Name = "Distributed Tracing Error",
-                    Description = "Track requests across services to link events and produce timelines",
+                    Name = "Error Tracing",
+                    Description = "Logs that are produced within the application. This requires source code instrumentation.",
                     ImplementationDifficulty = "easy",
                     MaintenanceDifficulty = "easy",
                     ConcernId = _context.concerns.First(concern => concern.Name == "Error Management").Id
                 },
                 new Approach()
                 {
-                    Name = "Error Logs",
+                    Name = "Error Logging",
                     Description = "Logs that are produced within the application. This requires source code instrumentation.",
                     ImplementationDifficulty = "easy",
                     MaintenanceDifficulty = "easy",
@@ -196,7 +166,15 @@ namespace Dashboardbackend.Data
                 },
                 new Approach()
                 {
-                    Name = "OS Metrics Scalability",
+                    Name = "Network Traffic",
+                    Description = "Monitor CPU, storage and memory usage",
+                    ImplementationDifficulty = "easy",
+                    MaintenanceDifficulty = "easy",
+                    ConcernId = _context.concerns.First(concern => concern.Name == "Security").Id
+                },
+                new Approach()
+                {
+                    Name = "OS Metrics",
                     Description = "Metrics on how the services are running, like latency, throughput, etc",
                     ImplementationDifficulty = "easy",
                     MaintenanceDifficulty = "easy",
@@ -204,7 +182,7 @@ namespace Dashboardbackend.Data
                 },
                 new Approach()
                 {
-                    Name = "OS Metrics Capacity",
+                    Name = "OS Metrics",
                     Description = "Metrics on how the services are running, like latency, throughput, etc",
                     ImplementationDifficulty = "easy",
                     MaintenanceDifficulty = "easy",
@@ -219,7 +197,7 @@ namespace Dashboardbackend.Data
             {
                 new Tool()
                 {
-                    Name = "Logstash",
+                    Name = "ELK",
                     Description = "Logging",
                 },
                 new Tool()
@@ -256,13 +234,13 @@ namespace Dashboardbackend.Data
             {
                 new ApproachTool()
                 {
-                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Error Logs").Id,
-                    ToolId = _context.tools.First(tools => tools.Name == "Logstash").Id,
+                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Error Logging").Id,
+                    ToolId = _context.tools.First(tools => tools.Name == "ELK").Id,
                     ConfigurationDifficulty = 2,
                 },
                 new ApproachTool()
                 {
-                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Error Logs").Id,
+                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Error Logging").Id,
                     ToolId = _context.tools.First(tools => tools.Name == "Grafana Loki").Id,
                     ConfigurationDifficulty = 3,
                 },
@@ -274,35 +252,28 @@ namespace Dashboardbackend.Data
                 },
                 new ApproachTool()
                 {
-                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Network Traffic Performance").Id,
+                    ApproachId = _context.approaches.First(Approach => Approach.Name == "API Performance").Id,
                     ToolId = _context.tools.First(tools => tools.Name == "Prometheus").Id,
                     ConfigurationDifficulty = 3,
 
                 },
                 new ApproachTool()
                 {
-                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Network Traffic Security").Id,
+                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Network Traffic").Id,
                     ToolId = _context.tools.First(tools => tools.Name == "Prometheus").Id,
                     ConfigurationDifficulty = 3,
 
                 },
                 new ApproachTool()
                 {
-                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Network Traffic Scalability").Id,
+                    ApproachId = _context.approaches.First(Approach => Approach.Name == "OS Metrics").Id,
                     ToolId = _context.tools.First(tools => tools.Name == "Prometheus").Id,
                     ConfigurationDifficulty = 3,
 
                 },
                 new ApproachTool()
                 {
-                    ApproachId = _context.approaches.First(Approach => Approach.Name == "OS Metrics Scalability").Id,
-                    ToolId = _context.tools.First(tools => tools.Name == "Prometheus").Id,
-                    ConfigurationDifficulty = 3,
-
-                },
-                new ApproachTool()
-                {
-                    ApproachId = _context.approaches.First(Approach => Approach.Name == "OS Metrics Capacity").Id,
+                    ApproachId = _context.approaches.First(Approach => Approach.Name == "OS Metrics").Id,
                     ToolId = _context.tools.First(tools => tools.Name == "Prometheus").Id,
                     ConfigurationDifficulty = 3,
 
@@ -316,51 +287,39 @@ namespace Dashboardbackend.Data
                 },
                 new ApproachTool()
                 {
-                    ApproachId = _context.approaches.First(Approach => Approach.Name == "OS Metrics Scalability").Id,
+                    ApproachId = _context.approaches.First(Approach => Approach.Name == "OS Metrics").Id,
                     ToolId = _context.tools.First(tools => tools.Name == "Netdata").Id,
                     ConfigurationDifficulty = 3,
 
                 },
                 new ApproachTool()
                 {
-                    ApproachId = _context.approaches.First(Approach => Approach.Name == "OS Metrics Capacity").Id,
+                    ApproachId = _context.approaches.First(Approach => Approach.Name == "OS Metrics").Id,
                     ToolId = _context.tools.First(tools => tools.Name == "Netdata").Id,
                     ConfigurationDifficulty = 3,
 
                 },
                 new ApproachTool()
                 {
-                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Distributed Tracing Performance").Id,
+                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Interservice Communication").Id,
                     ToolId = _context.tools.First(tools => tools.Name == "Jaeger").Id,
                     ConfigurationDifficulty = 3,
                 },
                 new ApproachTool()
                 {
-                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Distributed Tracing User").Id,
-                    ToolId = _context.tools.First(tools => tools.Name == "Jaeger").Id,
-                    ConfigurationDifficulty = 3,
-                },
-                new ApproachTool()
-                {
-                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Distributed Tracing Error").Id,
+                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Error Tracing").Id,
                     ToolId = _context.tools.First(tools => tools.Name == "Jaeger").Id,
                     ConfigurationDifficulty = 3,
                 },
                                 new ApproachTool()
                 {
-                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Distributed Tracing Performance").Id,
+                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Interservice Communication").Id,
                     ToolId = _context.tools.First(tools => tools.Name == "SkyWalking").Id,
                     ConfigurationDifficulty = 3,
                 },
                 new ApproachTool()
                 {
-                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Distributed Tracing User").Id,
-                    ToolId = _context.tools.First(tools => tools.Name == "SkyWalking").Id,
-                    ConfigurationDifficulty = 3,
-                },
-                new ApproachTool()
-                {
-                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Distributed Tracing Error").Id,
+                    ApproachId = _context.approaches.First(Approach => Approach.Name == "Error Tracing").Id,
                     ToolId = _context.tools.First(tools => tools.Name == "SkyWalking").Id,
                     ConfigurationDifficulty = 3,
                 }
@@ -382,7 +341,7 @@ namespace Dashboardbackend.Data
                 {
                     Image = "https://configurationfiles.blob.core.windows.net/images/logstash-errorlogs.png",
                     SetupFiles = "https://configurationfiles.blob.core.windows.net/configuration-files/logstash-errorlogs.zip",
-                    Description = "logstash-errorlogs",
+                    Description = "ELK-errorlogs",
                     Markdown = "https://configurationfiles.blob.core.windows.net/markdown-files/setupDescription.md"
                 },
             };
@@ -409,7 +368,7 @@ namespace Dashboardbackend.Data
                         _context.tools.Any(tool => (tool.Id == approachTool.ToolId)
                                                 && (tool.Name == "Jaeger"))
                         && _context.approaches.Any(approach => (approach.Id == approachTool.ApproachId)
-                                                && (approach.Name == "Distributed Tracing Error"))
+                                                && (approach.Name == "Error Tracing"))
                         ).Id,
                     ConfigurationId = _context.configurations.First(setupConfiguration =>
                             setupConfiguration.Description == "prometheus-healthcheacks-jaeger-tracing").Id
@@ -418,12 +377,12 @@ namespace Dashboardbackend.Data
                 {
                     ApproachToolId = _context.approachTools.First(approachTool =>
                         _context.tools.Any(tool => (tool.Id == approachTool.ToolId)
-                                                && (tool.Name == "Logstash"))
+                                                && (tool.Name == "ELK"))
                         && _context.approaches.Any(approach => (approach.Id == approachTool.ApproachId)
-                                                && (approach.Name == "Error Logs"))
+                                                && (approach.Name == "Error Logging"))
                         ).Id,
                     ConfigurationId = _context.configurations.First(setupConfiguration =>
-                            setupConfiguration.Description == "logstash-errorlogs").Id
+                            setupConfiguration.Description == "ELK-errorlogs").Id
                 },
             };
         }
