@@ -11,7 +11,7 @@
           Select the objective that fits best with your motivations for monitoring
         </p>
       </div>
-      <mat-grid-list [cols]="getGridColumns()" rowHeight="200px" gutterSize="15px">
+      <mat-grid-list [cols]="getGridColumns()" rowHeight="275px" gutterSize="15px">
         <mat-grid-tile *ngFor="let objective of objectives">
           <div class="qw-card_centered">
             <button class="custom-btn btn-1" (click)="presetConcerns(objective)">

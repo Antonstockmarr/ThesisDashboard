@@ -55,17 +55,17 @@ namespace Dashboardbackend.Data
                 new Objective()
                 {
                     Name = "User Experience",
-                    Description = "desc"
+                    Description = "Ensure customer requests are handled smoothly by monitoring availability and performance."
                 },
                 new Objective()
                 {
                     Name = "Incident Management",
-                    Description = "desc"
+                    Description = "Detect errors when they occur, and efficiently track down what caused them."
                 },
                 new Objective()
                 {
                     Name = "Resource Management",
-                    Description = "desc"
+                    Description = "See which parts of your system use the most resources, and how the usage fluctuates over time."
                 }
             };
         }
@@ -77,36 +77,36 @@ namespace Dashboardbackend.Data
                 new Concern()
                 {
                     Name = "Availability",
-                    Description = "desc",
+                    Description = "Check uptime of services to detect issues before they impact business",
                     ObjectiveId = _context.objectives.First(objective => objective.Name == "User Experience").Id
                 },
                 new Concern()
                 {
                     Name = "Performance",
-                    Description = "desc",
+                    Description = "Monitor response times and detect performance bottlenecks",
                     ObjectiveId = _context.objectives.First(objective => objective.Name == "User Experience").Id
                 },
                 new Concern()
                 {
                     Name = "Error Management",
-                    Description = "desc",
+                    Description = "Detect and store errors to perform queries and enable root cause analysis",
                     ObjectiveId = _context.objectives.First(objective => objective.Name == "Incident Management").Id
                 },
                 new Concern()
                 {
                     Name = "Security",
-                    Description = "desc",
+                    Description = "Get alerted in case of potential security incidents",
                     ObjectiveId = _context.objectives.First(objective => objective.Name == "Incident Management").Id
                 },
                 new Concern()
                 {
                     Name = "Scalability",
-                    Description = "desc",
+                    Description = "Collect data on the usage of CPU, memory and storage",
                     ObjectiveId = _context.objectives.First(objective => objective.Name == "Resource Management").Id
                 },new Concern()
                 {
                     Name = "Capacity Planning",
-                    Description = "desc",
+                    Description = "Analyse usage data to evaluate resource budget and meet resource demands",
                     ObjectiveId = _context.objectives.First(objective => objective.Name == "Resource Management").Id
                 }
             };
@@ -127,33 +127,33 @@ namespace Dashboardbackend.Data
                 new Approach()
                 {
                     Name = "API Performance",
-                    Description = "Track requests across services to link events and produce timelines",
+                    Description = "Monitor metrics on API's like number of failed requests or average response time",
                     ImplementationDifficulty = "easy",
-                    MaintenanceDifficulty = "easy",
+                    MaintenanceDifficulty = "medium",
                     ConcernId = _context.concerns.First(concern => concern.Name == "Performance").Id
                 },
                 new Approach()
                 {
                     Name = "Interservice Communication",
                     Description = "Track requests across services to link events and produce timelines",
-                    ImplementationDifficulty = "easy",
-                    MaintenanceDifficulty = "easy",
+                    ImplementationDifficulty = "hard",
+                    MaintenanceDifficulty = "hard",
                     ConcernId = _context.concerns.First(concern => concern.Name == "Performance").Id
                 },
                 new Approach()
                 {
-                    Name = "Error Tracing",
-                    Description = "Logs that are produced within the application. This requires source code instrumentation.",
+                    Name = "Error Logging",
+                    Description = "Create logs to track errors or potential issues.",
                     ImplementationDifficulty = "easy",
-                    MaintenanceDifficulty = "easy",
+                    MaintenanceDifficulty = "medium",
                     ConcernId = _context.concerns.First(concern => concern.Name == "Error Management").Id
                 },
                 new Approach()
                 {
-                    Name = "Error Logging",
-                    Description = "Logs that are produced within the application. This requires source code instrumentation.",
-                    ImplementationDifficulty = "easy",
-                    MaintenanceDifficulty = "easy",
+                    Name = "Error Tracing",
+                    Description = "Implement distibuted tracing across services to enable root cause analysis",
+                    ImplementationDifficulty = "hard",
+                    MaintenanceDifficulty = "hard",
                     ConcernId = _context.concerns.First(concern => concern.Name == "Error Management").Id
                 },
                 new Approach()
@@ -167,9 +167,9 @@ namespace Dashboardbackend.Data
                 new Approach()
                 {
                     Name = "Network Traffic",
-                    Description = "Monitor CPU, storage and memory usage",
-                    ImplementationDifficulty = "easy",
-                    MaintenanceDifficulty = "easy",
+                    Description = "Analyse network traffic and detect suspicious behaviour",
+                    ImplementationDifficulty = "medium",
+                    MaintenanceDifficulty = "medium",
                     ConcernId = _context.concerns.First(concern => concern.Name == "Security").Id
                 },
                 new Approach()
