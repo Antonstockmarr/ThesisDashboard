@@ -3,12 +3,12 @@
     <mat-card class="card">
       <div class="page-title">
         <h1>
-          Objectives Options
+          Why do you want to monitor?
         </h1>
       </div>
       <div class="page-description">
         <p>
-          Some text to describe the page, like this is what you need to select
+          Select the objective that fits best with your motivations for monitoring
         </p>
       </div>
       <mat-grid-list [cols]="getGridColumns()" rowHeight="200px" gutterSize="15px">
@@ -42,10 +42,13 @@
       </mat-grid-list>
     </mat-card>
     <div *ngIf="showConcerns">
+      <div class="concerns-title">
+        <h1>How do you want to monitor?</h1>
+      </div>
       <div class="concern-line-container">
         <div *ngFor="let concern of concerns">
           <app-contentcard [errorState]="getErrorState(concern)">
-            <app-checkbox-line [description]="concern.name" [tooltip]="concern.description" type="checkbox"
+            <app-checkbox-line [name]="concern.name" [description]="concern.description" type="checkbox"
               [isChecked]="checkedConcerns.get(concern.id) ? true : false" (onClick)="changeConcernSelection(concern, $event)">
               <div class="approach-dropdown">
                 <div class="approach-line-container">
@@ -54,11 +57,11 @@
                 </div>
                 <div class="approach-line-container" *ngFor="let approach of concernApproaches(concern)">
                   <app-checkbox-line
-                    [description]="approach.name"
+                    [name]="approach.name"
                     [tooltip]="approach.description"
                     (onClick)="changeApproachSelection(approach, $event)"
                     [isChecked]="checkedApproaches.get(approach.id) ? true : false"
-                    [fontSize]="18"
+                    [nameFontSize]="18"
                     >
                   </app-checkbox-line>
                   <app-difficulty-bar [difficulty]="approach.implementationDifficulty"></app-difficulty-bar>

@@ -1,5 +1,7 @@
 <div class="checkbox-line">
-  <label class="checkbox-column" [style]="getTextStyle()">{{description}}
+  <label class="checkbox-column">
+    <div class="name" [style]="getNameStyle()">{{name}}</div>
+    <div class="description" [style]="getDescriptionStyle()">{{description}}</div>
     <mat-checkbox
       class="checkmark"
       (change)="onChange($event)"

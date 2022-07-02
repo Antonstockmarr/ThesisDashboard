@@ -8,12 +8,15 @@ import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
   styleUrls: ['./checkbox-line.component.scss']
 })
 export class CheckboxLineComponent implements OnInit {
-  @Input() description!: string;
+  @Input() name!: string;
   @Input() tooltip?: string = '';
+  @Input() description?: string = '';
   @Output() onClick: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() disabled: boolean = false;
   @Input() isChecked: boolean = false;
-  @Input() fontSize?: number = 22;
+  @Input() nameFontSize?: number = 22;
+  @Input() descriptionFontSize?: number = 16;
+
 
   constructor() { }
 
@@ -24,7 +27,11 @@ export class CheckboxLineComponent implements OnInit {
     this.onClick.emit(e.checked); 
   }
 
-  getTextStyle(): string {
-    return `font-size: ${this.fontSize}px`
+  getNameStyle(): string {
+    return `font-size: ${this.nameFontSize}px`
+  }
+
+  getDescriptionStyle(): string {
+    return `font-size: ${this.descriptionFontSize}px`
   }
 }

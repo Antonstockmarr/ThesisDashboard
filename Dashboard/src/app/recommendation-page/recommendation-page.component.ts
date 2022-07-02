@@ -23,8 +23,8 @@ export class RecommendationPageComponent implements OnInit {
     this.submitApproaches.asObservable().subscribe(async () => {
       await this.getConfiguration();
       if (this.configuration.id != -1){
-        this.Markdown.next(this.configuration.markdown);
         this.tools = await this.dataRepository.getToolsFromConfigurationId(this.configuration.id);
+        this.Markdown.next(this.configuration.markdown);
       }
     });
   }

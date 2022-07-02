@@ -85,8 +85,9 @@ export class AppComponent implements OnInit {
     })
   }
 
-  stepperEvents(stepper: MatStepper, event: StepperSelectionEvent) {
+  async stepperEvents(stepper: MatStepper, event: StepperSelectionEvent){
     if (stepper._steps.length - 1 == event.selectedIndex) {
+      await new Promise(r => setTimeout(r,100));
       this.submitApproaches.next();
     }
   }
